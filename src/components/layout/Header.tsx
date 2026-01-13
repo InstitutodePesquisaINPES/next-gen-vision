@@ -7,10 +7,12 @@ import { VixioLogo } from "@/components/brand/VixioLogo";
 
 const navLinks = [
   { name: "Início", path: "/" },
-  { name: "Consultoria", path: "/consultoria" },
+  { name: "Ciência de Dados", path: "/consultoria" },
   { name: "Sistemas", path: "/sistemas" },
+  { name: "Plataformas", path: "/plataformas" },
+  { name: "Marketplace", path: "/marketplace" },
+  { name: "Educação", path: "/educacao" },
   { name: "Sobre", path: "/sobre" },
-  { name: "Portfólio", path: "/portfolio" },
   { name: "Contato", path: "/contato" },
 ];
 

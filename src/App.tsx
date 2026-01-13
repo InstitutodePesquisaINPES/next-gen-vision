@@ -21,6 +21,9 @@ import BehavioralAnalytics from "./pages/consultoria/BehavioralAnalytics";
 import PeopleAnalytics from "./pages/consultoria/PeopleAnalytics";
 import CustomerIntelligence from "./pages/consultoria/CustomerIntelligence";
 import SistemasIndex from "./pages/sistemas/Index";
+import PlataformasIndex from "./pages/plataformas/Index";
+import MarketplaceIndex from "./pages/marketplace/Index";
+import EducacaoIndex from "./pages/educacao/Index";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +49,15 @@ const App = () => (
           
           {/* Mundo Sistemas */}
           <Route path="/sistemas" element={<SistemasIndex />} />
+          
+          {/* Plataformas SaaS */}
+          <Route path="/plataformas" element={<PlataformasIndex />} />
+          
+          {/* Marketplace */}
+          <Route path="/marketplace" element={<MarketplaceIndex />} />
+          
+          {/* Educação */}
+          <Route path="/educacao" element={<EducacaoIndex />} />
           
           {/* Páginas Gerais */}
           <Route path="/sobre" element={<Sobre />} />
