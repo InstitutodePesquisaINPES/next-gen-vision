@@ -148,40 +148,13 @@ const methodologies = [
   },
 ];
 
-const useCases = [
-  {
-    title: "Por que os clientes abandonam o carrinho?",
-    challenge: "E-commerce com 75% de abandono de carrinho apesar de preços competitivos.",
-    approach: "Análise de friction points + mapeamento de vieses na jornada de checkout.",
-    findings: [
-      "Paradoxo da escolha no frete (5 opções confundiam)",
-      "Aversão à perda por cupom expirado visível",
-      "Falta de prova social no momento crítico"
-    ],
-    result: "-28% abandono com simplificação e nudges"
-  },
-  {
-    title: "Por que a adoção de novo sistema é baixa?",
-    challenge: "Empresa investiu R$2M em novo ERP mas adoção está em 30%.",
-    approach: "Diagnóstico de resistência à mudança + análise de vieses organizacionais.",
-    findings: [
-      "Status quo bias forte em processos estabelecidos",
-      "Endowment effect com ferramentas antigas",
-      "Falta de quick wins para momentum"
-    ],
-    result: "85% adoção com programa de nudges e incentivos redesenhados"
-  },
-  {
-    title: "Por que vendedores não seguem o playbook?",
-    challenge: "Playbook de vendas ignorado, cada vendedor faz 'do seu jeito'.",
-    approach: "Análise comportamental + observação de campo + dados de CRM.",
-    findings: [
-      "Overconfidence bias em top performers",
-      "Availability heuristic com casos de sucesso atípicos",
-      "Falta de feedback loop imediato"
-    ],
-    result: "+35% aderência com redesenho de incentivos e feedback"
-  },
+const typicalQuestions = [
+  "Por que os clientes abandonam o carrinho mesmo com preços competitivos?",
+  "Por que a adoção de novos sistemas internos é sempre tão baixa?",
+  "Por que vendedores não seguem o playbook de vendas?",
+  "Como vieses cognitivos afetam as decisões de compra?",
+  "Quais friction points comportamentais existem na jornada do cliente?",
+  "Como redesenhar incentivos para mudar comportamentos?",
 ];
 
 const frameworks = [
@@ -431,53 +404,28 @@ export default function BehavioralAnalytics() {
         </div>
       </section>
 
-      {/* Use Cases Section */}
+{/* Typical Questions Section */}
       <section className="section-padding bg-muted/10">
         <div className="container-custom">
           <SectionHeader
-            badge="Cases"
-            title="Problemas"
-            titleHighlight="Resolvidos"
-            description="Exemplos reais de como a análise comportamental revelou insights que dados tradicionais não mostravam."
+            badge="Perguntas"
+            title="Problemas que"
+            titleHighlight="Resolvemos"
+            description="Perguntas típicas que a análise comportamental ajuda a responder."
           />
 
-          <div className="mt-16 space-y-8">
-            {useCases.map((useCase, index) => (
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {typicalQuestions.map((question, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass-card p-8"
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="glass-card p-6 hover-lift"
               >
-                <div className="grid lg:grid-cols-4 gap-6">
-                  <div className="lg:col-span-1">
-                    <h3 className="text-xl font-bold text-foreground leading-tight">{useCase.title}</h3>
-                    <p className="mt-3 text-sm text-muted-foreground">{useCase.challenge}</p>
-                  </div>
-                  <div className="lg:col-span-1">
-                    <h4 className="text-sm font-semibold text-indigo-400 mb-2">Abordagem</h4>
-                    <p className="text-sm text-muted-foreground">{useCase.approach}</p>
-                  </div>
-                  <div className="lg:col-span-1">
-                    <h4 className="text-sm font-semibold text-indigo-400 mb-2">Descobertas</h4>
-                    <ul className="space-y-1">
-                      {useCase.findings.map((finding, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
-                          {finding}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="lg:col-span-1">
-                    <h4 className="text-sm font-semibold text-indigo-400 mb-2">Resultado</h4>
-                    <div className="p-4 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-                      <span className="text-lg font-bold text-indigo-400">{useCase.result}</span>
-                    </div>
-                  </div>
-                </div>
+                <MessageSquare className="w-6 h-6 text-indigo-400 mb-3" />
+                <p className="text-foreground font-medium">{question}</p>
               </motion.div>
             ))}
           </div>

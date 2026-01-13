@@ -6,7 +6,7 @@ import {
   Building2, GraduationCap, Heart, Clock, Shield,
   UserCheck, UserMinus, Briefcase, DollarSign, Gauge,
   LineChart, PieChart, Activity, Network, Timer,
-  Lightbulb, Eye, Calendar, MessageSquare, Star
+  Lightbulb, Eye, Calendar, MessageSquare, Star, Lock
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -15,124 +15,124 @@ import { SectionHeader } from "@/components/ui/section-header";
 const analyticsAreas = [
   {
     icon: UserCheck,
-    title: "Talent Acquisition Analytics",
+    title: "Analytics de Aquisição de Talentos",
     description: "Otimização do processo de recrutamento com dados para atrair e selecionar os melhores talentos.",
     capabilities: [
-      "Análise de funnel de recrutamento (aplicação → contratação)",
-      "Source effectiveness e ROI de canais de atração",
-      "Time-to-hire e time-to-productivity benchmarking",
-      "Quality of hire metrics e predictive hiring",
-      "Candidate experience analytics",
-      "Diversity hiring analytics e bias detection"
+      "Análise de funil de recrutamento (aplicação → contratação)",
+      "Efetividade de fonte e ROI de canais de atração",
+      "Benchmarking de time-to-hire e time-to-productivity",
+      "Métricas de qualidade de contratação e contratação preditiva",
+      "Analytics de experiência do candidato",
+      "Analytics de diversidade e detecção de vieses"
     ],
-    metrics: ["Time-to-Hire", "Cost-per-Hire", "Quality of Hire", "Offer Acceptance Rate"]
+    metrics: ["Time-to-Hire", "Custo por Contratação", "Qualidade da Contratação", "Taxa de Aceite"]
   },
   {
     icon: Heart,
-    title: "Employee Engagement & Experience",
+    title: "Engajamento e Experiência do Colaborador",
     description: "Mensuração contínua e análise profunda do engajamento e experiência do colaborador.",
     capabilities: [
-      "Pulse surveys e continuous listening",
-      "eNPS tracking e análise de drivers",
-      "Employee journey mapping baseado em dados",
-      "Sentiment analysis de feedback qualitativo",
-      "Engagement score modeling e prediction",
-      "Moment that matter analysis"
+      "Pulse surveys e escuta contínua",
+      "Tracking de eNPS e análise de drivers",
+      "Mapeamento da jornada do colaborador baseado em dados",
+      "Análise de sentimento em feedback qualitativo",
+      "Modelagem e previsão de score de engajamento",
+      "Análise de momentos que importam"
     ],
-    metrics: ["eNPS", "Engagement Score", "Satisfaction Index", "Wellbeing Score"]
+    metrics: ["eNPS", "Score de Engajamento", "Índice de Satisfação", "Score de Bem-estar"]
   },
   {
     icon: UserMinus,
-    title: "Turnover & Retention Analytics",
+    title: "Analytics de Turnover e Retenção",
     description: "Previsão e prevenção de turnover com modelos preditivos e análise de causas raiz.",
     capabilities: [
-      "Turnover prediction models (flight risk scoring)",
-      "Exit interview analysis com NLP",
-      "Regrettable vs non-regrettable turnover",
-      "Survival analysis por coorte e segmento",
-      "Early warning indicators tracking",
-      "Cost of turnover calculation por posição"
+      "Modelos de previsão de turnover (flight risk scoring)",
+      "Análise de entrevistas de desligamento com NLP",
+      "Turnover lamentável vs não-lamentável",
+      "Análise de sobrevivência por coorte e segmento",
+      "Tracking de indicadores de alerta antecipado",
+      "Cálculo de custo de turnover por posição"
     ],
-    metrics: ["Voluntary Turnover", "Retention Rate", "Flight Risk Score", "Regret Rate"]
+    metrics: ["Turnover Voluntário", "Taxa de Retenção", "Score de Risco de Saída", "Taxa de Lamento"]
   },
   {
     icon: TrendingUp,
-    title: "Performance & Productivity Analytics",
+    title: "Analytics de Performance e Produtividade",
     description: "Análise de performance individual e de times para maximizar produtividade e resultados.",
     capabilities: [
-      "Performance distribution analysis",
-      "High performer profiling e DNA mapping",
-      "OKR/Goal attainment analytics",
-      "Performance calibration support",
-      "Productivity metrics e leading indicators",
-      "Performance vs potential matrix automation"
+      "Análise de distribuição de performance",
+      "Profiling de high performers e mapeamento de DNA",
+      "Analytics de atingimento de OKRs/Metas",
+      "Suporte à calibração de performance",
+      "Métricas de produtividade e indicadores antecedentes",
+      "Automação de matriz performance vs potencial"
     ],
-    metrics: ["Goal Attainment", "9-Box Distribution", "Productivity Index", "Revenue per Employee"]
+    metrics: ["Atingimento de Metas", "Distribuição 9-Box", "Índice de Produtividade", "Receita por Colaborador"]
   },
   {
     icon: GraduationCap,
-    title: "Learning & Development Analytics",
+    title: "Analytics de Aprendizagem e Desenvolvimento",
     description: "Mensuração de impacto de programas de T&D e otimização de investimentos em capacitação.",
     capabilities: [
-      "Learning ROI calculation (Kirkpatrick extended)",
-      "Skills gap analysis automatizada",
-      "Learning path optimization",
-      "Content effectiveness analytics",
-      "Skill acquisition velocity tracking",
-      "Development program impact assessment"
+      "Cálculo de ROI de treinamento (Kirkpatrick estendido)",
+      "Análise automatizada de gaps de competências",
+      "Otimização de trilhas de aprendizagem",
+      "Analytics de efetividade de conteúdo",
+      "Tracking de velocidade de aquisição de skills",
+      "Avaliação de impacto de programas de desenvolvimento"
     ],
-    metrics: ["Training ROI", "Skill Gap Closure", "Learning Hours", "Certification Rate"]
+    metrics: ["ROI de Treinamento", "Fechamento de Gap de Skills", "Horas de Aprendizagem", "Taxa de Certificação"]
   },
   {
     icon: DollarSign,
-    title: "Compensation & Workforce Planning",
+    title: "Remuneração e Planejamento de Workforce",
     description: "Análises de remuneração, equidade salarial e planejamento estratégico da força de trabalho.",
     capabilities: [
-      "Pay equity analysis (gender, race, etc)",
-      "Compa-ratio analysis e benchmarking",
-      "Headcount planning e scenario modeling",
-      "Labor cost analytics e optimization",
-      "Succession planning analytics",
-      "Workforce segmentation e criticality mapping"
+      "Análise de equidade salarial (gênero, raça, etc)",
+      "Análise de compa-ratio e benchmarking",
+      "Planejamento de headcount e modelagem de cenários",
+      "Analytics de custo de mão de obra e otimização",
+      "Analytics de planejamento de sucessão",
+      "Segmentação de workforce e mapeamento de criticidade"
     ],
-    metrics: ["Compa-Ratio", "Pay Gap", "Span of Control", "FTE Cost"]
+    metrics: ["Compa-Ratio", "Gap Salarial", "Span of Control", "Custo de FTE"]
   },
 ];
 
 const dashboards = [
   {
-    title: "Executive HR Dashboard",
+    title: "Dashboard Executivo de RH",
     audience: "CHRO, C-Level",
-    refresh: "Weekly/Monthly",
-    kpis: ["Headcount", "Turnover", "eNPS", "Cost per Hire", "Revenue per Employee"]
+    refresh: "Semanal/Mensal",
+    kpis: ["Headcount", "Turnover", "eNPS", "Custo por Contratação", "Receita por Colaborador"]
   },
   {
-    title: "Talent Acquisition Command Center",
-    audience: "TA Leaders, Recruiters",
-    refresh: "Daily/Real-time",
-    kpis: ["Open Requisitions", "Pipeline Health", "Time-to-Fill", "Source Mix"]
+    title: "Centro de Comando de Recrutamento",
+    audience: "Líderes de TA, Recrutadores",
+    refresh: "Diário/Tempo real",
+    kpis: ["Vagas Abertas", "Saúde do Pipeline", "Time-to-Fill", "Mix de Fontes"]
   },
   {
-    title: "Engagement Pulse Monitor",
-    audience: "HR BPs, People Managers",
-    refresh: "After each pulse",
-    kpis: ["Engagement Trend", "Response Rate", "Key Drivers", "Action Items"]
+    title: "Monitor de Engajamento",
+    audience: "HR BPs, Gestores de Pessoas",
+    refresh: "Após cada pulse",
+    kpis: ["Tendência de Engajamento", "Taxa de Resposta", "Drivers Principais", "Itens de Ação"]
   },
   {
-    title: "Retention Risk Radar",
-    audience: "HR BPs, Leadership",
-    refresh: "Weekly",
-    kpis: ["Flight Risk Scores", "At-Risk Population", "Regret Potential", "Interventions"]
+    title: "Radar de Risco de Retenção",
+    audience: "HR BPs, Liderança",
+    refresh: "Semanal",
+    kpis: ["Scores de Risco de Saída", "População em Risco", "Potencial de Lamento", "Intervenções"]
   },
 ];
 
 const methodology = [
   {
     phase: "01",
-    title: "Assessment & Discovery",
+    title: "Avaliação e Descoberta",
     duration: "2-3 semanas",
     activities: [
-      "Entrevistas com HR e liderança",
+      "Entrevistas com RH e liderança",
       "Inventário de dados e sistemas",
       "Definição de métricas prioritárias",
       "Benchmark de maturidade"
@@ -140,35 +140,35 @@ const methodology = [
   },
   {
     phase: "02",
-    title: "Data Foundation",
+    title: "Fundação de Dados",
     duration: "3-4 semanas",
     activities: [
       "Integração de fontes (HRIS, ATS, LMS)",
-      "Data cleaning e normalization",
+      "Limpeza e normalização de dados",
       "Modelo de dados unificado",
-      "Governance framework"
+      "Framework de governança"
     ]
   },
   {
     phase: "03",
-    title: "Analytics Build",
+    title: "Construção de Analytics",
     duration: "4-6 semanas",
     activities: [
-      "Dashboard development",
+      "Desenvolvimento de dashboards",
       "Modelos preditivos (turnover, etc)",
-      "Automação de reports",
-      "Self-service enablement"
+      "Automação de relatórios",
+      "Habilitação de self-service"
     ]
   },
   {
     phase: "04",
-    title: "Adoption & Evolution",
+    title: "Adoção e Evolução",
     duration: "Contínuo",
     activities: [
-      "Treinamento de HR e managers",
+      "Treinamento de RH e gestores",
       "Playbooks de ação",
-      "Continuous improvement",
-      "Expansão de use cases"
+      "Melhoria contínua",
+      "Expansão de casos de uso"
     ]
   },
 ];
@@ -176,61 +176,41 @@ const methodology = [
 const integrations = [
   { name: "Workday", type: "HRIS" },
   { name: "SAP SuccessFactors", type: "HRIS" },
-  { name: "ADP", type: "Payroll" },
+  { name: "ADP", type: "Folha" },
   { name: "Greenhouse", type: "ATS" },
   { name: "Lever", type: "ATS" },
   { name: "LinkedIn Recruiter", type: "Sourcing" },
-  { name: "Culture Amp", type: "Engagement" },
-  { name: "Glint", type: "Engagement" },
+  { name: "Culture Amp", type: "Engajamento" },
+  { name: "Glint", type: "Engajamento" },
   { name: "Cornerstone", type: "LMS" },
-  { name: "Degreed", type: "Learning" },
-];
-
-const useCases = [
-  {
-    title: "Previsão de Turnover",
-    description: "Modelo que identifica colaboradores em risco com 3 meses de antecedência.",
-    metrics: ["AUC 0.85", "30% redução turnover", "R$ 2M economia/ano"]
-  },
-  {
-    title: "Otimização de Recrutamento",
-    description: "Análise de canais e processos para reduzir time-to-hire mantendo qualidade.",
-    metrics: ["-40% time-to-hire", "-25% cost-per-hire", "+15% quality of hire"]
-  },
-  {
-    title: "Pay Equity Analysis",
-    description: "Identificação e correção de gaps salariais por gênero e etnia.",
-    metrics: ["Gap de 4.5% identificado", "100% correção", "Compliance garantido"]
-  },
-];
-
-const stats = [
-  { value: "50+", label: "Empresas Atendidas", description: "De 200 a 50.000 colaboradores" },
-  { value: "2M+", label: "Colaboradores Analisados", description: "Em projetos diversos" },
-  { value: "35%", label: "Redução Média Turnover", description: "Com modelos preditivos" },
-  { value: "4x", label: "ROI em People Analytics", description: "Retorno comprovado" },
+  { name: "Degreed", type: "Aprendizagem" },
 ];
 
 const differentiators = [
   {
     icon: Brain,
-    title: "Behavioral + Analytics",
+    title: "Comportamental + Analytics",
     description: "Combinamos people analytics tradicional com behavioral science para insights mais profundos sobre motivação e engajamento."
   },
   {
     icon: Shield,
-    title: "Privacy-First",
-    description: "LGPD compliance desde o design. Anonimização, agregação e governance rigorosos para proteger dados sensíveis."
+    title: "Privacidade em Primeiro Lugar",
+    description: "Conformidade com LGPD desde o design. Anonimização, agregação e governança rigorosos para proteger dados sensíveis."
   },
   {
     icon: Lightbulb,
-    title: "Actionable Insights",
-    description: "Não apenas dashboards - entregamos playbooks de ação para HR e managers transformarem dados em decisões."
+    title: "Insights Acionáveis",
+    description: "Não apenas dashboards - entregamos playbooks de ação para RH e gestores transformarem dados em decisões."
   },
   {
     icon: Network,
     title: "Integração Total",
-    description: "Conectamos todos os sistemas de HR para uma visão 360° do employee lifecycle."
+    description: "Conectamos todos os sistemas de RH para uma visão 360° do ciclo de vida do colaborador."
+  },
+  {
+    icon: Lock,
+    title: "Confidencialidade Total",
+    description: "Todos os projetos são conduzidos sob rigorosos acordos de confidencialidade. Os dados e informações de seus colaboradores são tratados com absoluto sigilo."
   },
 ];
 
@@ -297,10 +277,21 @@ export default function PeopleAnalytics() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-6 text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
             >
-              Inteligência de dados aplicada ao capital humano. De turnover prediction 
-              a engagement analytics, transforme dados de RH em decisões estratégicas 
+              Inteligência de dados aplicada ao capital humano. De previsão de turnover 
+              a analytics de engajamento, transforme dados de RH em decisões estratégicas 
               que atraem, desenvolvem e retêm os melhores talentos.
             </motion.p>
+
+            {/* Confidentiality Badge */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-500/10 border border-sky-500/30"
+            >
+              <Lock className="w-4 h-4 text-sky-400" />
+              <span className="text-sm text-sky-400">Todos os projetos sob rigorosa confidencialidade</span>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -318,32 +309,6 @@ export default function PeopleAnalytics() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-sky-500/50 text-lg"
-                asChild
-              >
-                <Link to="/portfolio">Ver Cases</Link>
-              </Button>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
-            >
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center p-4 rounded-xl bg-muted/20 border border-border/30">
-                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-sky-400 to-cyan-400 bg-clip-text text-transparent">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm font-medium text-foreground mt-1">{stat.label}</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">{stat.description}</div>
-                </div>
-              ))}
             </motion.div>
           </div>
         </div>
@@ -354,8 +319,8 @@ export default function PeopleAnalytics() {
         <div className="container-custom">
           <SectionHeader
             badge="Áreas de Analytics"
-            title="Employee Lifecycle"
-            titleHighlight="Data-Driven"
+            title="Ciclo de Vida do Colaborador"
+            titleHighlight="Orientado por Dados"
             description="Cobertura completa de analytics para todas as etapas do ciclo de vida do colaborador."
           />
 
@@ -389,7 +354,7 @@ export default function PeopleAnalytics() {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-border/50">
-                  <h5 className="text-xs font-semibold text-sky-400 mb-2">KEY METRICS</h5>
+                  <h5 className="text-xs font-semibold text-sky-400 mb-2">MÉTRICAS CHAVE</h5>
                   <div className="flex flex-wrap gap-2">
                     {area.metrics.map((metric, idx) => (
                       <span key={idx} className="px-2 py-1 rounded-md bg-sky-500/10 text-sky-400 text-xs">
@@ -411,7 +376,7 @@ export default function PeopleAnalytics() {
             badge="Dashboards"
             title="Visualizações"
             titleHighlight="Executivas"
-            description="Dashboards customizados para diferentes públicos e necessidades de HR."
+            description="Dashboards customizados para diferentes públicos e necessidades de RH."
           />
 
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -448,92 +413,58 @@ export default function PeopleAnalytics() {
         </div>
       </section>
 
-      {/* Use Cases Section */}
+      {/* Methodology */}
       <section className="section-padding bg-muted/10">
         <div className="container-custom">
           <SectionHeader
-            badge="Cases"
-            title="Resultados"
-            titleHighlight="Comprovados"
-            description="Projetos reais de People Analytics com impacto mensurável."
+            badge="Metodologia"
+            title="Jornada de"
+            titleHighlight="Implementação"
+            description="Processo estruturado para entregar valor rapidamente e de forma sustentável."
           />
 
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            {useCases.map((useCase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="glass-card p-6 hover-lift"
-              >
-                <h4 className="text-lg font-bold text-foreground">{useCase.title}</h4>
-                <p className="mt-2 text-sm text-muted-foreground">{useCase.description}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {useCase.metrics.map((metric, idx) => (
-                    <span key={idx} className="px-3 py-1 rounded-lg bg-sky-500/10 text-sky-400 text-sm font-medium">
-                      {metric}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+          <div className="mt-12">
+            <div className="grid md:grid-cols-4 gap-6">
+              {methodology.map((phase, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="relative"
+                >
+                  {index < methodology.length - 1 && (
+                    <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-sky-500/50 to-transparent z-0" />
+                  )}
+                  <div className="glass-card p-6 relative z-10 h-full">
+                    <div className="text-4xl font-bold text-sky-400/20 mb-2">{phase.phase}</div>
+                    <h4 className="text-lg font-bold text-foreground">{phase.title}</h4>
+                    <div className="mt-1 text-xs text-sky-400">{phase.duration}</div>
+                    <ul className="mt-4 space-y-2">
+                      {phase.activities.map((activity, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <CheckCircle2 className="w-4 h-4 text-sky-400 mt-0.5 shrink-0" />
+                          {activity}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Methodology Section */}
+      {/* Integrations */}
       <section className="section-padding">
         <div className="container-custom">
           <SectionHeader
-            badge="Processo"
-            title="Metodologia de"
-            titleHighlight="Implementação"
-            description="Abordagem estruturada para construir sua capability de People Analytics."
-          />
-
-          <div className="mt-12 grid md:grid-cols-4 gap-6">
-            {methodology.map((phase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="glass-card p-6"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-sky-500/20 border-2 border-sky-500/50 flex items-center justify-center">
-                    <span className="text-lg font-bold text-sky-400">{phase.phase}</span>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-foreground">{phase.title}</h4>
-                    <span className="text-xs text-sky-400">{phase.duration}</span>
-                  </div>
-                </div>
-                <ul className="space-y-2">
-                  {phase.activities.map((activity, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle2 className="w-4 h-4 text-sky-400 mt-0.5 shrink-0" />
-                      {activity}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Integrations Section */}
-      <section className="section-padding bg-muted/10">
-        <div className="container-custom">
-          <SectionHeader
             badge="Integrações"
-            title="Sistemas"
-            titleHighlight="Conectados"
-            description="Integramos com os principais sistemas de HR do mercado."
+            title="Conectamos com seus"
+            titleHighlight="Sistemas"
+            description="Experiência com as principais plataformas de RH do mercado."
           />
 
           <div className="mt-12 flex flex-wrap justify-center gap-4">
@@ -543,28 +474,28 @@ export default function PeopleAnalytics() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.03 }}
-                className="glass-card px-5 py-3 hover:border-sky-500/50 transition-colors"
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="px-5 py-3 rounded-full bg-muted/30 border border-border/50 hover:border-sky-500/50 transition-colors"
               >
-                <div className="font-medium text-foreground">{integration.name}</div>
-                <div className="text-xs text-muted-foreground">{integration.type}</div>
+                <span className="font-medium text-foreground">{integration.name}</span>
+                <span className="ml-2 text-xs text-sky-400">{integration.type}</span>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Differentiators Section */}
-      <section className="section-padding">
+      {/* Differentiators */}
+      <section className="section-padding bg-muted/10">
         <div className="container-custom">
           <SectionHeader
-            badge="Por que Nós"
+            badge="Por que nós"
             title="Nossos"
             titleHighlight="Diferenciais"
-            description="O que nos diferencia em People Analytics."
+            description="O que nos torna únicos em projetos de People Analytics."
           />
 
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {differentiators.map((diff, index) => (
               <motion.div
                 key={index}
@@ -572,12 +503,12 @@ export default function PeopleAnalytics() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="glass-card p-6 text-center hover-lift"
+                className="glass-card p-6 hover-lift"
               >
-                <div className="w-14 h-14 mx-auto rounded-xl bg-sky-500/10 flex items-center justify-center mb-4">
-                  <diff.icon className="w-7 h-7 text-sky-400" />
+                <div className="p-3 rounded-xl bg-sky-500/10 text-sky-400 w-fit mb-4">
+                  <diff.icon className="w-6 h-6" />
                 </div>
-                <h4 className="font-bold text-foreground">{diff.title}</h4>
+                <h4 className="text-lg font-bold text-foreground">{diff.title}</h4>
                 <p className="mt-2 text-sm text-muted-foreground">{diff.description}</p>
               </motion.div>
             ))}
@@ -586,49 +517,43 @@ export default function PeopleAnalytics() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-b from-muted/20 to-background">
+      <section className="section-padding">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass-card p-12 md:p-16 text-center relative overflow-hidden"
+            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-500/20 via-cyan-500/10 to-teal-500/20 p-12 md:p-16"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-sky-500/5 via-cyan-500/10 to-sky-500/5" />
-            <div className="relative z-10">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-sm font-medium mb-6">
-                <Award className="w-4 h-4" />
-                Transforme seu RH em Data-Driven
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white">
-                Pronto para liderar com{" "}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(14,165,233,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.05)_1px,transparent_1px)] bg-[size:30px_30px]" />
+            
+            <div className="relative z-10 max-w-3xl mx-auto text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-500/20 border border-sky-500/30 mb-6">
+                <Lock className="w-4 h-4 text-sky-400" />
+                <span className="text-sm text-sky-400 font-medium">Confidencialidade Garantida</span>
+              </div>
+              
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                Pronto para transformar dados de{" "}
                 <span className="bg-gradient-to-r from-sky-400 to-cyan-400 bg-clip-text text-transparent">
-                  People Analytics?
+                  RH em estratégia?
                 </span>
               </h2>
-              <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg">
-                Descubra como dados podem transformar suas decisões de RH e criar 
-                vantagem competitiva através do seu capital humano.
+              <p className="mt-4 text-lg text-muted-foreground">
+                Vamos discutir como people analytics pode impulsionar seus resultados de negócio.
+                Todo o trabalho é realizado sob rigorosos acordos de confidencialidade.
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="mt-8">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-sky-500 to-cyan-500 text-white px-8"
                   asChild
                 >
                   <Link to="/contato">
-                    Iniciar People Analytics
+                    Agendar Conversa
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-sky-500/50"
-                  asChild
-                >
-                  <Link to="/consultoria">Explorar Outras Áreas</Link>
                 </Button>
               </div>
             </div>

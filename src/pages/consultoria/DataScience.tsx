@@ -112,94 +112,30 @@ const advancedServices = [
   },
 ];
 
-const useCases = [
+const applications = [
   {
     category: "Previsão & Forecasting",
     icon: TrendingUp,
     color: "purple",
-    cases: [
-      {
-        title: "Previsão de Demanda",
-        description: "Modelos de séries temporais para otimização de estoque e produção",
-        metrics: ["MAPE < 8%", "40% redução stockout", "25% menos overstock"]
-      },
-      {
-        title: "Churn Prediction",
-        description: "Identificação precoce de clientes em risco de cancelamento",
-        metrics: ["AUC 0.89", "30% redução churn", "2x ROI retenção"]
-      },
-      {
-        title: "Revenue Forecasting",
-        description: "Projeções financeiras com intervalos de confiança",
-        metrics: ["95% acurácia", "Horizonte 12 meses", "Cenários probabilísticos"]
-      }
-    ]
+    examples: ["Previsão de Demanda", "Churn Prediction", "Revenue Forecasting", "Planejamento de Estoque"]
   },
   {
     category: "Classificação & Detecção",
     icon: Shield,
     color: "emerald",
-    cases: [
-      {
-        title: "Detecção de Fraude",
-        description: "Sistemas em tempo real para identificação de transações suspeitas",
-        metrics: ["Precision 94%", "Recall 87%", "< 100ms latência"]
-      },
-      {
-        title: "Credit Scoring",
-        description: "Modelos de risco de crédito com alta explicabilidade",
-        metrics: ["Gini 0.45", "KS 0.40", "Compliance regulatório"]
-      },
-      {
-        title: "Classificação de Documentos",
-        description: "NLP para categorização automática e extração de informações",
-        metrics: ["F1 0.92", "100k docs/hora", "Multi-idioma"]
-      }
-    ]
+    examples: ["Detecção de Fraude", "Credit Scoring", "Classificação de Documentos", "Análise de Sentimento"]
   },
   {
     category: "Personalização & Recomendação",
     icon: Users,
     color: "rose",
-    cases: [
-      {
-        title: "Sistema de Recomendação",
-        description: "Engines híbridos combinando colaborativo e conteúdo",
-        metrics: ["+35% conversão", "+28% ticket médio", "Real-time"]
-      },
-      {
-        title: "Personalização de Preços",
-        description: "Precificação dinâmica baseada em elasticidade e contexto",
-        metrics: ["+12% margem", "A/B validated", "Fairness garantido"]
-      },
-      {
-        title: "Next Best Action",
-        description: "Otimização de comunicação e oferta por cliente",
-        metrics: ["+45% resposta", "Multi-canal", "Causal impact"]
-      }
-    ]
+    examples: ["Sistemas de Recomendação", "Personalização de Preços", "Next Best Action", "Segmentação Avançada"]
   },
   {
     category: "Otimização & Operações",
     icon: Cog,
     color: "amber",
-    cases: [
-      {
-        title: "Otimização de Rotas",
-        description: "Algoritmos para logística e distribuição eficiente",
-        metrics: ["-20% custos", "-15% tempo", "Dynamic routing"]
-      },
-      {
-        title: "Manutenção Preditiva",
-        description: "Previsão de falhas em equipamentos industriais",
-        metrics: ["95% detecção", "30 dias antecedência", "IoT integrado"]
-      },
-      {
-        title: "Workforce Optimization",
-        description: "Alocação inteligente de recursos e turnos",
-        metrics: ["+20% produtividade", "-15% custos", "Satisfação mantida"]
-      }
-    ]
+    examples: ["Otimização de Rotas", "Manutenção Preditiva", "Workforce Optimization", "Alocação de Recursos"]
   },
 ];
 
@@ -422,7 +358,7 @@ export default function DataScience() {
                 className="border-purple-500/50 text-lg"
                 asChild
               >
-                <Link to="/portfolio">Ver Cases de Sucesso</Link>
+                <Link to="/contato">Falar com Especialista</Link>
               </Button>
             </motion.div>
 
@@ -538,47 +474,38 @@ export default function DataScience() {
         </div>
       </section>
 
-      {/* Use Cases Section */}
+{/* Applications Section */}
       <section className="section-padding bg-muted/10">
         <div className="container-custom">
           <SectionHeader
             badge="Aplicações"
-            title="Cases de Uso"
-            titleHighlight="Comprovados"
-            description="Soluções implementadas com métricas reais de impacto em diferentes indústrias e domínios."
+            title="Áreas de"
+            titleHighlight="Aplicação"
+            description="Soluções de Data Science e ML para diferentes domínios de negócio."
           />
 
-          <div className="mt-16 space-y-12">
-            {useCases.map((category, catIndex) => (
+          <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {applications.map((category, catIndex) => (
               <motion.div
                 key={catIndex}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: catIndex * 0.1 }}
+                className="glass-card p-6 hover-lift"
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-3 rounded-xl bg-${category.color}-500/10`}>
-                    <category.icon className={`w-6 h-6 text-${category.color}-400`} />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground">{category.category}</h3>
+                <div className="p-3 rounded-xl bg-purple-500/10 text-purple-400 w-fit mb-4">
+                  <category.icon className="w-6 h-6" />
                 </div>
-                
-                <div className="grid md:grid-cols-3 gap-6">
-                  {category.cases.map((caseItem, caseIndex) => (
-                    <div key={caseIndex} className="glass-card p-6 hover-lift">
-                      <h4 className="font-bold text-foreground">{caseItem.title}</h4>
-                      <p className="mt-2 text-sm text-muted-foreground">{caseItem.description}</p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {caseItem.metrics.map((metric, idx) => (
-                          <span key={idx} className="px-2 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-medium">
-                            {metric}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                <h3 className="text-lg font-bold text-foreground">{category.category}</h3>
+                <ul className="mt-4 space-y-2">
+                  {category.examples.map((example, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
+                      {example}
+                    </li>
                   ))}
-                </div>
+                </ul>
               </motion.div>
             ))}
           </div>
