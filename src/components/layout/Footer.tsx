@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Instagram, Github } from "lucide-react";
-import logoLight from "@/assets/logo-vixio-light.png";
+import { VixioLogo } from "@/components/brand/VixioLogo";
 
 const footerLinks = {
   empresa: [
@@ -17,7 +17,7 @@ const footerLinks = {
   ],
   suporte: [
     { name: "Contato", path: "/contato" },
-    { name: "FAQ", path: "/faq" },
+    { name: "FAQ", path: "/contato#faq" },
     { name: "Área do Cliente", path: "/login" },
     { name: "Política de Privacidade", path: "/privacidade" },
   ],
@@ -37,11 +37,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="inline-block">
-              <img
-                src={logoLight}
-                alt="Vixio"
-                className="h-10 w-auto"
-              />
+              <VixioLogo size="lg" showTagline />
             </Link>
             <p className="text-muted-foreground max-w-sm">
               Transformamos dados em decisões estratégicas com sistemas inteligentes 

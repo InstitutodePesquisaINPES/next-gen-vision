@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoLight from "@/assets/logo-vixio-light.png";
+import { VixioLogo } from "@/components/brand/VixioLogo";
 
 const navLinks = [
   { name: "Início", path: "/" },
@@ -44,11 +44,7 @@ export function Header() {
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img
-              src={logoLight}
-              alt="Vixio - Sistemas Inteligentes & Ciência de Dados"
-              className="h-10 w-auto"
-            />
+            <VixioLogo size="md" showTagline={false} />
           </Link>
 
           {/* Desktop Navigation */}
@@ -85,9 +81,11 @@ export function Header() {
                 WhatsApp
               </a>
             </Button>
-            <Button size="sm" className="gradient-primary text-primary-foreground">
-              <Mail className="h-4 w-4 mr-2" />
-              Fale Conosco
+            <Button size="sm" className="gradient-primary text-primary-foreground" asChild>
+              <Link to="/contato">
+                <Mail className="h-4 w-4 mr-2" />
+                Fale Conosco
+              </Link>
             </Button>
           </div>
 
@@ -150,9 +148,11 @@ export function Header() {
                     WhatsApp
                   </a>
                 </Button>
-                <Button className="w-full justify-center gradient-primary text-primary-foreground">
-                  <Mail className="h-4 w-4 mr-2" />
-                  Fale Conosco
+                <Button className="w-full justify-center gradient-primary text-primary-foreground" asChild>
+                  <Link to="/contato">
+                    <Mail className="h-4 w-4 mr-2" />
+                    Fale Conosco
+                  </Link>
                 </Button>
               </div>
             </div>
