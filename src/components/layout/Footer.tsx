@@ -37,7 +37,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="inline-block">
-              <VixioLogo size="lg" showTagline />
+              <VixioLogo variant="full" size="lg" theme="dark" />
             </Link>
             <p className="text-muted-foreground max-w-sm">
               Transformamos dados em decisões estratégicas com sistemas inteligentes 

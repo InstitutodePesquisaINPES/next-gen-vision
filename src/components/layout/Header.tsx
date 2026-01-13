@@ -44,7 +44,7 @@ export function Header() {
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <VixioLogo size="md" showTagline={false} />
+            <VixioLogo variant="full" size="lg" theme="dark" />
           </Link>
 
           {/* Desktop Navigation */}
