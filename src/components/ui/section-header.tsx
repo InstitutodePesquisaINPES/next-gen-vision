@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 interface SectionHeaderProps {
   badge?: string;
   title: string;
+  titleHighlight?: string;
   description?: string;
   align?: "left" | "center";
   className?: string;
@@ -11,6 +12,7 @@ interface SectionHeaderProps {
 export function SectionHeader({
   badge,
   title,
+  titleHighlight,
   description,
   align = "center",
   className,
@@ -29,7 +31,10 @@ export function SectionHeader({
         </span>
       )}
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
-        {title}
+        {title}{" "}
+        {titleHighlight && (
+          <span className="gradient-text">{titleHighlight}</span>
+        )}
       </h2>
       {description && (
         <p className="mt-4 text-lg text-muted-foreground">
