@@ -13,6 +13,10 @@ import NotFound from "./pages/NotFound";
 
 // Mundos
 import ConsultoriaIndex from "./pages/consultoria/Index";
+import DataScience from "./pages/consultoria/DataScience";
+import Bioestatistica from "./pages/consultoria/Bioestatistica";
+import Planejamento from "./pages/consultoria/Planejamento";
+import Analytics from "./pages/consultoria/Analytics";
 import SistemasIndex from "./pages/sistemas/Index";
 
 const queryClient = new QueryClient();
@@ -29,6 +33,10 @@ const App = () => (
           
           {/* Mundo Consultoria */}
           <Route path="/consultoria" element={<ConsultoriaIndex />} />
+          <Route path="/consultoria/data-science" element={<DataScience />} />
+          <Route path="/consultoria/bioestatistica" element={<Bioestatistica />} />
+          <Route path="/consultoria/planejamento" element={<Planejamento />} />
+          <Route path="/consultoria/analytics" element={<Analytics />} />
           
           {/* Mundo Sistemas */}
           <Route path="/sistemas" element={<SistemasIndex />} />
