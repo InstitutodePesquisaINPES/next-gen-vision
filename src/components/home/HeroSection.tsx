@@ -13,22 +13,12 @@ const heroMessages = [
   {
     headline: "Sistemas que",
     highlight: "transformam operações",
-    description: "Engenharia de sistemas inteligentes sob medida para automatizar e otimizar sua organização.",
+    description: "Engenharia de sistemas inteligentes, plataformas SaaS e marketplace de código profissional.",
   },
   {
     headline: "Educação que",
     highlight: "eleva competências",
     description: "Capacitação executiva, diagnóstico organizacional e formação para maturidade em dados.",
-  },
-  {
-    headline: "Plataformas que",
-    highlight: "escalam negócios",
-    description: "Sistemas SaaS prontos para uso imediato: FuneralLog, VeloG, TFD360 e ClinicFlow.",
-  },
-  {
-    headline: "Código que",
-    highlight: "gera valor",
-    description: "Marketplace de sistemas, APIs e arquiteturas profissionais para licenciamento e white label.",
   },
 ];
 
@@ -77,7 +67,7 @@ export function HeroSection() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-primary text-sm font-medium backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Ciência • Sistemas • Educação • Plataformas • Marketplace
+              Consultoria • Sistemas • Educação
             </span>
           </motion.div>
 
