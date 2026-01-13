@@ -1,9 +1,52 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
+const heroMessages = [
+  {
+    headline: "Transforme dados em",
+    highlight: "decisões estratégicas",
+    description: "Sistemas inteligentes que convertem informação em vantagem competitiva.",
+  },
+  {
+    headline: "Automatize processos com",
+    highlight: "inteligência artificial",
+    description: "Machine learning aplicado para otimizar operações e reduzir custos.",
+  },
+  {
+    headline: "Visualize insights em",
+    highlight: "tempo real",
+    description: "Dashboards interativos que revelam oportunidades antes da concorrência.",
+  },
+  {
+    headline: "Escale seu negócio com",
+    highlight: "ciência de dados",
+    description: "Modelos preditivos que antecipam tendências e guiam investimentos.",
+  },
+  {
+    headline: "Integre sistemas com",
+    highlight: "APIs inteligentes",
+    description: "Arquiteturas modernas que conectam todas as suas fontes de dados.",
+  },
+];
+
+const ROTATION_INTERVAL = 5000; // 5 seconds
+
 export function HeroSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroMessages.length);
+    }, ROTATION_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentMessage = heroMessages[activeIndex];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Effects */}
@@ -39,43 +82,75 @@ export function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground"
-          >
-            Transforme{" "}
-            <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-300 bg-clip-text text-transparent">
-              dados
-            </span>{" "}
-            em
-            <br />
-            decisões{" "}
-            <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-300 bg-clip-text text-transparent">
-              estratégicas
-            </span>
-          </motion.h1>
+          {/* Rotating Headlines */}
+          <div className="mt-8 h-[180px] md:h-[200px] lg:h-[220px] flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="text-center"
+              >
+                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground">
+                  {currentMessage.headline}
+                  <br />
+                  <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-300 bg-clip-text text-transparent">
+                    {currentMessage.highlight}
+                  </span>
+                </h1>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
+          {/* Carousel Indicators */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex items-center justify-center gap-2 mt-6"
           >
-            Desenvolvemos sistemas inteligentes personalizados e soluções de ciência 
-            de dados que impulsionam sua empresa para o futuro. Tecnologia de ponta 
-            com resultados mensuráveis.
-          </motion.p>
+            {heroMessages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveIndex(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === activeIndex
+                    ? "w-8 h-2 bg-primary"
+                    : "w-2 h-2 bg-muted-foreground/40 hover:bg-muted-foreground/60"
+                }`}
+                aria-label={`Ir para mensagem ${index + 1}`}
+              />
+            ))}
+          </motion.div>
+
+          <p className="text-xs text-muted-foreground mt-3">
+            Clique nos indicadores ou aguarde a transição automática
+          </p>
+
+          {/* Rotating Description */}
+          <div className="h-[80px] flex items-center justify-center mt-4">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={activeIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
+              >
+                {currentMessage.description}
+              </motion.p>
+            </AnimatePresence>
+          </div>
 
           {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button
               size="lg"
@@ -83,7 +158,7 @@ export function HeroSection() {
               asChild
             >
               <Link to="/contato">
-                Solicite uma Consultoria
+                Falar com Especialista
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
@@ -93,8 +168,8 @@ export function HeroSection() {
               className="px-8 py-6 text-lg border-primary/50 text-foreground hover:bg-primary/10"
               asChild
             >
-              <Link to="/portfolio">
-                Ver Portfólio
+              <Link to="/servicos">
+                Conhecer Serviços
               </Link>
             </Button>
           </motion.div>
@@ -104,7 +179,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
+            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
           >
             {[
               { value: "150+", label: "Projetos Entregues" },
