@@ -72,8 +72,8 @@ export default function ConsultoriaIndex() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
           >
-            Consultoria &{" "}
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300 bg-clip-text text-transparent">
+            <span className="text-white">Consultoria &</span>{" "}
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
               Ciência de Dados
             </span>
           </motion.h1>
