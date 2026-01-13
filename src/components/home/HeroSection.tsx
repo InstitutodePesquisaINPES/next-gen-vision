@@ -1,28 +1,35 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronDown, Brain, Code2, GraduationCap } from "lucide-react";
+import { ArrowRight, ChevronDown, Brain, Code2, GraduationCap, Shield, Target, Zap, TrendingUp, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const heroMessages = [
   {
-    headline: "Ciência que",
-    highlight: "revela insights",
-    description: "Data Science, bioestatística e machine learning para decisões baseadas em evidências científicas.",
+    headline: "Não analisamos dados.",
+    highlight: "Resolvemos problemas.",
+    description: "Ciência de dados aplicada com foco em resultado. Diagnóstico preciso, plano de ação claro e implementação completa.",
   },
   {
-    headline: "Sistemas que",
-    highlight: "transformam operações",
-    description: "Engenharia de sistemas inteligentes, plataformas SaaS e marketplace de código profissional.",
+    headline: "Não desenvolvemos sistemas.",
+    highlight: "Automatizamos operações.",
+    description: "Engenharia de software com visão de negócio. Da ideia ao deploy em semanas, não meses.",
   },
   {
-    headline: "Educação que",
-    highlight: "eleva competências",
-    description: "Capacitação executiva, diagnóstico organizacional e formação para maturidade em dados.",
+    headline: "Não oferecemos treinamentos.",
+    highlight: "Transformamos equipes.",
+    description: "Capacitação executiva que prepara sua organização para decisões baseadas em evidências.",
   },
 ];
 
-const ROTATION_INTERVAL = 5000;
+const capabilities = [
+  { icon: Target, label: "Diagnóstico Preciso" },
+  { icon: Zap, label: "Ação Imediata" },
+  { icon: TrendingUp, label: "Resultado Mensurável" },
+  { icon: Shield, label: "100% Sigiloso" },
+];
+
+const ROTATION_INTERVAL = 6000;
 
 export function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -58,21 +65,21 @@ export function HeroSection() {
       />
 
       <div className="container-custom relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Premium Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-primary text-sm font-medium backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Consultoria • Sistemas • Educação
+            <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-primary/30 bg-primary/5 text-primary text-sm font-medium backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              Consultoria Executiva em Ciência, Sistemas & Educação
             </span>
           </motion.div>
 
           {/* Rotating Headlines */}
-          <div className="mt-8 h-[180px] md:h-[200px] lg:h-[220px] flex items-center justify-center">
+          <div className="mt-10 h-[200px] md:h-[220px] lg:h-[260px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -82,10 +89,10 @@ export function HeroSection() {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 className="text-center"
               >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-white">
-                  {currentMessage.headline}
+                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
+                  <span className="text-muted-foreground">{currentMessage.headline}</span>
                   <br />
-                  <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300 bg-clip-text text-transparent">
+                  <span className="text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text">
                     {currentMessage.highlight}
                   </span>
                 </h1>
@@ -98,7 +105,7 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="flex items-center justify-center gap-2 mt-6"
+            className="flex items-center justify-center gap-2 mt-4"
           >
             {heroMessages.map((_, index) => (
               <button
@@ -106,7 +113,7 @@ export function HeroSection() {
                 onClick={() => setActiveIndex(index)}
                 className={`transition-all duration-300 rounded-full ${
                   index === activeIndex
-                    ? "w-8 h-2 bg-primary"
+                    ? "w-10 h-2 bg-primary"
                     : "w-2 h-2 bg-muted-foreground/40 hover:bg-muted-foreground/60"
                 }`}
                 aria-label={`Ir para mensagem ${index + 1}`}
@@ -115,7 +122,7 @@ export function HeroSection() {
           </motion.div>
 
           {/* Rotating Description */}
-          <div className="h-[80px] flex items-center justify-center mt-4">
+          <div className="h-[100px] flex items-center justify-center mt-6">
             <AnimatePresence mode="wait">
               <motion.p
                 key={activeIndex}
@@ -123,23 +130,41 @@ export function HeroSection() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
+                className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
               >
                 {currentMessage.description}
               </motion.p>
             </AnimatePresence>
           </div>
 
+          {/* Capabilities Strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-8 flex flex-wrap justify-center gap-4"
+          >
+            {capabilities.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted/20 border border-border/30"
+              >
+                <item.icon className="w-4 h-4 text-primary" />
+                <span className="text-sm text-foreground font-medium">{item.label}</span>
+              </div>
+            ))}
+          </motion.div>
+
           {/* World CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap"
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap"
           >
             <Button
               size="lg"
-              className="group bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-5 text-base shadow-lg shadow-blue-500/20"
+              className="group bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-6 text-base shadow-lg shadow-blue-500/20"
               asChild
             >
               <Link to="/consultoria">
@@ -150,7 +175,7 @@ export function HeroSection() {
             </Button>
             <Button
               size="lg"
-              className="group gradient-primary text-primary-foreground px-6 py-5 text-base glow-primary"
+              className="group gradient-primary text-primary-foreground px-8 py-6 text-base glow-primary"
               asChild
             >
               <Link to="/sistemas">
@@ -161,7 +186,7 @@ export function HeroSection() {
             </Button>
             <Button
               size="lg"
-              className="group bg-gradient-to-r from-rose-500 to-pink-500 text-white px-6 py-5 text-base shadow-lg shadow-rose-500/20"
+              className="group bg-gradient-to-r from-rose-500 to-pink-500 text-white px-8 py-6 text-base shadow-lg shadow-rose-500/20"
               asChild
             >
               <Link to="/educacao">
@@ -172,28 +197,33 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
-          {/* Stats */}
+          {/* Value Proposition */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-16 glass-card p-8 max-w-4xl mx-auto"
           >
-            {[
-              { value: "150+", label: "Projetos Entregues" },
-              { value: "50+", label: "Clientes Satisfeitos" },
-              { value: "8+", label: "Anos de Experiência" },
-              { value: "99%", label: "Taxa de Satisfação" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-purple-300 bg-clip-text text-transparent">
-                  {stat.value}
-                </div>
-                <div className="mt-1 text-sm text-muted-foreground">
-                  {stat.label}
-                </div>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              <span className="text-foreground font-semibold">"Outras consultorias entregam relatórios.</span>{" "}
+              Nós entregamos soluções implementadas. Não paramos no diagnóstico — 
+              construímos o caminho, desenvolvemos a ferramenta e capacitamos a equipe 
+              para sustentar o resultado."
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                Do diagnóstico à implementação
               </div>
-            ))}
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                Metodologia científica
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                Resultado mensurável
+              </div>
+            </div>
           </motion.div>
         </div>
 
@@ -208,7 +238,7 @@ export function HeroSection() {
             href="#worlds"
             className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           >
-            <span className="text-sm">Explore nossos mundos</span>
+            <span className="text-sm">Conheça nossa abordagem</span>
             <ChevronDown className="h-5 w-5 animate-bounce" />
           </a>
         </motion.div>
