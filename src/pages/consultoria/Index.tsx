@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { motion } from "framer-motion";
-import { ArrowRight, BarChart3, Brain, LineChart, Target, TrendingUp, Users, FileSpreadsheet, Microscope, Stethoscope } from "lucide-react";
+import { ArrowRight, BarChart3, Brain, LineChart, Target, TrendingUp, Users, FileSpreadsheet, Microscope, Stethoscope, Heart, Fingerprint, UserCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -9,30 +9,51 @@ const consultoriaAreas = [
   {
     id: "data-science",
     icon: Brain,
-    title: "Ciência de Dados",
-    description: "Transforme dados brutos em insights estratégicos com análises avançadas e machine learning.",
+    title: "Ciência de Dados & ML",
+    description: "Machine Learning, IA Generativa e modelos preditivos em produção para resolver problemas complexos.",
     link: "/consultoria/data-science",
   },
   {
     id: "bioestatistica",
     icon: Microscope,
     title: "Bioestatística",
-    description: "Análises estatísticas rigorosas para pesquisas clínicas, epidemiológicas e estudos científicos.",
+    description: "Ensaios clínicos, pesquisa epidemiológica e análises regulatórias com rigor científico.",
     link: "/consultoria/bioestatistica",
+  },
+  {
+    id: "behavioral",
+    icon: Heart,
+    title: "Behavioral Analytics",
+    description: "Entenda como vieses cognitivos e comportamento humano impactam seus dados e decisões.",
+    link: "/consultoria/behavioral",
   },
   {
     id: "planejamento",
     icon: Target,
     title: "Planejamento Estratégico",
-    description: "Metodologias científicas para definir metas, KPIs e roadmaps de crescimento sustentável.",
+    description: "OKRs, BSC e roadmaps de crescimento com metodologias data-driven.",
     link: "/consultoria/planejamento",
   },
   {
     id: "analytics",
     icon: BarChart3,
     title: "Business Analytics",
-    description: "Dashboards inteligentes e relatórios executivos para tomada de decisão baseada em dados.",
+    description: "Dashboards executivos, automação de relatórios e self-service BI.",
     link: "/consultoria/analytics",
+  },
+  {
+    id: "people",
+    icon: UserCheck,
+    title: "People Analytics",
+    description: "Turnover prediction, engagement analytics e inteligência de capital humano.",
+    link: "/consultoria/people-analytics",
+  },
+  {
+    id: "customer",
+    icon: Fingerprint,
+    title: "Customer Intelligence",
+    description: "CDP, segmentação avançada, CLV e churn prediction para visão 360° do cliente.",
+    link: "/consultoria/customer-intelligence",
   },
 ];
 
