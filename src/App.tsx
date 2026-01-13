@@ -11,6 +11,10 @@ import Blog from "./pages/Blog";
 import Contato from "./pages/Contato";
 import NotFound from "./pages/NotFound";
 
+// Mundos
+import ConsultoriaIndex from "./pages/consultoria/Index";
+import SistemasIndex from "./pages/sistemas/Index";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -20,12 +24,22 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Home Central */}
           <Route path="/" element={<Index />} />
+          
+          {/* Mundo Consultoria */}
+          <Route path="/consultoria" element={<ConsultoriaIndex />} />
+          
+          {/* Mundo Sistemas */}
+          <Route path="/sistemas" element={<SistemasIndex />} />
+          
+          {/* Páginas Gerais */}
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contato" element={<Contato />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

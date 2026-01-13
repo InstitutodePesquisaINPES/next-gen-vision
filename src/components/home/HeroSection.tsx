@@ -1,38 +1,38 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, BarChart3, Code2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const heroMessages = [
   {
-    headline: "Transforme dados em",
-    highlight: "decisões estratégicas",
-    description: "Sistemas inteligentes que convertem informação em vantagem competitiva.",
+    headline: "Dados que",
+    highlight: "decidem negócios",
+    description: "Ciência de dados e bioestatística aplicadas para decisões baseadas em evidências.",
   },
   {
-    headline: "Automatize processos com",
-    highlight: "inteligência artificial",
-    description: "Machine learning aplicado para otimizar operações e reduzir custos.",
+    headline: "Sistemas que",
+    highlight: "resolvem problemas",
+    description: "Soluções personalizadas, modernas e ágeis para automatizar sua operação.",
   },
   {
-    headline: "Visualize insights em",
-    highlight: "tempo real",
-    description: "Dashboards interativos que revelam oportunidades antes da concorrência.",
+    headline: "Consultoria que",
+    highlight: "transforma resultados",
+    description: "Planejamento estratégico e análises avançadas para crescimento sustentável.",
   },
   {
-    headline: "Escale seu negócio com",
-    highlight: "ciência de dados",
-    description: "Modelos preditivos que antecipam tendências e guiam investimentos.",
+    headline: "Tecnologia que",
+    highlight: "conecta pessoas",
+    description: "Secretária eletrônica WhatsApp, gestão de atendimento e muito mais.",
   },
   {
-    headline: "Integre sistemas com",
-    highlight: "APIs inteligentes",
-    description: "Arquiteturas modernas que conectam todas as suas fontes de dados.",
+    headline: "Inteligência que",
+    highlight: "antecipa tendências",
+    description: "Machine learning e IA para prever cenários e otimizar processos.",
   },
 ];
 
-const ROTATION_INTERVAL = 5000; // 5 seconds
+const ROTATION_INTERVAL = 5000;
 
 export function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -52,10 +52,9 @@ export function HeroSection() {
       {/* Background Effects */}
       <div className="absolute inset-0 gradient-dark" />
       <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/15 rounded-full blur-3xl animate-pulse-glow animation-delay-400" />
-        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-float" />
       </div>
 
       {/* Grid pattern overlay */}
@@ -125,10 +124,6 @@ export function HeroSection() {
             ))}
           </motion.div>
 
-          <p className="text-xs text-muted-foreground mt-3">
-            Clique nos indicadores ou aguarde a transição automática
-          </p>
-
           {/* Rotating Description */}
           <div className="h-[80px] flex items-center justify-center mt-4">
             <AnimatePresence mode="wait">
@@ -145,7 +140,7 @@ export function HeroSection() {
             </AnimatePresence>
           </div>
 
-          {/* CTAs */}
+          {/* World CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -154,22 +149,24 @@ export function HeroSection() {
           >
             <Button
               size="lg"
-              className="group gradient-primary text-primary-foreground px-8 py-6 text-lg glow-primary"
+              className="group bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-6 text-lg shadow-lg shadow-blue-500/20"
               asChild
             >
-              <Link to="/contato">
-                Falar com Especialista
+              <Link to="/consultoria">
+                <BarChart3 className="mr-2 h-5 w-5" />
+                Consultoria & Data
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="px-8 py-6 text-lg border-primary/50 text-foreground hover:bg-primary/10"
+              className="group gradient-primary text-primary-foreground px-8 py-6 text-lg glow-primary"
               asChild
             >
-              <Link to="/servicos">
-                Conhecer Serviços
+              <Link to="/sistemas">
+                <Code2 className="mr-2 h-5 w-5" />
+                Sistemas Inteligentes
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </motion.div>
@@ -207,10 +204,10 @@ export function HeroSection() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <a
-            href="#services"
+            href="#worlds"
             className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           >
-            <span className="text-sm">Descubra mais</span>
+            <span className="text-sm">Explore nossos mundos</span>
             <ChevronDown className="h-5 w-5 animate-bounce" />
           </a>
         </motion.div>
