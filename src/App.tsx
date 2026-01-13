@@ -17,6 +17,9 @@ import DataScience from "./pages/consultoria/DataScience";
 import Bioestatistica from "./pages/consultoria/Bioestatistica";
 import Planejamento from "./pages/consultoria/Planejamento";
 import Analytics from "./pages/consultoria/Analytics";
+import BehavioralAnalytics from "./pages/consultoria/BehavioralAnalytics";
+import PeopleAnalytics from "./pages/consultoria/PeopleAnalytics";
+import CustomerIntelligence from "./pages/consultoria/CustomerIntelligence";
 import SistemasIndex from "./pages/sistemas/Index";
 
 const queryClient = new QueryClient();
@@ -37,6 +40,9 @@ const App = () => (
           <Route path="/consultoria/bioestatistica" element={<Bioestatistica />} />
           <Route path="/consultoria/planejamento" element={<Planejamento />} />
           <Route path="/consultoria/analytics" element={<Analytics />} />
+          <Route path="/consultoria/behavioral" element={<BehavioralAnalytics />} />
+          <Route path="/consultoria/people-analytics" element={<PeopleAnalytics />} />
+          <Route path="/consultoria/customer-intelligence" element={<CustomerIntelligence />} />
           
           {/* Mundo Sistemas */}
           <Route path="/sistemas" element={<SistemasIndex />} />
