@@ -15,15 +15,15 @@ import { SectionHeader } from "@/components/ui/section-header";
 const analyticsServices = [
   {
     icon: Monitor,
-    title: "Painéis Executivos",
+    title: "Dashboards Executivos",
     description: "Visualizações interativas e em tempo real para monitoramento de KPIs críticos do negócio.",
     capabilities: [
-      "Design de painéis estratégicos, táticos e operacionais",
+      "Design de dashboards estratégicos, táticos e operacionais",
       "Streaming em tempo real com Kafka e WebSockets",
       "Drill-down interativo multi-nível",
       "Alertas inteligentes com limiares dinâmicos",
       "Design responsivo para dispositivos móveis",
-      "Analytics embarcado para produtos SaaS"
+      "Embedded analytics para produtos SaaS"
     ],
     technologies: ["Power BI", "Tableau", "Looker", "Metabase", "Superset"]
   },
@@ -63,9 +63,9 @@ const analyticsServices = [
       "Data Warehouse moderno (Snowflake, BigQuery, Redshift)",
       "Lakehouse de dados com Delta Lake / Iceberg",
       "Camada semântica unificada",
-      "Catálogo de dados e descoberta",
-      "Monitoramento automatizado de qualidade de dados",
-      "Habilitação de análise autônoma"
+      "Catálogo de dados e data discovery",
+      "Monitoramento automatizado de data quality",
+      "Self-service analytics enablement"
     ],
     technologies: ["Snowflake", "dbt", "Atlan", "Monte Carlo", "Cube"]
   },
@@ -268,10 +268,10 @@ const analyticsUseCases = [
 ];
 
 const valueProposition = [
-  { icon: Clock, label: "Decisões 10x mais rápidas", description: "De dias para minutos com análise autônoma" },
-  { icon: Eye, label: "Visibilidade total", description: "Fonte única da verdade para toda empresa" },
+  { icon: Clock, label: "Decisões 10x mais rápidas", description: "De dias para minutos com self-service" },
+  { icon: Eye, label: "Visibilidade total", description: "Single source of truth para toda empresa" },
   { icon: AlertCircle, label: "Alertas proativos", description: "Anomalias detectadas automaticamente" },
-  { icon: Users, label: "Análise autônoma", description: "Empodere times sem depender de TI" },
+  { icon: Users, label: "Self-Service Analytics", description: "Empodere times sem depender de TI" },
 ];
 
 const stats = [

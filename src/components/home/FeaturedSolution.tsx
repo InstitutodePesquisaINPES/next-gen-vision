@@ -142,7 +142,7 @@ export function FeaturedSolution() {
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold gradient-text-purple">3x</div>
-                  <div className="text-xs text-muted-foreground">Retorno Médio</div>
+                  <div className="text-xs text-muted-foreground">ROI Médio</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold gradient-text-purple">45d</div>
