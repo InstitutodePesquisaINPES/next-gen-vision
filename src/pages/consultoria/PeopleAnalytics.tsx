@@ -255,7 +255,7 @@ export default function PeopleAnalytics() {
                 <Users className="w-4 h-4" />
                 Consultoria
                 <ChevronRight className="w-4 h-4" />
-                People Analytics
+                Análise de Pessoas
               </Link>
             </motion.div>
 
@@ -265,9 +265,9 @@ export default function PeopleAnalytics() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
             >
-              <span className="text-white">People</span>{" "}
+              <span className="text-white">Análise de</span>{" "}
               <span className="bg-gradient-to-r from-sky-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
-                Analytics
+                Pessoas
               </span>
             </motion.h1>
 
