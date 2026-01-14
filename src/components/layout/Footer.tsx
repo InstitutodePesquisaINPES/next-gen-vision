@@ -30,7 +30,7 @@ const socialLinks = [
   { name: "GitHub", icon: Github, url: "https://github.com/vixio" },
 ];
 
-export const Footer = forwardRef<HTMLElement>((_, ref) => {
+export const Footer = forwardRef<HTMLElement, object>(function Footer(_, ref) {
   return (
     <footer ref={ref} className="bg-card border-t border-border">
       <div className="container-custom section-padding">
