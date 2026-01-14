@@ -5,30 +5,47 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const heroMessages = [
+  // Estilo original - Afirmações impactantes
   {
-    question: "Você tem dados.",
-    questionHighlight: "Tem decisões?",
+    headline: "Não analisamos dados.",
+    highlight: "Resolvemos problemas.",
+    description: "Ciência de dados aplicada com foco em resultado mensurável.",
+    style: "statement",
+  },
+  // Estilo pergunta - Provocativo
+  {
+    headline: "Você tem dados.",
+    highlight: "Tem decisões?",
     description: "Transformamos complexidade analítica em clareza estratégica para o C-Level.",
+    style: "question",
   },
+  // Estilo original
   {
-    question: "Sua operação é manual.",
-    questionHighlight: "Precisa escalar?",
-    description: "Sistemas inteligentes que automatizam processos e multiplicam capacidade.",
+    headline: "Não desenvolvemos sistemas.",
+    highlight: "Automatizamos operações.",
+    description: "Engenharia de software com visão de negócio e escala.",
+    style: "statement",
   },
+  // Estilo pergunta
   {
-    question: "Sua equipe analisa.",
-    questionHighlight: "Mas decide com evidência?",
-    description: "Capacitação executiva para decisões baseadas em dados, não em intuição.",
+    headline: "Seus concorrentes usam IA.",
+    highlight: "E você?",
+    description: "Machine Learning e IA Generativa aplicados aos seus desafios.",
+    style: "question",
   },
+  // Estilo original
   {
-    question: "Você investiu em tecnologia.",
-    questionHighlight: "O ROI apareceu?",
-    description: "Consultoria que entrega resultado mensurável, não apenas relatórios.",
+    headline: "Não oferecemos treinamentos.",
+    highlight: "Transformamos equipes.",
+    description: "Capacitação executiva para decisões baseadas em evidências.",
+    style: "statement",
   },
+  // Estilo pergunta
   {
-    question: "Seus concorrentes usam IA.",
-    questionHighlight: "E você?",
-    description: "Machine Learning e IA Generativa aplicados aos seus desafios de negócio.",
+    headline: "Você investiu em tecnologia.",
+    highlight: "O ROI apareceu?",
+    description: "Consultoria que entrega resultado, não apenas relatórios.",
+    style: "question",
   },
 ];
 
@@ -73,10 +90,12 @@ export function HeroSection() {
                 className="text-center"
               >
                 <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight">
-                  <span className="text-foreground">{currentMessage.question}</span>
+                  <span className="text-foreground">{currentMessage.headline}</span>
                   <br />
-                  <span className="gradient-text-cyan text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                    {currentMessage.questionHighlight}
+                  <span className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl ${
+                    currentMessage.style === "question" ? "gradient-text-cyan" : "gradient-text"
+                  }`}>
+                    {currentMessage.highlight}
                   </span>
                 </h1>
                 <motion.p
