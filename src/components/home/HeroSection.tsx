@@ -5,46 +5,46 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const heroMessages = [
-  // Estilo original - Afirmações impactantes
+  // Afirmação impactante
   {
-    headline: "Não analisamos dados.",
-    highlight: "Resolvemos problemas.",
-    description: "Ciência de dados aplicada com foco em resultado mensurável.",
+    headline: "Dados sem estratégia",
+    highlight: "são apenas custo.",
+    description: "Convertemos investimento em dados em vantagem competitiva mensurável.",
     style: "statement",
   },
-  // Estilo pergunta - Provocativo
+  // Pergunta provocativa C-Level
   {
-    headline: "Você tem dados.",
-    highlight: "Tem decisões?",
-    description: "Transformamos complexidade analítica em clareza estratégica para o C-Level.",
+    headline: "Sua diretoria decide com dados",
+    highlight: "ou com opinião?",
+    description: "Inteligência analítica que transforma reuniões de board em decisões precisas.",
     style: "question",
   },
-  // Estilo original
+  // Afirmação impactante
   {
-    headline: "Não desenvolvemos sistemas.",
-    highlight: "Automatizamos operações.",
-    description: "Engenharia de software com visão de negócio e escala.",
+    headline: "Não entregamos dashboards.",
+    highlight: "Entregamos respostas.",
+    description: "Do problema de negócio à solução implementada. Sem ruído, sem relatórios ignorados.",
     style: "statement",
   },
-  // Estilo pergunta
+  // Pergunta provocativa C-Level
   {
-    headline: "Seus concorrentes usam IA.",
-    highlight: "E você?",
-    description: "Machine Learning e IA Generativa aplicados aos seus desafios.",
+    headline: "Quanto sua operação perde",
+    highlight: "por dia com processos manuais?",
+    description: "Automação inteligente que libera sua equipe para o que realmente importa.",
     style: "question",
   },
-  // Estilo original
+  // Afirmação impactante
   {
-    headline: "Não oferecemos treinamentos.",
-    highlight: "Transformamos equipes.",
-    description: "Capacitação executiva para decisões baseadas em evidências.",
+    headline: "IA não é tendência.",
+    highlight: "É infraestrutura.",
+    description: "Machine Learning em produção, não em POCs que nunca saem do papel.",
     style: "statement",
   },
-  // Estilo pergunta
+  // Pergunta provocativa C-Level
   {
-    headline: "Você investiu em tecnologia.",
-    highlight: "O ROI apareceu?",
-    description: "Consultoria que entrega resultado, não apenas relatórios.",
+    headline: "Seu concorrente já automatizou.",
+    highlight: "Qual é o seu plano?",
+    description: "Consultoria estratégica para quem não pode esperar mais 2 anos.",
     style: "question",
   },
 ];
