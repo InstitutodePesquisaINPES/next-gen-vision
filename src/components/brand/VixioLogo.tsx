@@ -26,13 +26,14 @@ const iconSizes = {
   xl: 60,
 };
 
-export const VixioLogo = forwardRef<HTMLDivElement, VixioLogoProps>(({ 
-  variant = "full", 
-  showTagline = false, 
-  className,
-  size = "md",
-  theme = "dark"
-}, ref) => {
+export const VixioLogo = forwardRef<HTMLDivElement, VixioLogoProps>(
+  function VixioLogo({ 
+    variant = "full", 
+    showTagline = false, 
+    className,
+    size = "md",
+    theme = "dark"
+  }, ref) {
   const { width, height } = sizes[size];
   const iconSize = iconSizes[size];
 
@@ -76,7 +77,7 @@ VixioLogo.displayName = "VixioLogo";
 
 // Animated version that pulses the logo
 export const VixioLogoAnimated = forwardRef<HTMLDivElement, { className?: string; size?: "sm" | "md" | "lg" | "xl" }>(
-  ({ className, size = "xl" }, ref) => {
+  function VixioLogoAnimated({ className, size = "xl" }, ref) {
     const { width, height } = sizes[size];
 
     return (
