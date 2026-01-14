@@ -2,35 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Vixio Executive Design System - Sistemas Inteligentes & Ciência de Dados
-   Executive palette with gold/bronze accents for sophisticated professional look
+/* Vixio Executive Design System
+   Hybrid: Purple identity + Deep blue executive background (inspired by Decisio Pulse)
    All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Light theme - kept for compatibility but site will use dark theme */
+    /* Light theme - kept for compatibility */
     --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --foreground: 220 30% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 220 30% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 220 30% 15%;
 
     --primary: 262 83% 58%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary-foreground: 220 30% 15%;
 
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    /* Accent: Gold/Bronze executive tone */
-    --accent: 38 75% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 195 80% 50%;
+    --accent-foreground: 220 50% 10%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -52,44 +51,44 @@
   }
 
   .dark {
-    /* Vixio Executive Dark Theme */
-    --background: 220 20% 7%;
+    /* Vixio Executive Dark Theme - Deep Blue Background */
+    --background: 210 50% 12%;
     --foreground: 210 40% 98%;
 
-    --card: 220 18% 10%;
+    --card: 210 45% 15%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 220 18% 10%;
+    --popover: 210 45% 15%;
     --popover-foreground: 210 40% 98%;
 
-    /* Primary: Purple gradient base */
+    /* Primary: Vixio Purple */
     --primary: 262 83% 58%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 16% 15%;
+    --secondary: 210 40% 20%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 220 14% 18%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 210 35% 22%;
+    --muted-foreground: 210 20% 65%;
 
-    /* Accent: Gold/Bronze - sophisticated executive tone */
-    --accent: 38 75% 55%;
-    --accent-foreground: 220 20% 10%;
+    /* Accent: Cyan/Teal for highlights */
+    --accent: 195 80% 50%;
+    --accent-foreground: 210 50% 10%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 14% 18%;
-    --input: 220 14% 18%;
+    --border: 210 30% 25%;
+    --input: 210 30% 25%;
     --ring: 262 83% 58%;
 
-    --sidebar-background: 220 20% 7%;
+    --sidebar-background: 210 50% 10%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 262 83% 58%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 15%;
+    --sidebar-accent: 210 35% 18%;
     --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 220 14% 18%;
+    --sidebar-border: 210 30% 22%;
     --sidebar-ring: 262 83% 58%;
   }
 }
@@ -109,39 +108,48 @@
 }
 
 @layer components {
-  /* Glassmorphism Card */
+  /* Glassmorphism Card - Executive Style */
   .glass-card {
-    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-xl;
+    @apply backdrop-blur-xl border rounded-2xl;
+    background: hsl(210 45% 15% / 0.6);
+    border-color: hsl(210 30% 30% / 0.4);
   }
 
   /* Executive gradient backgrounds */
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(262 75% 50%) 50%, hsl(262 70% 45%) 100%);
+    background: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(262 70% 50%) 100%);
   }
 
   .gradient-dark {
-    background: linear-gradient(180deg, hsl(220 20% 7%) 0%, hsl(220 18% 10%) 50%, hsl(220 16% 13%) 100%);
+    background: linear-gradient(180deg, hsl(210 50% 12%) 0%, hsl(210 48% 14%) 50%, hsl(210 45% 16%) 100%);
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, hsl(262 83% 65%) 0%, hsl(38 75% 60%) 100%);
+    background: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(195 80% 70%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Gold/Bronze accent gradient */
-  .gradient-accent {
-    background: linear-gradient(135deg, hsl(38 75% 55%) 0%, hsl(28 70% 50%) 100%);
+  .gradient-text-purple {
+    background: linear-gradient(135deg, hsl(262 83% 70%) 0%, hsl(195 80% 60%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  /* Glow effects - more subtle for executive look */
+  /* Accent gradient for CTAs */
+  .gradient-accent {
+    background: linear-gradient(135deg, hsl(195 80% 50%) 0%, hsl(195 70% 45%) 100%);
+  }
+
+  /* Glow effects - refined */
   .glow-primary {
-    box-shadow: 0 0 30px -10px hsl(262 83% 58% / 0.4);
+    box-shadow: 0 0 40px -10px hsl(262 83% 58% / 0.4);
   }
 
   .glow-accent {
-    box-shadow: 0 0 40px -15px hsl(38 75% 55% / 0.35);
+    box-shadow: 0 0 40px -10px hsl(195 80% 50% / 0.35);
   }
 
   /* Interactive hover states */
@@ -151,18 +159,19 @@
 
   .hover-lift:hover {
     @apply -translate-y-1;
-    box-shadow: 0 15px 30px -10px hsl(262 83% 58% / 0.25);
+    box-shadow: 0 20px 40px -15px hsl(262 83% 58% / 0.25);
   }
 
-  /* Enhanced card glow on hover - more refined */
+  /* Enhanced card glow on hover */
   .card-glow {
     @apply transition-all duration-500 ease-out;
   }
 
   .card-glow:hover {
     box-shadow: 
-      0 0 15px -5px hsl(262 83% 58% / 0.3),
-      0 15px 30px -10px hsl(262 83% 58% / 0.2);
+      0 0 20px -5px hsl(262 83% 58% / 0.3),
+      0 20px 40px -15px hsl(210 50% 5% / 0.5);
+    border-color: hsl(262 83% 58% / 0.4);
   }
 
   /* Shimmer effect for cards */
@@ -181,10 +190,10 @@
     background: linear-gradient(
       90deg,
       transparent,
-      hsl(38 75% 55% / 0.08),
+      hsl(195 80% 50% / 0.08),
       transparent
     );
-    transition: left 0.5s ease;
+    transition: left 0.6s ease;
     pointer-events: none;
   }
 
@@ -215,6 +224,19 @@
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+
+  /* Executive orb backgrounds */
+  .orb-primary {
+    background: radial-gradient(circle, hsl(262 83% 58% / 0.15) 0%, transparent 70%);
+  }
+
+  .orb-accent {
+    background: radial-gradient(circle, hsl(195 80% 50% / 0.1) 0%, transparent 70%);
+  }
+
+  .orb-blue {
+    background: radial-gradient(circle, hsl(210 60% 40% / 0.2) 0%, transparent 70%);
+  }
 }
 
 @layer utilities {
@@ -231,6 +253,36 @@
     animation-delay: 600ms;
   }
 
+  /* Pulse glow animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+
+  /* Float animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
   /* Gradient border */
   .border-gradient {
     position: relative;
@@ -244,7 +296,7 @@
     inset: 0;
     padding: 1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, hsl(262 83% 58%), hsl(38 75% 55%));
+    background: linear-gradient(135deg, hsl(262 83% 58%), hsl(195 80% 50%));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;

@@ -6,78 +6,63 @@ import { Button } from "@/components/ui/button";
 const worlds = [
   {
     id: "ciencia",
-    title: "Ciência de Dados & Inteligência Estratégica",
-    subtitle: "Ciência • Bioestatística • Planejamento",
+    title: "Ciência de Dados & Inteligência",
+    subtitle: "Consultoria • Bioestatística • Analytics",
     description:
-      "Consultoria em Data Science, análises bioestatísticas rigorosas, business intelligence e planejamento estratégico orientado por evidências científicas.",
+      "Consultoria em Data Science, análises bioestatísticas e business intelligence para decisões baseadas em evidências.",
     icon: Brain,
     secondaryIcon: Microscope,
     link: "/consultoria",
-    gradient: "from-blue-500 via-cyan-500 to-blue-400",
-    bgGlow: "bg-blue-500/20",
-    borderColor: "border-blue-500/30",
-    hoverBorder: "hover:border-blue-500/60",
-    buttonBg: "bg-gradient-to-r from-blue-500 to-cyan-500",
-    iconBg: "rgba(59, 130, 246, 0.15)",
+    gradient: "from-blue-500 to-cyan-400",
+    borderColor: "border-blue-500/20",
+    hoverBorder: "hover:border-blue-500/50",
+    buttonClass: "bg-gradient-to-r from-blue-500 to-cyan-500 text-white",
     features: [
       "Machine Learning & IA",
       "Análise Bioestatística",
-      "Behavioral Analytics",
       "Dashboards Executivos",
-      "Consultoria Estratégica",
       "People & Customer Intelligence",
     ],
-    buttonText: "Explorar Consultoria",
   },
   {
     id: "engenharia",
-    title: "Engenharia de Sistemas Inteligentes",
-    subtitle: "Sob Medida • Plataformas SaaS • Marketplace",
+    title: "Engenharia de Sistemas",
+    subtitle: "Sob Medida • Plataformas • Automação",
     description:
-      "Desenvolvimento de sistemas personalizados, plataformas prontas para uso (SaaS) e comercialização de código-fonte e soluções white label.",
+      "Sistemas personalizados e plataformas SaaS para automatizar operações e escalar seu negócio.",
     icon: Code2,
     secondaryIcon: Server,
     link: "/sistemas",
-    gradient: "from-purple-500 via-purple-400 to-pink-400",
-    bgGlow: "bg-purple-500/20",
-    borderColor: "border-purple-500/30",
-    hoverBorder: "hover:border-purple-500/60",
-    buttonBg: "bg-gradient-to-r from-purple-500 to-pink-500",
-    iconBg: "rgba(147, 51, 234, 0.15)",
+    gradient: "from-purple-500 to-pink-400",
+    borderColor: "border-primary/20",
+    hoverBorder: "hover:border-primary/50",
+    buttonClass: "gradient-primary text-white",
     features: [
       "Sistemas Sob Medida",
       "Plataformas SaaS",
-      "Marketplace de Código",
       "Secretária WhatsApp IA",
-      "White Label",
       "APIs & Integrações",
     ],
-    buttonText: "Explorar Sistemas",
   },
   {
     id: "educacao",
-    title: "Educação Corporativa & Diagnóstico",
-    subtitle: "Capacitação • Avaliação • Tomada de Decisão",
+    title: "Educação Corporativa",
+    subtitle: "Capacitação • Diagnóstico • Formação",
     description:
-      "Programas estruturados de capacitação, diagnóstico organizacional e formação executiva, voltados à maturidade analítica e tomada de decisão baseada em dados.",
+      "Programas de capacitação e diagnóstico organizacional para maturidade analítica e tomada de decisão.",
     icon: GraduationCap,
     secondaryIcon: Target,
     link: "/educacao",
-    gradient: "from-amber-500 via-amber-400 to-yellow-400",
-    bgGlow: "bg-amber-500/20",
-    borderColor: "border-amber-500/30",
-    hoverBorder: "hover:border-amber-500/60",
-    buttonBg: "bg-gradient-to-r from-amber-500 to-amber-600",
-    iconBg: "rgba(245, 158, 11, 0.15)",
+    gradient: "from-amber-500 to-orange-400",
+    borderColor: "border-amber-500/20",
+    hoverBorder: "hover:border-amber-500/50",
+    buttonClass: "bg-gradient-to-r from-amber-500 to-amber-600 text-white",
     features: [
       "Diagnóstico Empresarial",
       "Capacitação In Company",
-      "Workshops Estratégicos",
       "Formação Executiva",
-      "Maturidade em Dados",
       "Preparação para IA",
     ],
-    buttonText: "Explorar Educação",
   },
 ];
 
@@ -86,10 +71,9 @@ export function WorldsSection() {
     <section className="section-padding relative overflow-hidden">
       <div className="absolute inset-0 gradient-dark" />
       
-      {/* Background Decorations */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-rose-500/3 rounded-full blur-3xl" />
+      {/* Background Orbs */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] orb-blue rounded-full" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] orb-primary rounded-full" />
 
       <div className="container-custom relative z-10">
         {/* Section Header */}
@@ -100,85 +84,65 @@ export function WorldsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-muted/30 text-muted-foreground text-sm font-medium">
-            Ecossistema Integrado
-          </span>
-          <h2 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-            Três universos,{" "}
-            <span className="gradient-text">uma visão estratégica</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+            Soluções de{" "}
+            <span className="gradient-text-purple">Inteligência Estratégica</span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-3xl mx-auto text-lg">
-            Da ciência de dados à educação corporativa, oferecemos soluções completas 
-            para transformar dados em vantagem competitiva.
+          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg">
+            Três dimensões integradas para transformar dados em vantagem competitiva.
           </p>
         </motion.div>
 
         {/* Three Main Blocks */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
           {worlds.map((world, index) => (
             <motion.div
               key={world.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className={`group relative glass-card card-shimmer p-8 ${world.borderColor} ${world.hoverBorder} transition-all duration-500 hover:-translate-y-2`}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`group glass-card card-shimmer p-8 ${world.borderColor} ${world.hoverBorder} transition-all duration-500 hover:-translate-y-1`}
             >
-              {/* Glow Effect on Hover */}
-              <div
-                className={`absolute inset-0 ${world.bgGlow} rounded-xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500 -z-10`}
-              />
-
-              {/* Icons */}
-              <div className="flex items-center gap-4 mb-6">
-                <div
-                  className="p-4 rounded-2xl"
-                  style={{
-                    background: `linear-gradient(135deg, ${world.iconBg} 0%, transparent 100%)`,
-                  }}
-                >
-                  <world.icon className="w-8 h-8 text-foreground" />
+              {/* Icon */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className={`p-3 rounded-xl bg-gradient-to-br ${world.gradient} bg-opacity-10`}>
+                  <world.icon className="w-6 h-6 text-foreground" />
                 </div>
-                <div className="p-3 rounded-xl bg-muted/50">
-                  <world.secondaryIcon className="w-5 h-5 text-muted-foreground" />
+                <div className="p-2 rounded-lg bg-muted/30">
+                  <world.secondaryIcon className="w-4 h-4 text-muted-foreground" />
                 </div>
               </div>
 
               {/* Content */}
-              <p className="text-sm text-muted-foreground font-medium mb-2">
+              <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-2">
                 {world.subtitle}
               </p>
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
+              <h3 className="text-xl font-bold text-foreground mb-3">
                 {world.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
+              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                 {world.description}
               </p>
 
-              {/* Features Grid */}
-              <div className="grid grid-cols-2 gap-2 mb-8">
+              {/* Features */}
+              <ul className="space-y-2 mb-8">
                 {world.features.map((feature, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-2 text-sm text-muted-foreground"
-                  >
-                    <div
-                      className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${world.gradient}`}
-                    />
+                  <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${world.gradient}`} />
                     {feature}
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
 
-              {/* CTA Button */}
+              {/* CTA */}
               <Button
-                size="lg"
-                className={`w-full ${world.buttonBg} text-white group/btn`}
+                className={`w-full ${world.buttonClass} group/btn`}
                 asChild
               >
                 <Link to={world.link}>
-                  {world.buttonText}
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform" />
+                  Explorar
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                 </Link>
               </Button>
             </motion.div>
