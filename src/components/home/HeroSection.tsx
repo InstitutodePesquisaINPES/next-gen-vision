@@ -186,7 +186,7 @@ export function HeroSection() {
             </Button>
             <Button
               size="lg"
-              className="group bg-gradient-to-r from-rose-500 to-pink-500 text-white px-8 py-6 text-base shadow-lg shadow-rose-500/20"
+              className="group bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-6 text-base shadow-lg shadow-amber-500/20"
               asChild
             >
               <Link to="/educacao">
