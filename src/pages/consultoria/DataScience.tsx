@@ -1,363 +1,157 @@
 import { Layout } from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { 
-  ArrowRight, Brain, Database, LineChart, Cpu, Code2, 
-  Layers, GitBranch, ChevronRight, CheckCircle2, BarChart3,
-  Sparkles, Target, Zap, Users, Award, TrendingUp, Cog,
-  Shield, FileText, BookOpen, Lightbulb, Network, Binary,
-  Workflow, FlaskConical, Gauge, Eye, AlertCircle, Timer
+  ArrowRight, Brain, Database, LineChart, Cpu, 
+  ChevronRight, CheckCircle2, Sparkles, Target, 
+  Zap, Shield, Lightbulb, Network, Workflow, FlaskConical
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { SectionHeader } from "@/components/ui/section-header";
 
-const coreCapabilities = [
+// Stats - números de impacto
+const stats = [
+  { value: "150+", label: "Modelos em Produção", description: "Servindo milhões de predições/dia" },
+  { value: "98.5%", label: "SLA de Uptime", description: "Em ambientes críticos" },
+  { value: "R$ 500M+", label: "Valor Gerado", description: "Em receita e economia" },
+  { value: "< 50ms", label: "Latência Média", description: "Inferência em tempo real" },
+];
+
+// Serviços principais - simplificado
+const services = [
   {
     icon: Database,
     title: "Engenharia de Dados",
-    description: "Arquiteturas de dados modernas e escaláveis que formam a fundação para análises avançadas e modelos de ML.",
-    features: [
-      "Data Lakes & Lakehouses com Delta Lake e Apache Iceberg",
-      "Pipelines ETL/ELT com Apache Airflow, dbt e Prefect",
-      "Streaming em tempo real com Kafka e Apache Flink",
-      "Data Quality frameworks com Great Expectations",
-      "Orquestração e observabilidade de pipelines",
-      "Modelagem dimensional e Data Vault 2.0"
-    ],
-    technologies: ["Snowflake", "Databricks", "BigQuery", "Redshift", "dbt", "Airflow"]
+    subtitle: "Arquiteturas Modernas & Escaláveis",
+    description: "Data Lakes, pipelines ETL/ELT, streaming em tempo real e governança de dados.",
+    technologies: ["Snowflake", "Databricks", "dbt", "Airflow", "Kafka"],
   },
   {
     icon: Brain,
-    title: "Machine Learning & Deep Learning",
-    description: "Desenvolvimento de modelos preditivos, classificatórios e sistemas de recomendação com técnicas state-of-the-art.",
-    features: [
-      "Modelos supervisionados: XGBoost, LightGBM, CatBoost, Random Forest",
-      "Deep Learning: CNNs, RNNs, Transformers, GANs",
-      "NLP avançado: BERT, GPT fine-tuning, Embeddings semânticos",
-      "Computer Vision: detecção, segmentação, OCR",
-      "Sistemas de recomendação híbridos",
-      "AutoML e otimização de hiperparâmetros"
-    ],
-    technologies: ["PyTorch", "TensorFlow", "Scikit-learn", "Hugging Face", "MLflow"]
+    title: "Machine Learning",
+    subtitle: "Modelos Preditivos & Deep Learning",
+    description: "Desenvolvimento de modelos supervisionados, NLP avançado e sistemas de recomendação.",
+    technologies: ["PyTorch", "TensorFlow", "XGBoost", "Hugging Face"],
   },
   {
     icon: Cpu,
     title: "IA Generativa & LLMs",
-    description: "Implementação de soluções com Large Language Models para automação inteligente e geração de conteúdo.",
-    features: [
-      "Chatbots empresariais com RAG (Retrieval Augmented Generation)",
-      "Fine-tuning de modelos para domínios específicos",
-      "Sistemas de busca semântica com embeddings vetoriais",
-      "Agentes autônomos com LangChain e LlamaIndex",
-      "Geração de documentos e relatórios automatizados",
-      "Extração estruturada de informações (NER, IE)"
-    ],
-    technologies: ["OpenAI", "Claude", "Llama", "Pinecone", "Weaviate", "LangChain"]
+    subtitle: "Automação Inteligente",
+    description: "Chatbots empresariais com RAG, agentes autônomos e busca semântica vetorial.",
+    technologies: ["OpenAI", "Claude", "LangChain", "Pinecone"],
   },
   {
     icon: LineChart,
-    title: "Análise Exploratória & Estatística",
-    description: "Investigação rigorosa de dados para descoberta de padrões, correlações e insights acionáveis.",
-    features: [
-      "Análise estatística descritiva e inferencial",
-      "Testes de hipóteses e intervalos de confiança",
-      "Análise de séries temporais e sazonalidade",
-      "Segmentação e clusterização (K-means, DBSCAN, hierárquico)",
-      "Análise de coortes e lifetime value",
-      "Causal inference e experimentos A/B"
-    ],
-    technologies: ["Python", "R", "Pandas", "NumPy", "SciPy", "Statsmodels"]
+    title: "Analytics Avançado",
+    subtitle: "Insights Acionáveis",
+    description: "Análise estatística, séries temporais, experimentos A/B e causal inference.",
+    technologies: ["Python", "R", "Pandas", "SciPy"],
   },
 ];
 
-const advancedServices = [
+// Infraestrutura MLOps - simplificado
+const infrastructure = [
   {
     icon: Network,
-    title: "MLOps & Model Governance",
-    description: "Infraestrutura completa para deploy, monitoramento e governança de modelos em produção.",
-    items: [
-      "CI/CD para modelos de ML com MLflow e Kubeflow",
-      "Feature Stores (Feast, Tecton) para reutilização",
-      "Model Registry e versionamento",
-      "A/B testing e canary deployments",
-      "Monitoramento de drift e performance",
-      "Explainability (SHAP, LIME) e fairness"
-    ]
+    title: "MLOps & Governança",
+    description: "CI/CD para modelos, Feature Stores, monitoramento de drift e explainability.",
   },
   {
     icon: Workflow,
-    title: "Arquitetura de Dados Moderna",
-    description: "Design de arquiteturas robustas seguindo as melhores práticas da indústria.",
-    items: [
-      "Data Mesh e domínios descentralizados",
-      "Medallion Architecture (Bronze/Silver/Gold)",
-      "Event-driven architecture com CDC",
-      "Data Contracts e Schema Registry",
-      "Semantic Layer com dbt Semantic Layer ou Cube",
-      "Data Catalog e descoberta de dados"
-    ]
+    title: "Arquitetura de Dados",
+    description: "Data Mesh, Medallion Architecture, Data Contracts e Semantic Layer.",
   },
   {
     icon: FlaskConical,
-    title: "Experimentação & Otimização",
-    description: "Frameworks de experimentação para validação científica de hipóteses de negócio.",
-    items: [
-      "Design de experimentos (A/B, multi-variado)",
-      "Bayesian optimization para parâmetros",
-      "Multi-armed bandits para alocação dinâmica",
-      "Uplift modeling para impacto causal",
-      "Sample size calculation e power analysis",
-      "Sequential testing para decisões rápidas"
-    ]
+    title: "Experimentação",
+    description: "Design de experimentos A/B, Bayesian optimization e uplift modeling.",
   },
 ];
 
+// Aplicações por área
 const applications = [
-  {
-    category: "Previsão & Forecasting",
-    icon: TrendingUp,
-    color: "purple",
-    examples: ["Previsão de Demanda", "Churn Prediction", "Revenue Forecasting", "Planejamento de Estoque"]
-  },
-  {
-    category: "Classificação & Detecção",
-    icon: Shield,
-    color: "emerald",
-    examples: ["Detecção de Fraude", "Credit Scoring", "Classificação de Documentos", "Análise de Sentimento"]
-  },
-  {
-    category: "Personalização & Recomendação",
-    icon: Users,
-    color: "rose",
-    examples: ["Sistemas de Recomendação", "Personalização de Preços", "Next Best Action", "Segmentação Avançada"]
-  },
-  {
-    category: "Otimização & Operações",
-    icon: Cog,
-    color: "amber",
-    examples: ["Otimização de Rotas", "Manutenção Preditiva", "Workforce Optimization", "Alocação de Recursos"]
-  },
+  { area: "Previsão", examples: ["Demanda", "Churn", "Revenue", "Estoque"] },
+  { area: "Classificação", examples: ["Fraude", "Credit Scoring", "Documentos", "Sentimento"] },
+  { area: "Personalização", examples: ["Recomendação", "Pricing", "Next Best Action", "Segmentação"] },
+  { area: "Operações", examples: ["Rotas", "Manutenção Preditiva", "Workforce", "Recursos"] },
 ];
 
-const methodology = [
-  {
-    phase: "01",
-    title: "Discovery & Scoping",
-    duration: "1-2 semanas",
-    description: "Entendimento profundo do problema de negócio e dados disponíveis.",
-    deliverables: [
-      "Problem Statement documentado",
-      "Data Assessment Report",
-      "Success Metrics definidas",
-      "Project Charter e timeline"
-    ],
-    activities: [
-      "Entrevistas com stakeholders",
-      "Análise de fontes de dados",
-      "Benchmark de soluções",
-      "Definição de MVP"
-    ]
-  },
-  {
-    phase: "02",
-    title: "Data Engineering",
-    duration: "2-4 semanas",
-    description: "Preparação e transformação de dados para análise e modelagem.",
-    deliverables: [
-      "Pipelines de ingestão",
-      "Feature Store estruturado",
-      "Documentação de dados",
-      "Quality Gates implementados"
-    ],
-    activities: [
-      "ETL/ELT development",
-      "Feature engineering",
-      "Data profiling",
-      "Validação de qualidade"
-    ]
-  },
-  {
-    phase: "03",
-    title: "Experimentação & Modeling",
-    duration: "3-6 semanas",
-    description: "Desenvolvimento iterativo de modelos com rigor científico.",
-    deliverables: [
-      "Experimentos documentados",
-      "Modelo campeão validado",
-      "Análise de erros",
-      "Interpretabilidade report"
-    ],
-    activities: [
-      "Baseline establishment",
-      "Feature selection",
-      "Hyperparameter tuning",
-      "Cross-validation rigorosa"
-    ]
-  },
-  {
-    phase: "04",
-    title: "Productionization",
-    duration: "2-4 semanas",
-    description: "Deploy do modelo em produção com infraestrutura robusta.",
-    deliverables: [
-      "API de scoring",
-      "Pipeline de inferência",
-      "Dashboards de monitoring",
-      "Runbook operacional"
-    ],
-    activities: [
-      "Containerização",
-      "Integração com sistemas",
-      "Testes de carga",
-      "Setup de alertas"
-    ]
-  },
-  {
-    phase: "05",
-    title: "Monitoring & Iteration",
-    duration: "Contínuo",
-    description: "Monitoramento contínuo e evolução baseada em performance real.",
-    deliverables: [
-      "Reports de performance",
-      "Análises de drift",
-      "Retraining pipelines",
-      "Roadmap de melhorias"
-    ],
-    activities: [
-      "Tracking de métricas",
-      "Detecção de drift",
-      "Champion/challenger",
-      "Feedback loops"
-    ]
-  },
-];
-
-const techStack = [
-  { category: "Languages", items: ["Python", "R", "SQL", "Scala"] },
-  { category: "ML/DL Frameworks", items: ["PyTorch", "TensorFlow", "Scikit-learn", "XGBoost", "LightGBM"] },
-  { category: "Data Engineering", items: ["Spark", "dbt", "Airflow", "Kafka", "Flink"] },
-  { category: "MLOps", items: ["MLflow", "Kubeflow", "Feast", "Great Expectations", "Evidently"] },
-  { category: "Cloud & Infra", items: ["AWS SageMaker", "GCP Vertex AI", "Azure ML", "Databricks", "Snowflake"] },
-  { category: "LLM & GenAI", items: ["LangChain", "LlamaIndex", "Pinecone", "Weaviate", "Hugging Face"] },
-];
-
+// Diferenciais
 const differentials = [
-  {
-    icon: BookOpen,
-    title: "Rigor Científico",
-    description: "Aplicamos metodologia científica rigorosa: hipóteses claras, experimentos controlados, validação estatística e documentação completa de todos os experimentos."
-  },
-  {
-    icon: Cog,
-    title: "Produção-Ready",
-    description: "Não entregamos notebooks - entregamos soluções em produção com APIs, monitoramento, alertas e pipelines de retraining automatizados."
-  },
-  {
-    icon: Lightbulb,
-    title: "Business-First",
-    description: "Métricas de negócio guiam todo o desenvolvimento. ROI é calculado desde o início e validado com experimentos controlados."
-  },
-  {
-    icon: Shield,
-    title: "Governança & Compliance",
-    description: "Modelos documentados, auditáveis e explicáveis. Atendemos requisitos de LGPD, regulatórios financeiros e padrões de fairness."
-  },
-];
-
-const stats = [
-  { value: "150+", label: "Modelos em Produção", description: "Servindo milhões de predições/dia" },
-  { value: "98.5%", label: "SLA de Uptime", description: "Em ambientes críticos de produção" },
-  { value: "R$ 500M+", label: "Valor Gerado", description: "Em receita adicional e economia" },
-  { value: "< 50ms", label: "Latência Média", description: "Para inferência em tempo real" },
+  { icon: Lightbulb, title: "Rigor Científico", description: "Metodologia científica com experimentos controlados e validação estatística." },
+  { icon: Target, title: "Produção-Ready", description: "Entregamos soluções em produção com APIs, monitoramento e pipelines automatizados." },
+  { icon: Sparkles, title: "Business-First", description: "Métricas de negócio guiam todo desenvolvimento. ROI calculado desde o início." },
+  { icon: Shield, title: "Governança", description: "Modelos documentados, auditáveis e explicáveis. LGPD e fairness compliance." },
 ];
 
 export default function DataScience() {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Estilo Executivo */}
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 gradient-dark" />
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-violet-500/15 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 right-1/3 w-80 h-80 bg-fuchsia-500/10 rounded-full blur-3xl" />
-        </div>
-
-        {/* Neural Network Pattern */}
-        <div className="absolute inset-0 opacity-20">
-          <svg className="w-full h-full">
-            <pattern id="neural-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-              <circle cx="30" cy="30" r="2" fill="rgba(139,92,246,0.3)" />
-              <line x1="30" y1="30" x2="60" y2="30" stroke="rgba(139,92,246,0.15)" strokeWidth="0.5" />
-              <line x1="30" y1="30" x2="45" y2="60" stroke="rgba(139,92,246,0.15)" strokeWidth="0.5" />
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#neural-pattern)" />
-          </svg>
+        
+        {/* Orbs sutis */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[120px]" />
+          <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-violet-500/10 rounded-full blur-[100px]" />
         </div>
 
         <div className="container-custom relative z-10">
-          <div className="max-w-5xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Breadcrumb */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
             >
               <Link 
                 to="/consultoria" 
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium mb-8 hover:bg-purple-500/20 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
-                <Brain className="w-4 h-4" />
+                <Brain className="w-4 h-4 text-primary" />
                 Consultoria
                 <ChevronRight className="w-4 h-4" />
-                Data Science & Machine Learning
+                <span className="text-foreground">Data Science & Machine Learning</span>
               </Link>
             </motion.div>
 
+            {/* Título */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mt-8 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
             >
-              <span className="text-white">Ciência de Dados &</span>{" "}
-              <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
-                Machine Learning
-              </span>
+              <span className="text-foreground">Ciência de Dados &</span>
+              <br />
+              <span className="gradient-text-purple">Machine Learning</span>
             </motion.h1>
 
+            {/* Descrição */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-6 text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
             >
               Transformamos dados em vantagem competitiva com modelos de ML em produção, 
-              arquiteturas de dados modernas e IA generativa. Do data lake ao modelo em produção 
-              servindo milhões de predições.
+              arquiteturas de dados modernas e IA generativa.
             </motion.p>
 
+            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-purple-500 to-violet-500 text-white px-8 text-lg"
-                asChild
-              >
+              <Button size="lg" className="gradient-primary text-white px-8" asChild>
                 <Link to="/contato">
                   Iniciar Projeto de ML
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-purple-500/50 text-lg"
-                asChild
-              >
+              <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10" asChild>
                 <Link to="/contato">Falar com Especialista</Link>
               </Button>
             </motion.div>
@@ -366,16 +160,16 @@ export default function DataScience() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
             >
               {stats.map((stat, index) => (
-                <div key={index} className="text-center p-4 rounded-xl bg-muted/20 border border-border/30">
-                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
+                <div key={index} className="glass-card p-4 text-center">
+                  <div className="text-2xl md:text-3xl font-bold gradient-text-purple">
                     {stat.value}
                   </div>
                   <div className="text-sm font-medium text-foreground mt-1">{stat.label}</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">{stat.description}</div>
+                  <div className="text-xs text-muted-foreground">{stat.description}</div>
                 </div>
               ))}
             </motion.div>
@@ -383,51 +177,58 @@ export default function DataScience() {
         </div>
       </section>
 
-      {/* Core Capabilities Section */}
-      <section className="section-padding bg-muted/10">
+      {/* Serviços Principais */}
+      <section className="py-24 bg-muted/5">
         <div className="container-custom">
-          <SectionHeader
-            badge="Competências Core"
-            title="Expertise Técnica"
-            titleHighlight="Profunda"
-            description="Domínio completo do ciclo de vida de projetos de Data Science, desde a engenharia de dados até modelos em produção."
-          />
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-medium text-primary mb-6">
+              <Sparkles className="w-4 h-4" />
+              Expertise Técnica
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Soluções de <span className="gradient-text-purple">Data Science</span>
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+              Domínio completo do ciclo de vida de projetos, da engenharia de dados aos modelos em produção.
+            </p>
+          </motion.div>
 
-          <div className="mt-16 space-y-8">
-            {coreCapabilities.map((capability, index) => (
+          {/* Grid de Serviços */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {services.map((service, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass-card p-8 md:p-10"
+                className="glass-card p-8 hover-lift group"
               >
-                <div className="flex flex-col lg:flex-row gap-8">
-                  <div className="lg:w-1/3">
-                    <div className="p-4 rounded-xl bg-purple-500/10 text-purple-400 w-fit mb-4">
-                      <capability.icon className="w-10 h-10" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-foreground">{capability.title}</h3>
-                    <p className="mt-3 text-muted-foreground">{capability.description}</p>
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {capability.technologies.map((tech, idx) => (
-                        <span key={idx} className="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium border border-purple-500/20">
+                <div className="flex items-start gap-6">
+                  <div className="p-4 rounded-xl bg-primary/10 text-primary shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <service.icon className="w-8 h-8" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-foreground">{service.title}</h3>
+                    <p className="text-sm text-primary/80 font-medium">{service.subtitle}</p>
+                    <p className="mt-3 text-muted-foreground">{service.description}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {service.technologies.map((tech, idx) => (
+                        <span 
+                          key={idx} 
+                          className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20"
+                        >
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <div className="lg:w-2/3">
-                    <div className="grid md:grid-cols-2 gap-3">
-                      {capability.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
-                          <CheckCircle2 className="w-5 h-5 text-purple-400 mt-0.5 shrink-0" />
-                          <span className="text-sm text-foreground">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </motion.div>
             ))}
@@ -435,73 +236,81 @@ export default function DataScience() {
         </div>
       </section>
 
-      {/* Advanced Services Section */}
-      <section className="section-padding">
+      {/* Infraestrutura MLOps */}
+      <section className="py-24">
         <div className="container-custom">
-          <SectionHeader
-            badge="Serviços Avançados"
-            title="Além do Modelo:"
-            titleHighlight="Infraestrutura de ML"
-            description="Não entregamos apenas modelos - construímos a infraestrutura completa para ML em escala empresarial."
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-medium text-primary mb-6">
+              <Network className="w-4 h-4" />
+              Infraestrutura
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Além do Modelo: <span className="gradient-text-purple">ML em Escala</span>
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+              Não entregamos apenas modelos - construímos a infraestrutura completa para ML empresarial.
+            </p>
+          </motion.div>
 
-          <div className="mt-16 grid md:grid-cols-3 gap-8">
-            {advancedServices.map((service, index) => (
+          <div className="grid md:grid-cols-3 gap-6">
+            {infrastructure.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass-card card-shimmer p-8 hover-lift"
+                className="glass-card p-8 text-center hover-lift"
               >
-                <div className="p-4 rounded-xl bg-purple-500/10 text-purple-400 w-fit">
-                  <service.icon className="w-8 h-8" />
+                <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                  <item.icon className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="mt-6 text-xl font-bold text-foreground">{service.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{service.description}</p>
-                <ul className="mt-6 space-y-2">
-                  {service.items.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle2 className="w-4 h-4 text-purple-400 mt-0.5 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="text-xl font-bold text-foreground">{item.title}</h3>
+                <p className="mt-3 text-muted-foreground">{item.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-{/* Applications Section */}
-      <section className="section-padding bg-muted/10">
+      {/* Aplicações - Compacto */}
+      <section className="py-24 bg-muted/5">
         <div className="container-custom">
-          <SectionHeader
-            badge="Aplicações"
-            title="Áreas de"
-            titleHighlight="Aplicação"
-            description="Soluções de Data Science e ML para diferentes domínios de negócio."
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-medium text-primary mb-6">
+              <Target className="w-4 h-4" />
+              Aplicações
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Áreas de <span className="gradient-text-purple">Atuação</span>
+            </h2>
+          </motion.div>
 
-          <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {applications.map((category, catIndex) => (
+          <div className="grid md:grid-cols-4 gap-4">
+            {applications.map((app, index) => (
               <motion.div
-                key={catIndex}
-                initial={{ opacity: 0, y: 30 }}
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-                className="glass-card p-6 hover-lift"
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="glass-card p-6"
               >
-                <div className="p-3 rounded-xl bg-purple-500/10 text-purple-400 w-fit mb-4">
-                  <category.icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-foreground">{category.category}</h3>
-                <ul className="mt-4 space-y-2">
-                  {category.examples.map((example, idx) => (
+                <h3 className="text-lg font-bold text-primary mb-4">{app.area}</h3>
+                <ul className="space-y-2">
+                  {app.examples.map((example, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-primary/60 shrink-0" />
                       {example}
                     </li>
                   ))}
@@ -512,119 +321,25 @@ export default function DataScience() {
         </div>
       </section>
 
-      {/* Methodology Section */}
-      <section className="section-padding">
+      {/* Diferenciais */}
+      <section className="py-24">
         <div className="container-custom">
-          <SectionHeader
-            badge="Metodologia"
-            title="Processo"
-            titleHighlight="End-to-End"
-            description="Uma metodologia rigorosa e iterativa que garante entrega de valor desde o primeiro sprint."
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-medium text-primary mb-6">
+              <Sparkles className="w-4 h-4" />
+              Por que Nós
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Nossos <span className="gradient-text-purple">Diferenciais</span>
+            </h2>
+          </motion.div>
 
-          <div className="mt-16 space-y-6">
-            {methodology.map((phase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass-card p-6 md:p-8"
-              >
-                <div className="flex flex-col lg:flex-row gap-6">
-                  <div className="lg:w-1/4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-full bg-purple-500/20 border-2 border-purple-500/50 flex items-center justify-center">
-                        <span className="text-xl font-bold text-purple-400">{phase.phase}</span>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-bold text-foreground">{phase.title}</h4>
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                          <Timer className="w-4 h-4" />
-                          {phase.duration}
-                        </div>
-                      </div>
-                    </div>
-                    <p className="mt-4 text-sm text-muted-foreground">{phase.description}</p>
-                  </div>
-                  
-                  <div className="lg:w-3/4 grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h5 className="text-sm font-semibold text-purple-400 mb-3">Atividades</h5>
-                      <ul className="space-y-2">
-                        {phase.activities.map((activity, idx) => (
-                          <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                            {activity}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h5 className="text-sm font-semibold text-purple-400 mb-3">Entregáveis</h5>
-                      <ul className="space-y-2">
-                        {phase.deliverables.map((deliverable, idx) => (
-                          <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <CheckCircle2 className="w-4 h-4 text-purple-400" />
-                            {deliverable}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Section */}
-      <section className="section-padding bg-muted/10">
-        <div className="container-custom">
-          <SectionHeader
-            badge="Tecnologias"
-            title="Stack"
-            titleHighlight="Moderno"
-            description="Utilizamos as ferramentas mais avançadas e adotadas pela indústria."
-          />
-
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {techStack.map((category, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="glass-card p-6"
-              >
-                <h4 className="text-sm font-semibold text-purple-400 mb-4">{category.category}</h4>
-                <div className="flex flex-wrap gap-2">
-                  {category.items.map((item, idx) => (
-                    <span key={idx} className="px-3 py-1.5 rounded-lg bg-muted/50 text-foreground text-sm font-medium border border-border/50">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Differentials Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <SectionHeader
-            badge="Por que Nós"
-            title="Nossos"
-            titleHighlight="Diferenciais"
-            description="O que nos diferencia de outras consultorias de Data Science."
-          />
-
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {differentials.map((diff, index) => (
               <motion.div
                 key={index}
@@ -634,8 +349,8 @@ export default function DataScience() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="glass-card p-6 text-center hover-lift"
               >
-                <div className="w-14 h-14 mx-auto rounded-xl bg-purple-500/10 flex items-center justify-center mb-4">
-                  <diff.icon className="w-7 h-7 text-purple-400" />
+                <div className="w-14 h-14 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <diff.icon className="w-7 h-7 text-primary" />
                 </div>
                 <h4 className="font-bold text-foreground">{diff.title}</h4>
                 <p className="mt-2 text-sm text-muted-foreground">{diff.description}</p>
@@ -645,49 +360,42 @@ export default function DataScience() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-b from-muted/20 to-background">
+      {/* CTA Final */}
+      <section className="py-24">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="glass-card p-12 md:p-16 text-center relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-violet-500/10 to-purple-500/5" />
+            {/* Background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
+            
             <div className="relative z-10">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-medium text-primary mb-6">
                 <Zap className="w-4 h-4" />
                 Pronto para transformar dados em resultados?
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white">
+              
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                 Vamos construir sua{" "}
-                <span className="bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
-                  infraestrutura de ML
-                </span>
+                <span className="gradient-text-purple">infraestrutura de ML</span>
               </h2>
-              <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg">
+              
+              <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
                 Nossa equipe de cientistas de dados e engenheiros de ML está pronta 
-                para transformar seus dados em modelos em produção que geram valor real.
+                para transformar seus dados em modelos que geram valor real.
               </p>
+              
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-purple-500 to-violet-500 text-white px-8"
-                  asChild
-                >
+                <Button size="lg" className="gradient-primary text-white px-8" asChild>
                   <Link to="/contato">
                     Agendar Discovery Call
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-purple-500/50"
-                  asChild
-                >
+                <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10" asChild>
                   <Link to="/consultoria">Explorar Outras Áreas</Link>
                 </Button>
               </div>
