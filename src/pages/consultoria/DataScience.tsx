@@ -27,9 +27,9 @@ const services = [
   },
   {
     icon: Brain,
-    title: "Aprendizado de Máquina",
-    subtitle: "Modelos Preditivos e Redes Neurais",
-    description: "Desenvolvimento de modelos supervisionados, processamento de linguagem natural e sistemas de recomendação.",
+    title: "Machine Learning",
+    subtitle: "Modelos Preditivos e Deep Learning",
+    description: "Desenvolvimento de modelos supervisionados, NLP e sistemas de recomendação.",
     technologies: ["PyTorch", "TensorFlow", "XGBoost", "Hugging Face"],
   },
   {
@@ -52,8 +52,8 @@ const services = [
 const infrastructure = [
   {
     icon: Network,
-    title: "Operações de ML e Governança",
-    description: "Integração contínua para modelos, repositórios de features, monitoramento e explicabilidade.",
+    title: "MLOps e Governança",
+    description: "CI/CD para modelos, feature stores, monitoramento e explainability.",
   },
   {
     icon: Workflow,
