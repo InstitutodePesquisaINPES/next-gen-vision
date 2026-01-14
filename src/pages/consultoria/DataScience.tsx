@@ -21,66 +21,66 @@ const services = [
   {
     icon: Database,
     title: "Engenharia de Dados",
-    subtitle: "Arquiteturas Modernas & Escaláveis",
-    description: "Data Lakes, pipelines ETL/ELT, streaming em tempo real e governança de dados.",
+    subtitle: "Arquiteturas Modernas e Escaláveis",
+    description: "Lagos de dados, pipelines de ingestão, streaming em tempo real e governança.",
     technologies: ["Snowflake", "Databricks", "dbt", "Airflow", "Kafka"],
   },
   {
     icon: Brain,
-    title: "Machine Learning",
-    subtitle: "Modelos Preditivos & Deep Learning",
-    description: "Desenvolvimento de modelos supervisionados, NLP avançado e sistemas de recomendação.",
+    title: "Aprendizado de Máquina",
+    subtitle: "Modelos Preditivos e Redes Neurais",
+    description: "Desenvolvimento de modelos supervisionados, processamento de linguagem natural e sistemas de recomendação.",
     technologies: ["PyTorch", "TensorFlow", "XGBoost", "Hugging Face"],
   },
   {
     icon: Cpu,
-    title: "IA Generativa & LLMs",
-    subtitle: "Automação Inteligente",
-    description: "Chatbots empresariais com RAG, agentes autônomos e busca semântica vetorial.",
+    title: "IA Generativa",
+    subtitle: "Automação Inteligente com LLMs",
+    description: "Assistentes empresariais, agentes autônomos e busca semântica vetorial.",
     technologies: ["OpenAI", "Claude", "LangChain", "Pinecone"],
   },
   {
     icon: LineChart,
-    title: "Analytics Avançado",
+    title: "Análise Avançada",
     subtitle: "Insights Acionáveis",
-    description: "Análise estatística, séries temporais, experimentos A/B e causal inference.",
+    description: "Análise estatística, séries temporais, experimentos A/B e inferência causal.",
     technologies: ["Python", "R", "Pandas", "SciPy"],
   },
 ];
 
-// Infraestrutura MLOps - simplificado
+// Infraestrutura - simplificado
 const infrastructure = [
   {
     icon: Network,
-    title: "MLOps & Governança",
-    description: "CI/CD para modelos, Feature Stores, monitoramento de drift e explainability.",
+    title: "Operações de ML e Governança",
+    description: "Integração contínua para modelos, repositórios de features, monitoramento e explicabilidade.",
   },
   {
     icon: Workflow,
     title: "Arquitetura de Dados",
-    description: "Data Mesh, Medallion Architecture, Data Contracts e Semantic Layer.",
+    description: "Malha de dados, arquitetura medalhão, contratos de dados e camada semântica.",
   },
   {
     icon: FlaskConical,
     title: "Experimentação",
-    description: "Design de experimentos A/B, Bayesian optimization e uplift modeling.",
+    description: "Design de experimentos A/B, otimização bayesiana e modelagem de impacto.",
   },
 ];
 
 // Aplicações por área
 const applications = [
-  { area: "Previsão", examples: ["Demanda", "Churn", "Revenue", "Estoque"] },
-  { area: "Classificação", examples: ["Fraude", "Credit Scoring", "Documentos", "Sentimento"] },
-  { area: "Personalização", examples: ["Recomendação", "Pricing", "Next Best Action", "Segmentação"] },
-  { area: "Operações", examples: ["Rotas", "Manutenção Preditiva", "Workforce", "Recursos"] },
+  { area: "Previsão", examples: ["Demanda", "Evasão", "Receita", "Estoque"] },
+  { area: "Classificação", examples: ["Fraude", "Crédito", "Documentos", "Sentimento"] },
+  { area: "Personalização", examples: ["Recomendação", "Precificação", "Próxima Ação", "Segmentação"] },
+  { area: "Operações", examples: ["Rotas", "Manutenção Preditiva", "Equipes", "Recursos"] },
 ];
 
 // Diferenciais
 const differentials = [
   { icon: Lightbulb, title: "Rigor Científico", description: "Metodologia científica com experimentos controlados e validação estatística." },
-  { icon: Target, title: "Produção-Ready", description: "Entregamos soluções em produção com APIs, monitoramento e pipelines automatizados." },
-  { icon: Sparkles, title: "Business-First", description: "Métricas de negócio guiam todo desenvolvimento. ROI calculado desde o início." },
-  { icon: Shield, title: "Governança", description: "Modelos documentados, auditáveis e explicáveis. LGPD e fairness compliance." },
+  { icon: Target, title: "Pronto para Produção", description: "Entregamos soluções em produção com APIs, monitoramento e pipelines automatizados." },
+  { icon: Sparkles, title: "Foco no Negócio", description: "Métricas de negócio guiam todo desenvolvimento. Retorno calculado desde o início." },
+  { icon: Shield, title: "Governança", description: "Modelos documentados, auditáveis e explicáveis. Conformidade com LGPD." },
 ];
 
 export default function DataScience() {
@@ -250,10 +250,10 @@ export default function DataScience() {
               Infraestrutura
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Além do Modelo: <span className="gradient-text-purple">ML em Escala</span>
+              Além do Modelo: <span className="gradient-text-purple">IA em Escala</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Não entregamos apenas modelos - construímos a infraestrutura completa para ML empresarial.
+              Não entregamos apenas modelos — construímos a infraestrutura completa para inteligência artificial empresarial.
             </p>
           </motion.div>
 

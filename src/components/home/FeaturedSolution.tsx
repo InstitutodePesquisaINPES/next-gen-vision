@@ -16,7 +16,7 @@ const features = [
   },
   {
     icon: Sparkles,
-    title: "Implementação End-to-End",
+    title: "Implementação Completa",
     description: "Do conceito à produção com sua equipe.",
   },
 ];
@@ -59,9 +59,9 @@ export function FeaturedSolution() {
                 transition={{ delay: 0.2 }}
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground"
               >
-                Strategic Intelligence
+                Inteligência Estratégica
                 <br />
-                <span className="gradient-text-purple">Solution™</span>
+                <span className="gradient-text-purple">Personalizada™</span>
               </motion.h2>
 
               <motion.p
@@ -84,7 +84,7 @@ export function FeaturedSolution() {
                 className="mt-4 text-muted-foreground"
               >
                 Combinamos ciência de dados, engenharia de software e visão 
-                estratégica para entregar resultados que impactam o bottom line.
+                estratégica para entregar resultados que impactam diretamente seus indicadores.
               </motion.p>
 
               <motion.div
@@ -142,11 +142,11 @@ export function FeaturedSolution() {
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold gradient-text-purple">3x</div>
-                  <div className="text-xs text-muted-foreground">ROI Médio</div>
+                  <div className="text-xs text-muted-foreground">Retorno Médio</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold gradient-text-purple">45d</div>
-                  <div className="text-xs text-muted-foreground">Time to Value</div>
+                  <div className="text-xs text-muted-foreground">Tempo p/ Resultado</div>
                 </div>
               </motion.div>
             </div>
