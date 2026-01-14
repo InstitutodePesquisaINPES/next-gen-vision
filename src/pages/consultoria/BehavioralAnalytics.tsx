@@ -15,17 +15,17 @@ import { SectionHeader } from "@/components/ui/section-header";
 const coreAreas = [
   {
     icon: Brain,
-    title: "Behavioral Economics Aplicada",
+    title: "Economia Comportamental Aplicada",
     description: "Aplicação de princípios de economia comportamental para entender como vieses cognitivos afetam decisões de negócio.",
     capabilities: [
       "Mapeamento de vieses cognitivos em jornadas de decisão",
       "Análise de heurísticas (ancoragem, disponibilidade, representatividade)",
       "Design de nudges e arquitetura de escolha",
       "Quantificação do impacto de vieses em métricas de negócio",
-      "Experimentos de bounded rationality",
-      "Aplicação de Prospect Theory em pricing e oferta"
+      "Experimentos de racionalidade limitada",
+      "Aplicação de Teoria dos Prospectos em precificação e ofertas"
     ],
-    applications: ["Pricing", "Conversão", "Retenção", "Comunicação"]
+    applications: ["Precificação", "Conversão", "Retenção", "Comunicação"]
   },
   {
     icon: Heart,
@@ -33,27 +33,27 @@ const coreAreas = [
     description: "Mensuração científica de construtos psicológicos como atitudes, personalidade e motivação.",
     capabilities: [
       "Desenvolvimento e validação de escalas psicométricas",
-      "Análise fatorial exploratória e confirmatória (EFA/CFA)",
-      "Teoria de Resposta ao Item (TRI/IRT)",
-      "Análise de confiabilidade (Alpha, Omega, ICC)",
+      "Análise fatorial exploratória e confirmatória (AFE/AFC)",
+      "Teoria de Resposta ao Item (TRI)",
+      "Análise de confiabilidade (Alfa, Ômega, CCI)",
       "Validade convergente, discriminante e preditiva",
-      "Invariância de medida cross-cultural"
+      "Invariância de medida transcultural"
     ],
-    applications: ["Pesquisa de Mercado", "Employee Assessment", "UX Research"]
+    applications: ["Pesquisa de Mercado", "Avaliação de Colaboradores", "Pesquisa de UX"]
   },
   {
     icon: Eye,
     title: "Análise de Comportamento do Consumidor",
     description: "Investigação profunda dos padrões de comportamento, motivações e processos decisórios dos clientes.",
     capabilities: [
-      "Customer Decision Journey mapping com dados",
-      "Análise de friction points e drop-offs comportamentais",
+      "Mapeamento da jornada de decisão do cliente com dados",
+      "Análise de pontos de atrito e abandono comportamental",
       "Segmentação psicográfica baseada em valores e atitudes",
-      "Análise de consideration sets e choice modeling",
-      "Triggers emocionais e racionais de compra",
-      "Moment of Truth analysis"
+      "Análise de conjuntos de consideração e modelagem de escolha",
+      "Gatilhos emocionais e racionais de compra",
+      "Análise de momentos da verdade"
     ],
-    applications: ["CX", "Product", "Marketing", "Vendas"]
+    applications: ["CX", "Produto", "Marketing", "Vendas"]
   },
   {
     icon: Puzzle,
@@ -63,11 +63,11 @@ const coreAreas = [
       "Diagnóstico de cultura organizacional com dados",
       "Análise de vieses em processos decisórios internos",
       "Impacto de dinâmicas de grupo em performance",
-      "Resistência à mudança e adoption behavior",
+      "Resistência à mudança e comportamento de adoção",
       "Liderança e influência baseada em evidências",
-      "Safety culture e comportamentos de risco"
+      "Cultura de segurança e comportamentos de risco"
     ],
-    applications: ["RH", "Operações", "Change Management", "Compliance"]
+    applications: ["RH", "Operações", "Gestão de Mudança", "Conformidade"]
   },
 ];
 

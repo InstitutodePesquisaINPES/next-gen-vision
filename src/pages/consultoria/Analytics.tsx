@@ -15,15 +15,15 @@ import { SectionHeader } from "@/components/ui/section-header";
 const analyticsServices = [
   {
     icon: Monitor,
-    title: "Dashboards Executivos",
+    title: "Painéis Executivos",
     description: "Visualizações interativas e em tempo real para monitoramento de KPIs críticos do negócio.",
     capabilities: [
-      "Design de dashboards estratégicos, táticos e operacionais",
-      "Real-time streaming com Kafka e WebSockets",
+      "Design de painéis estratégicos, táticos e operacionais",
+      "Streaming em tempo real com Kafka e WebSockets",
       "Drill-down interativo multi-nível",
-      "Alertas inteligentes com thresholds dinâmicos",
-      "Mobile-first responsive design",
-      "Embedded analytics para produtos SaaS"
+      "Alertas inteligentes com limiares dinâmicos",
+      "Design responsivo para dispositivos móveis",
+      "Analytics embarcado para produtos SaaS"
     ],
     technologies: ["Power BI", "Tableau", "Looker", "Metabase", "Superset"]
   },
@@ -32,40 +32,40 @@ const analyticsServices = [
     title: "Relatórios Automatizados",
     description: "Sistema de geração e distribuição automática de relatórios com insights acionáveis.",
     capabilities: [
-      "Scheduling flexível (diário, semanal, mensal, sob demanda)",
-      "Templates customizados por audiência",
+      "Agendamento flexível (diário, semanal, mensal, sob demanda)",
+      "Modelos customizados por audiência",
       "Múltiplos formatos (PDF, Excel, HTML, Slides)",
-      "Narrative automation com NLG",
-      "Anomaly detection automático",
-      "Distribuição multi-canal (email, Slack, Teams)"
+      "Automação de narrativa com geração de texto",
+      "Detecção automática de anomalias",
+      "Distribuição multi-canal (e-mail, Slack, Teams)"
     ],
     technologies: ["Apache Airflow", "dbt", "Jupyter", "Papermill", "Great Expectations"]
   },
   {
     icon: TrendingUp,
-    title: "Análise Preditiva & Forecasting",
+    title: "Análise Preditiva e Previsão",
     description: "Modelos que antecipam tendências, sazonalidades e comportamentos futuros do mercado.",
     capabilities: [
-      "Forecasting de vendas, receita e demanda",
+      "Previsão de vendas, receita e demanda",
       "Detecção de anomalias com explicabilidade",
-      "What-If analysis e simulação de cenários",
-      "Propensity scoring (churn, upsell, conversão)",
-      "Attribution modeling multi-touch",
-      "Cohort analysis e lifetime value"
+      "Análise de cenários e simulação hipotética",
+      "Pontuação de propensão (evasão, upsell, conversão)",
+      "Modelagem de atribuição multi-toque",
+      "Análise de coorte e valor vitalício"
     ],
     technologies: ["Prophet", "ARIMA", "XGBoost", "TensorFlow", "H2O.ai"]
   },
   {
     icon: Database,
-    title: "Governança & Arquitetura de Dados",
+    title: "Governança e Arquitetura de Dados",
     description: "Fundação sólida de dados para analytics escalável e confiável.",
     capabilities: [
       "Data Warehouse moderno (Snowflake, BigQuery, Redshift)",
-      "Data Lakehouse com Delta Lake / Iceberg",
-      "Semantic Layer unificada",
-      "Data Catalog e descoberta de dados",
-      "Data Quality monitoring automatizado",
-      "Self-service analytics enablement"
+      "Lakehouse de dados com Delta Lake / Iceberg",
+      "Camada semântica unificada",
+      "Catálogo de dados e descoberta",
+      "Monitoramento automatizado de qualidade de dados",
+      "Habilitação de análise autônoma"
     ],
     technologies: ["Snowflake", "dbt", "Atlan", "Monte Carlo", "Cube"]
   },
@@ -164,62 +164,62 @@ const biPlatforms = [
 const implementationProcess = [
   { 
     phase: "01",
-    title: "Discovery & Requirements",
+    title: "Descoberta e Requisitos",
     duration: "1-2 semanas",
     description: "Entendimento das necessidades de negócio e mapeamento de fontes de dados.",
     activities: [
       "Entrevistas com stakeholders",
       "Inventário de fontes de dados",
       "Definição de KPIs prioritários",
-      "Assessment de infraestrutura atual"
+      "Avaliação de infraestrutura atual"
     ]
   },
   { 
     phase: "02",
-    title: "Data Modeling",
+    title: "Modelagem de Dados",
     duration: "2-3 semanas",
     description: "Design do modelo de dados e definição de métricas padronizadas.",
     activities: [
-      "Modelagem dimensional (Star/Snowflake)",
-      "Definição de semantic layer",
+      "Modelagem dimensional (Estrela/Floco de Neve)",
+      "Definição de camada semântica",
       "Documentação de métricas",
-      "Data contracts com fontes"
+      "Contratos de dados com fontes"
     ]
   },
   { 
     phase: "03",
-    title: "Development",
+    title: "Desenvolvimento",
     duration: "3-6 semanas",
-    description: "Construção de pipelines, transformações e dashboards.",
+    description: "Construção de pipelines, transformações e painéis.",
     activities: [
-      "ETL/ELT development",
-      "Dashboard development",
+      "Desenvolvimento de ETL/ELT",
+      "Desenvolvimento de painéis",
       "Automação de relatórios",
-      "Data quality checks"
+      "Verificações de qualidade de dados"
     ]
   },
   { 
     phase: "04",
-    title: "Testing & Validation",
+    title: "Testes e Validação",
     duration: "1-2 semanas",
     description: "Validação de dados, UAT e refinamento com usuários.",
     activities: [
-      "Data reconciliation",
+      "Reconciliação de dados",
       "UAT com usuários-chave",
-      "Performance tuning",
+      "Ajuste de performance",
       "Refinamento de UX"
     ]
   },
   { 
     phase: "05",
-    title: "Deploy & Adoption",
+    title: "Implantação e Adoção",
     duration: "1-2 semanas",
     description: "Go-live, treinamento e garantia de adoção.",
     activities: [
       "Publicação em produção",
       "Treinamento de usuários",
-      "Documentação e playbooks",
-      "Suporte pós-go-live"
+      "Documentação e guias",
+      "Suporte pós-implantação"
     ]
   },
 ];
@@ -268,10 +268,10 @@ const analyticsUseCases = [
 ];
 
 const valueProposition = [
-  { icon: Clock, label: "Decisões 10x mais rápidas", description: "De dias para minutos com self-service" },
-  { icon: Eye, label: "Visibilidade total", description: "Single source of truth para toda empresa" },
+  { icon: Clock, label: "Decisões 10x mais rápidas", description: "De dias para minutos com análise autônoma" },
+  { icon: Eye, label: "Visibilidade total", description: "Fonte única da verdade para toda empresa" },
   { icon: AlertCircle, label: "Alertas proativos", description: "Anomalias detectadas automaticamente" },
-  { icon: Users, label: "Self-service analytics", description: "Empodere times sem depender de TI" },
+  { icon: Users, label: "Análise autônoma", description: "Empodere times sem depender de TI" },
 ];
 
 const stats = [
@@ -319,7 +319,7 @@ export default function Analytics() {
                 <BarChart3 className="w-4 h-4" />
                 Consultoria
                 <ChevronRight className="w-4 h-4" />
-                Business Analytics & BI
+                Inteligência de Negócios e BI
               </Link>
             </motion.div>
 
@@ -329,9 +329,9 @@ export default function Analytics() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
             >
-              <span className="text-white">Business</span>{" "}
+              <span className="text-white">Inteligência de</span>{" "}
               <span className="bg-gradient-to-r from-rose-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
-                Analytics
+                Negócios
               </span>
             </motion.h1>
 

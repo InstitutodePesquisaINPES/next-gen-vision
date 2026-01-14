@@ -321,7 +321,7 @@ export default function CustomerIntelligence() {
             badge="Soluções"
             title="Inteligência de Clientes"
             titleHighlight="Completa"
-            description="Cobertura end-to-end de analytics e inteligência do cliente."
+            description="Cobertura completa de analytics e inteligência do cliente."
           />
 
           <div className="mt-16 grid md:grid-cols-2 gap-8">
