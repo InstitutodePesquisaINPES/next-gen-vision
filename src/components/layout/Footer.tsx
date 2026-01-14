@@ -1,6 +1,7 @@
-import { forwardRef } from "react";
+import { forwardRef, type ComponentPropsWithoutRef } from "react";
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Instagram, Github } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { VixioLogo } from "@/components/brand/VixioLogo";
 
 const footerLinks = {
@@ -22,17 +23,22 @@ const footerLinks = {
     { name: "Área do Cliente", path: "/login" },
     { name: "Política de Privacidade", path: "/privacidade" },
   ],
-};
+} as const;
 
 const socialLinks = [
   { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com/company/vixio" },
   { name: "Instagram", icon: Instagram, url: "https://instagram.com/vixio" },
   { name: "GitHub", icon: Github, url: "https://github.com/vixio" },
-];
+] as const;
 
-export const Footer = forwardRef<HTMLElement, object>(function Footer(_, ref) {
+export type FooterProps = ComponentPropsWithoutRef<"footer">;
+
+export const Footer = forwardRef<HTMLElement, FooterProps>(function Footer(
+  { className, ...props },
+  ref
+) {
   return (
-    <footer ref={ref} className="bg-card border-t border-border">
+    <footer ref={ref} className={cn("bg-card border-t border-border", className)} {...props}>
       <div className="container-custom section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           {/* Brand Column */}
@@ -41,8 +47,7 @@ export const Footer = forwardRef<HTMLElement, object>(function Footer(_, ref) {
               <VixioLogo variant="full" size="lg" theme="dark" />
             </Link>
             <p className="text-muted-foreground max-w-sm">
-              Transformamos dados em decisões estratégicas com sistemas inteligentes 
-              e ciência de dados de ponta. Sua visão, nossa tecnologia.
+              Transformamos dados em decisões estratégicas com sistemas inteligentes e ciência de dados de ponta. Sua visão, nossa tecnologia.
             </p>
             <div className="space-y-3">
               <a
@@ -72,10 +77,7 @@ export const Footer = forwardRef<HTMLElement, object>(function Footer(_, ref) {
             <ul className="space-y-3">
               {footerLinks.empresa.map((link) => (
                 <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
+                  <Link to={link.path} className="text-muted-foreground hover:text-foreground transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -88,10 +90,7 @@ export const Footer = forwardRef<HTMLElement, object>(function Footer(_, ref) {
             <ul className="space-y-3">
               {footerLinks.servicos.map((link) => (
                 <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
+                  <Link to={link.path} className="text-muted-foreground hover:text-foreground transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -104,10 +103,7 @@ export const Footer = forwardRef<HTMLElement, object>(function Footer(_, ref) {
             <ul className="space-y-3">
               {footerLinks.suporte.map((link) => (
                 <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
+                  <Link to={link.path} className="text-muted-foreground hover:text-foreground transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -118,9 +114,7 @@ export const Footer = forwardRef<HTMLElement, object>(function Footer(_, ref) {
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Vixio. Todos os direitos reservados.
-          </p>
+          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Vixio. Todos os direitos reservados.</p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
               <a
@@ -140,5 +134,3 @@ export const Footer = forwardRef<HTMLElement, object>(function Footer(_, ref) {
     </footer>
   );
 });
-
-Footer.displayName = "Footer";
