@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import logoFull from "@/assets/logo-vixio-icon.png";
 import logoDark from "@/assets/logo-vixio-dark.png";
@@ -25,20 +26,20 @@ const iconSizes = {
   xl: 60,
 };
 
-export function VixioLogo({ 
+export const VixioLogo = forwardRef<HTMLDivElement, VixioLogoProps>(({ 
   variant = "full", 
   showTagline = false, 
   className,
   size = "md",
   theme = "dark"
-}: VixioLogoProps) {
+}, ref) => {
   const { width, height } = sizes[size];
   const iconSize = iconSizes[size];
 
   // Icon only version (just the V symbol)
   if (variant === "icon") {
     return (
-      <div className={cn("flex flex-col items-center", className)}>
+      <div ref={ref} className={cn("flex flex-col items-center", className)}>
         <img
           src={logoFull}
           alt="Vixio"
@@ -59,7 +60,7 @@ export function VixioLogo({
   const logoSrc = theme === "dark" ? logoDark : logoLight;
 
   return (
-    <div className={cn("flex flex-col", className)}>
+    <div ref={ref} className={cn("flex flex-col", className)}>
       <img
         src={logoSrc}
         alt="Vixio - Sistemas Inteligentes & Ciência de Dados"
@@ -69,32 +70,38 @@ export function VixioLogo({
       />
     </div>
   );
-}
+});
+
+VixioLogo.displayName = "VixioLogo";
 
 // Animated version that pulses the logo
-export function VixioLogoAnimated({ className, size = "xl" }: { className?: string; size?: "sm" | "md" | "lg" | "xl" }) {
-  const { width, height } = sizes[size];
+export const VixioLogoAnimated = forwardRef<HTMLDivElement, { className?: string; size?: "sm" | "md" | "lg" | "xl" }>(
+  ({ className, size = "xl" }, ref) => {
+    const { width, height } = sizes[size];
 
-  return (
-    <div className={cn("relative", className)}>
-      {/* Glow effect */}
-      <div className="absolute inset-0 blur-2xl opacity-30 animate-pulse">
+    return (
+      <div ref={ref} className={cn("relative", className)}>
+        {/* Glow effect */}
+        <div className="absolute inset-0 blur-2xl opacity-30 animate-pulse">
+          <img
+            src={logoDark}
+            alt=""
+            width={width}
+            height={height}
+            className="object-contain"
+          />
+        </div>
+        {/* Main logo */}
         <img
           src={logoDark}
-          alt=""
+          alt="Vixio - Sistemas Inteligentes & Ciência de Dados"
           width={width}
           height={height}
-          className="object-contain"
+          className="object-contain relative z-10"
         />
       </div>
-      {/* Main logo */}
-      <img
-        src={logoDark}
-        alt="Vixio - Sistemas Inteligentes & Ciência de Dados"
-        width={width}
-        height={height}
-        className="object-contain relative z-10"
-      />
-    </div>
-  );
-}
+    );
+  }
+);
+
+VixioLogoAnimated.displayName = "VixioLogoAnimated";
