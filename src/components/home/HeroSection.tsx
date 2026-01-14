@@ -1,24 +1,34 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronDown, Brain, Code2, GraduationCap } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const heroMessages = [
   {
-    headline: "Não analisamos dados.",
-    highlight: "Resolvemos problemas.",
-    description: "Ciência de dados aplicada com foco em resultado.",
+    question: "Você tem dados.",
+    questionHighlight: "Tem decisões?",
+    description: "Transformamos complexidade analítica em clareza estratégica para o C-Level.",
   },
   {
-    headline: "Não desenvolvemos sistemas.",
-    highlight: "Automatizamos operações.",
-    description: "Engenharia de software com visão de negócio.",
+    question: "Sua operação é manual.",
+    questionHighlight: "Precisa escalar?",
+    description: "Sistemas inteligentes que automatizam processos e multiplicam capacidade.",
   },
   {
-    headline: "Não oferecemos treinamentos.",
-    highlight: "Transformamos equipes.",
-    description: "Capacitação executiva para decisões baseadas em evidências.",
+    question: "Sua equipe analisa.",
+    questionHighlight: "Mas decide com evidência?",
+    description: "Capacitação executiva para decisões baseadas em dados, não em intuição.",
+  },
+  {
+    question: "Você investiu em tecnologia.",
+    questionHighlight: "O ROI apareceu?",
+    description: "Consultoria que entrega resultado mensurável, não apenas relatórios.",
+  },
+  {
+    question: "Seus concorrentes usam IA.",
+    questionHighlight: "E você?",
+    description: "Machine Learning e IA Generativa aplicados aos seus desafios de negócio.",
   },
 ];
 
@@ -51,60 +61,74 @@ export function HeroSection() {
 
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Rotating Headlines */}
-          <div className="h-[180px] md:h-[220px] flex items-center justify-center">
+          {/* Rotating Headlines - Question Style */}
+          <div className="min-h-[200px] md:min-h-[240px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
                 className="text-center"
               >
                 <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight">
-                  <span className="text-foreground">{currentMessage.headline}</span>
+                  <span className="text-foreground">{currentMessage.question}</span>
                   <br />
-                  <span className="gradient-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                    {currentMessage.highlight}
+                  <span className="gradient-text-cyan text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                    {currentMessage.questionHighlight}
                   </span>
                 </h1>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
+                >
+                  {currentMessage.description}
+                </motion.p>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Carousel Indicators */}
-          <div className="flex items-center justify-center gap-2 mt-4 mb-8">
-            {heroMessages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === activeIndex
-                    ? "w-8 h-2 bg-primary"
-                    : "w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                }`}
-                aria-label={`Ir para mensagem ${index + 1}`}
-              />
-            ))}
+          {/* Carousel Indicators with hint */}
+          <div className="flex flex-col items-center gap-4 mt-6 mb-8">
+            <div className="flex items-center justify-center gap-2">
+              {heroMessages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveIndex(index)}
+                  className={`transition-all duration-300 rounded-full ${
+                    index === activeIndex
+                      ? "w-8 h-2 bg-primary"
+                      : "w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  }`}
+                  aria-label={`Ir para mensagem ${index + 1}`}
+                />
+              ))}
+            </div>
+            <span className="text-xs text-muted-foreground/60">
+              Clique nos indicadores ou aguarde a transição automática
+            </span>
           </div>
 
-          {/* Description */}
+          {/* Value Proposition */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            transition={{ delay: 0.5 }}
+            className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8"
           >
-            Inteligência de dados, sistemas sob medida e capacitação executiva para organizações que buscam resultados mensuráveis.
+            Inteligência de dados e sistemas sob medida para organizações que buscam{" "}
+            <span className="text-foreground font-medium">resultados mensuráveis</span>.
           </motion.p>
 
-          {/* CTAs - Clean and focused */}
+          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button
               size="lg"
@@ -133,14 +157,13 @@ export function HeroSection() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
             className="absolute bottom-8 left-1/2 -translate-x-1/2"
           >
             <a
               href="#worlds"
               className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
             >
-              <span className="text-sm">Clique nos indicadores ou aguarde a transição</span>
               <ChevronDown className="h-5 w-5 animate-bounce" />
             </a>
           </motion.div>
