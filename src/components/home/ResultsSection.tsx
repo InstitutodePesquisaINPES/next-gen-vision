@@ -329,7 +329,7 @@ export function ResultsSection() {
                 Cases por Setor
               </h3>
               <p className="text-muted-foreground text-sm mt-1">
-                {caseHighlights.length} exemplos de impacto em diferentes indústrias
+                {caseHighlights.length} exemplos de resultados entregues
               </p>
             </div>
             <div className="flex items-center gap-3">
