@@ -32,10 +32,10 @@ const methodology = [
 ];
 
 const differentiators = [
-  "Não paramos no diagnóstico — implementamos a solução",
-  "Metodologia científica com rigor acadêmico",
-  "Entregas em semanas, não meses",
-  "100% sigiloso — seu projeto é confidencial",
+  "Do diagnóstico à produção — resultados em semanas, não meses",
+  "20+ anos de experiência com metodologia científica validada",
+  "100+ publicações científicas aplicadas em projetos reais",
+  "100% sigiloso — confidencialidade garantida por contrato",
 ];
 
 export function AboutSection() {
@@ -52,10 +52,11 @@ export function AboutSection() {
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
             Consultoria que{" "}
-            <span className="gradient-text-purple">resolve de verdade</span>
+            <span className="gradient-text-purple">entrega resultados</span>
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg">
-            Enquanto outras consultorias entregam relatórios, nós entregamos soluções funcionando.
+            Outras consultorias entregam relatórios. Nós entregamos soluções implementadas 
+            com impacto mensurável nos seus KPIs.
           </p>
         </motion.div>
 
@@ -119,12 +120,18 @@ export function AboutSection() {
             className="order-1 lg:order-2"
           >
             <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              Expertise técnica com{" "}
-              <span className="gradient-text-purple">visão executiva</span>
+              Liderança técnica com{" "}
+              <span className="gradient-text-purple">resultados comprovados</span>
             </h3>
             
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              A Vixio nasceu da frustração com consultorias que entregam diagnósticos brilhantes... e param por aí. Combinamos profundidade científica com capacidade de execução.
+            <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+              Liderada por Dr. Stenio Fernando — Doutor Honoris Causa, professor universitário 
+              e ex-Secretário de Saúde de Vitória da Conquista, onde alcançou o 4º melhor 
+              indicador de letalidade COVID-19 entre as 100 maiores cidades do Brasil.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              A Vixio combina rigor científico de mais de 100 publicações com capacidade 
+              de implementação comprovada em organizações públicas e privadas.
             </p>
 
             <ul className="space-y-3 mb-8">
