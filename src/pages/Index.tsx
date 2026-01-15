@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { FeaturedSolution } from "@/components/home/FeaturedSolution";
 import { WorldsSection } from "@/components/home/WorldsSection";
 import { AboutSection } from "@/components/home/AboutSection";
-import { TechnologiesSection } from "@/components/home/TechnologiesSection";
+import { ResultsSection } from "@/components/home/ResultsSection";
 import { CTASection } from "@/components/home/CTASection";
 
 const Index = () => {
@@ -15,7 +15,7 @@ const Index = () => {
         <WorldsSection />
       </section>
       <AboutSection />
-      <TechnologiesSection />
+      <ResultsSection />
       <CTASection />
     </Layout>
   );
