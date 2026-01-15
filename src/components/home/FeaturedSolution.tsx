@@ -128,7 +128,7 @@ export function FeaturedSolution() {
                 </motion.div>
               ))}
 
-              {/* Stats highlight - Real metrics from founder's experience */}
+              {/* Stats highlight - Company focused metrics */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -137,16 +137,16 @@ export function FeaturedSolution() {
                 className="grid grid-cols-3 gap-4 pt-4"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold gradient-text-purple">20+</div>
-                  <div className="text-xs text-muted-foreground">Anos de Expertise</div>
+                  <div className="text-2xl font-bold gradient-text-purple">100%</div>
+                  <div className="text-xs text-muted-foreground">Sigiloso</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold gradient-text-purple">100+</div>
-                  <div className="text-xs text-muted-foreground">Publicações Científicas</div>
+                  <div className="text-2xl font-bold gradient-text-purple">Semanas</div>
+                  <div className="text-xs text-muted-foreground">Não Meses</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold gradient-text-purple">Top 4</div>
-                  <div className="text-xs text-muted-foreground">Indicadores COVID-19</div>
+                  <div className="text-2xl font-bold gradient-text-purple">Sob Medida</div>
+                  <div className="text-xs text-muted-foreground">Para Seu Contexto</div>
                 </div>
               </motion.div>
             </div>
