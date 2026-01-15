@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, ArrowRight, Target, Lightbulb, Wrench, Users } from "lucide-react";
+import { CheckCircle2, ArrowRight, Target, Lightbulb, Wrench, Users, Shield, Zap, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import founderImage from "@/assets/founder.png";
 
 const methodology = [
   {
@@ -33,8 +32,8 @@ const methodology = [
 
 const differentiators = [
   "Do diagnóstico à produção — resultados em semanas, não meses",
-  "20+ anos de experiência com metodologia científica validada",
-  "100+ publicações científicas aplicadas em projetos reais",
+  "Metodologia científica validada aplicada em projetos reais",
+  "Equipe multidisciplinar: dados, engenharia e estratégia",
   "100% sigiloso — confidencialidade garantida por contrato",
 ];
 
@@ -87,7 +86,7 @@ export function AboutSection() {
 
         {/* About Content */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Image Column */}
+          {/* Visual Column */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -96,13 +95,29 @@ export function AboutSection() {
             className="relative order-2 lg:order-1"
           >
             <div className="relative">
-              <div className="relative z-10 rounded-2xl overflow-hidden">
-                <img
-                  src={founderImage}
-                  alt="Fundador Vixio"
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+              <div className="glass-card p-8 relative z-10">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/20">
+                    <Brain className="w-10 h-10 text-primary mx-auto mb-3" />
+                    <div className="text-2xl font-bold gradient-text-purple">Data Science</div>
+                    <p className="text-xs text-muted-foreground mt-1">Análise avançada de dados</p>
+                  </div>
+                  <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/20">
+                    <Zap className="w-10 h-10 text-primary mx-auto mb-3" />
+                    <div className="text-2xl font-bold gradient-text-purple">Engenharia</div>
+                    <p className="text-xs text-muted-foreground mt-1">Sistemas sob medida</p>
+                  </div>
+                  <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/20">
+                    <Target className="w-10 h-10 text-primary mx-auto mb-3" />
+                    <div className="text-2xl font-bold gradient-text-purple">Estratégia</div>
+                    <p className="text-xs text-muted-foreground mt-1">Visão de negócio</p>
+                  </div>
+                  <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/20">
+                    <Shield className="w-10 h-10 text-primary mx-auto mb-3" />
+                    <div className="text-2xl font-bold gradient-text-purple">Sigilo</div>
+                    <p className="text-xs text-muted-foreground mt-1">100% confidencial</p>
+                  </div>
+                </div>
               </div>
 
               {/* Decorative */}
@@ -120,18 +135,19 @@ export function AboutSection() {
             className="order-1 lg:order-2"
           >
             <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              Liderança técnica com{" "}
-              <span className="gradient-text-purple">resultados comprovados</span>
+              Por que escolher a{" "}
+              <span className="gradient-text-purple">Vixio?</span>
             </h3>
             
             <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-              Liderada por Dr. Stenio Fernando — Doutor Honoris Causa, professor universitário 
-              e ex-Secretário de Saúde de Vitória da Conquista, onde alcançou o 4º melhor 
-              indicador de letalidade COVID-19 entre as 100 maiores cidades do Brasil.
+              Somos uma consultoria especializada em transformar dados em decisões 
+              estratégicas. Combinamos ciência de dados, engenharia de software e 
+              visão de negócio para entregar soluções que funcionam.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              A Vixio combina rigor científico de mais de 100 publicações com capacidade 
-              de implementação comprovada em organizações públicas e privadas.
+              Nossa abordagem é diferente: não entregamos apenas relatórios — 
+              implementamos soluções completas e capacitamos sua equipe para 
+              sustentar os resultados no longo prazo.
             </p>
 
             <ul className="space-y-3 mb-8">
