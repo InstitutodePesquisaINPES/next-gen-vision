@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Target, Eye, Heart, Award, Users, Zap } from "lucide-react";
+import { CheckCircle2, Target, Eye, Heart, Award, Users, Zap, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { SectionHeader } from "@/components/ui/section-header";
 import founderImage from "@/assets/founder.png";
@@ -123,6 +124,13 @@ const Sobre = () => {
                   em soluções práticas e escaláveis.
                 </p>
               </div>
+              <Link 
+                to="/fundador" 
+                className="inline-flex items-center gap-2 mt-6 text-primary font-medium hover:underline"
+              >
+                Conheça nosso Fundador
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </motion.div>
           </div>
         </div>

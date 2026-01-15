@@ -7,6 +7,7 @@ import { VixioLogo } from "@/components/brand/VixioLogo";
 const footerLinks = {
   empresa: [
     { name: "Sobre", path: "/sobre" },
+    { name: "Fundador", path: "/fundador" },
     { name: "Serviços", path: "/servicos" },
     { name: "Portfólio", path: "/portfolio" },
     { name: "Blog", path: "/blog" },
