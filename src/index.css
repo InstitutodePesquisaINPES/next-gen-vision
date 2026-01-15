@@ -222,8 +222,12 @@
     @apply origin-bottom-left scale-x-100;
   }
 
-  /* Section spacing */
+  /* Section spacing - standardized */
   .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .section-padding-lg {
     @apply py-20 md:py-28 lg:py-32;
   }
 
