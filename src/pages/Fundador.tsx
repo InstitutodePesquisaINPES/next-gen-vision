@@ -16,7 +16,9 @@ import {
   Brain,
   LineChart,
   Database,
-  Microscope
+  Microscope,
+  Linkedin,
+  ExternalLink
 } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -223,6 +225,28 @@ const Fundador = () => {
                   <span className="text-2xl font-bold gradient-text-purple">100+</span>
                   <span className="text-sm text-muted-foreground ml-2">Artigos Científicos</span>
                 </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="http://lattes.cnpq.br/5318656227506357"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20 font-medium text-sm hover:bg-primary/20 transition-all duration-300 hover-lift"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Currículo Lattes
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/stenio-fernando-duarte-b58b8bb0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#0077B5]/10 text-[#0077B5] border border-[#0077B5]/20 font-medium text-sm hover:bg-[#0077B5]/20 transition-all duration-300 hover-lift"
+                >
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
+                </a>
               </div>
             </motion.div>
 
