@@ -64,12 +64,12 @@ export function Header() {
             ))}
           </div>
 
-          {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* Desktop Actions - Clear hierarchy */}
+          <div className="hidden lg:flex items-center gap-2">
             <Button
               variant="ghost"
               size="sm"
-              className="text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground hover:bg-muted/30"
               asChild
             >
               <a
@@ -81,9 +81,12 @@ export function Header() {
                 WhatsApp
               </a>
             </Button>
-            <Button size="sm" className="gradient-primary text-primary-foreground" asChild>
+            <Button 
+              size="sm" 
+              className="gradient-primary text-primary-foreground glow-primary font-semibold px-5"
+              asChild
+            >
               <Link to="/contato">
-                <Mail className="h-4 w-4 mr-2" />
                 Fale Conosco
               </Link>
             </Button>

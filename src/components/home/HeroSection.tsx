@@ -65,21 +65,21 @@ export function HeroSection() {
   const currentMessage = heroMessages[activeIndex];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-24 pb-16">
       {/* Background */}
       <div className="absolute inset-0 gradient-dark" />
       
       {/* Orbs - Executive style */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] orb-primary rounded-full animate-pulse-glow" />
-        <div className="absolute bottom-1/3 left-1/4 w-[400px] h-[400px] orb-accent rounded-full animate-pulse-glow animation-delay-400" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] orb-blue rounded-full" />
+        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] orb-primary rounded-full animate-pulse-glow" />
+        <div className="absolute bottom-1/3 left-1/4 w-[300px] h-[300px] orb-accent rounded-full animate-pulse-glow animation-delay-400" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] orb-blue rounded-full" />
       </div>
 
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Rotating Headlines - Question Style */}
-          <div className="min-h-[200px] md:min-h-[240px] flex items-center justify-center">
+          {/* Rotating Headlines */}
+          <div className="min-h-[160px] md:min-h-[200px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
