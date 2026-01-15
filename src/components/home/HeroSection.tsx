@@ -110,25 +110,20 @@ export function HeroSection() {
             </AnimatePresence>
           </div>
 
-          {/* Carousel Indicators with hint */}
-          <div className="flex flex-col items-center gap-4 mt-6 mb-8">
-            <div className="flex items-center justify-center gap-2">
-              {heroMessages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveIndex(index)}
-                  className={`transition-all duration-300 rounded-full ${
-                    index === activeIndex
-                      ? "w-8 h-2 bg-primary"
-                      : "w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                  }`}
-                  aria-label={`Ir para mensagem ${index + 1}`}
-                />
-              ))}
-            </div>
-            <span className="text-xs text-muted-foreground/60">
-              Clique nos indicadores ou aguarde a transição automática
-            </span>
+          {/* Carousel Indicators */}
+          <div className="flex items-center justify-center gap-2 mt-6 mb-8">
+            {heroMessages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveIndex(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === activeIndex
+                    ? "w-8 h-2 bg-primary"
+                    : "w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                }`}
+                aria-label={`Ir para mensagem ${index + 1}`}
+              />
+            ))}
           </div>
 
           {/* Value Proposition */}

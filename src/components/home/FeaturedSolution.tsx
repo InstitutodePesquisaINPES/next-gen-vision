@@ -128,7 +128,7 @@ export function FeaturedSolution() {
                 </motion.div>
               ))}
 
-              {/* Stats highlight */}
+              {/* Stats highlight - Real metrics from founder's experience */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -137,16 +137,16 @@ export function FeaturedSolution() {
                 className="grid grid-cols-3 gap-4 pt-4"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold gradient-text-purple">98%</div>
-                  <div className="text-xs text-muted-foreground">Satisfação</div>
+                  <div className="text-2xl font-bold gradient-text-purple">20+</div>
+                  <div className="text-xs text-muted-foreground">Anos de Expertise</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold gradient-text-purple">3x</div>
-                  <div className="text-xs text-muted-foreground">ROI Médio</div>
+                  <div className="text-2xl font-bold gradient-text-purple">100+</div>
+                  <div className="text-xs text-muted-foreground">Publicações Científicas</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold gradient-text-purple">45d</div>
-                  <div className="text-xs text-muted-foreground">Tempo p/ Resultado</div>
+                  <div className="text-2xl font-bold gradient-text-purple">Top 4</div>
+                  <div className="text-xs text-muted-foreground">Indicadores COVID-19</div>
                 </div>
               </motion.div>
             </div>

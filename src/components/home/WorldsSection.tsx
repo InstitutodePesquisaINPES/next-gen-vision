@@ -7,9 +7,9 @@ const worlds = [
   {
     id: "ciencia",
     title: "Ciência de Dados & Inteligência",
-    subtitle: "Consultoria • Bioestatística • Analytics",
+    subtitle: "Para CEOs e diretores que precisam de decisões baseadas em evidências",
     description:
-      "Consultoria em Data Science, análises bioestatísticas e business intelligence para decisões baseadas em evidências.",
+      "Transforme dados dispersos em insights acionáveis. Reduza o tempo de análise em até 80% e tome decisões com confiança estatística.",
     icon: Brain,
     secondaryIcon: Microscope,
     link: "/consultoria",
@@ -17,19 +17,20 @@ const worlds = [
     borderColor: "border-blue-500/20",
     hoverBorder: "hover:border-blue-500/50",
     buttonClass: "bg-gradient-to-r from-blue-500 to-cyan-500 text-white",
+    result: "Decisões 3x mais rápidas com base em dados",
     features: [
-      "Machine Learning & IA",
-      "Análise Bioestatística",
-      "Dashboards Executivos",
-      "People & Customer Intelligence",
+      "Machine Learning & IA Preditiva",
+      "Análise Bioestatística Avançada",
+      "Dashboards para C-Level",
+      "Customer & People Intelligence",
     ],
   },
   {
     id: "engenharia",
     title: "Engenharia de Sistemas",
-    subtitle: "Sob Medida • Plataformas • Automação",
+    subtitle: "Para operações que perdem horas com processos manuais",
     description:
-      "Sistemas personalizados e plataformas SaaS para automatizar operações e escalar seu negócio.",
+      "Automatize fluxos repetitivos e libere sua equipe para atividades estratégicas. Sistemas que crescem junto com seu negócio.",
     icon: Code2,
     secondaryIcon: Server,
     link: "/sistemas",
@@ -37,19 +38,20 @@ const worlds = [
     borderColor: "border-primary/20",
     hoverBorder: "hover:border-primary/50",
     buttonClass: "gradient-primary text-white",
+    result: "Redução de 60% em tarefas operacionais",
     features: [
       "Sistemas Sob Medida",
-      "Plataformas SaaS",
-      "Secretária WhatsApp IA",
-      "APIs & Integrações",
+      "Plataformas SaaS Escaláveis",
+      "Secretária Virtual com IA",
+      "APIs & Integrações Complexas",
     ],
   },
   {
     id: "educacao",
     title: "Educação Corporativa",
-    subtitle: "Capacitação • Diagnóstico • Formação",
+    subtitle: "Para empresas que querem autonomia em dados",
     description:
-      "Programas de capacitação e diagnóstico organizacional para maturidade analítica e tomada de decisão.",
+      "Capacite sua equipe para interpretar dados e tomar decisões independentes. Cultura data-driven começa pelas pessoas.",
     icon: GraduationCap,
     secondaryIcon: Target,
     link: "/educacao",
@@ -57,11 +59,12 @@ const worlds = [
     borderColor: "border-amber-500/20",
     hoverBorder: "hover:border-amber-500/50",
     buttonClass: "bg-gradient-to-r from-amber-500 to-amber-600 text-white",
+    result: "Maturidade analítica em 90 dias",
     features: [
-      "Diagnóstico Empresarial",
-      "Capacitação In Company",
-      "Formação Executiva",
-      "Preparação para IA",
+      "Diagnóstico de Maturidade",
+      "Capacitação Prática In Company",
+      "Formação de Lideranças",
+      "Preparação para Adoção de IA",
     ],
   },
 ];
@@ -115,15 +118,22 @@ export function WorldsSection() {
               </div>
 
               {/* Content */}
-              <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-2">
-                {world.subtitle}
-              </p>
-              <h3 className="text-xl font-bold text-foreground mb-3">
+              <h3 className="text-xl font-bold text-foreground mb-2">
                 {world.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              <p className="text-xs text-primary font-medium mb-3">
+                {world.subtitle}
+              </p>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                 {world.description}
               </p>
+
+              {/* Result Highlight */}
+              <div className={`px-3 py-2 rounded-lg bg-gradient-to-r ${world.gradient} bg-opacity-10 border border-white/5 mb-5`}>
+                <p className="text-xs font-semibold text-foreground">
+                  → {world.result}
+                </p>
+              </div>
 
               {/* Features */}
               <ul className="space-y-2 mb-8">
