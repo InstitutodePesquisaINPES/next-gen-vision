@@ -2,6 +2,7 @@ import { ReactNode, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { usePageTracking } from "@/hooks/usePageTracking";
 
 interface LayoutProps {
   children: ReactNode;
@@ -9,6 +10,9 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const location = useLocation();
+  
+  // Track page views for analytics
+  usePageTracking();
 
   useEffect(() => {
     // Scroll to top on route change (unless there's a hash anchor)

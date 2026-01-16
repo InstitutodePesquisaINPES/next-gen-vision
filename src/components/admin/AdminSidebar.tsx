@@ -7,7 +7,9 @@ import {
   Users, 
   LogOut,
   ChevronRight,
-  Home
+  Home,
+  Database,
+  BarChart3
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { VixioLogo } from '@/components/brand/VixioLogo';
@@ -33,6 +35,18 @@ const navItems = [
     path: '/admin/navegacao', 
     label: 'Navegação', 
     icon: Navigation,
+    requiredRole: 'admin' as const
+  },
+  { 
+    path: '/admin/analytics', 
+    label: 'Analytics', 
+    icon: BarChart3,
+    requiredRole: 'admin' as const
+  },
+  { 
+    path: '/admin/backup', 
+    label: 'Backup', 
+    icon: Database,
     requiredRole: 'admin' as const
   },
   { 
