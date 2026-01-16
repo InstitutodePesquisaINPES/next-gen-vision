@@ -281,6 +281,7 @@ export default function SistemasIndex() {
             {sistemasAreas.map((sistema, index) => (
               <motion.div
                 key={sistema.id}
+                id={sistema.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
