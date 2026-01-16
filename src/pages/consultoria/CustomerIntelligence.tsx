@@ -6,158 +6,163 @@ import {
   BarChart3, PieChart, Lightbulb, Shield, Network,
   MessageSquare, Star, DollarSign, Activity, Clock,
   UserCheck, Fingerprint, Map, Gauge, Timer, Building2,
-  Megaphone, Mail, Phone, Globe, Brain, Sparkles, Lock
+  Megaphone, Mail, Phone, Globe, Brain, Sparkles, Lock,
+  Award, Workflow, UserPlus, Repeat
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/ui/section-header";
 
+// ============================================
+// DADOS E CONFIGURAÇÕES
+// ============================================
+
 const intelligenceAreas = [
   {
     icon: Fingerprint,
-    title: "Plataforma de Dados e Identidade do Cliente",
-    description: "Visão unificada 360° do cliente integrando todos os touchpoints e canais.",
+    title: "Plataforma de Dados do Cliente (CDP)",
+    description: "Visão unificada 360° do cliente integrando todos os touchpoints, canais e fontes de dados.",
     capabilities: [
-      "Resolução de identidade e matching de clientes",
+      "Resolução de identidade e matching de clientes cross-device",
       "Perfil unificado do cliente (Golden Record)",
       "Tracking cross-device e cross-channel",
-      "Unificação de dados de CRM, transações, web, app",
+      "Unificação de dados: CRM, transações, web, app, atendimento",
       "Atualizações de perfil em tempo real",
-      "Estratégia de first-party data conforme LGPD"
+      "Estratégia de first-party data em conformidade com LGPD"
     ],
-    technologies: ["CDP", "MDM", "Identity Graph"]
+    technologies: ["CDP", "MDM", "Identity Graph", "Event Streaming"]
   },
   {
     icon: Map,
     title: "Análise da Jornada do Cliente",
-    description: "Mapeamento e análise da jornada completa do cliente em todos os touchpoints.",
+    description: "Mapeamento e análise da jornada completa do cliente em todos os pontos de contato.",
     capabilities: [
-      "Mapeamento de jornada baseado em dados comportamentais",
-      "Modelagem de atribuição (multi-touch, data-driven)",
+      "Mapeamento de jornada baseado em dados comportamentais reais",
+      "Modelagem de atribuição: multi-touch e data-driven",
       "Análise de funil de conversão com detecção de abandono",
-      "Otimização do caminho de compra",
-      "Identificação de Momentos da Verdade",
-      "Triggers de orquestração de jornada"
+      "Otimização do caminho de compra por segmento",
+      "Identificação de Moments that Matter",
+      "Triggers automatizados para orquestração de jornada"
     ],
-    technologies: ["Event Streaming", "Mixpanel", "Amplitude"]
+    technologies: ["Event Streaming", "Mixpanel", "Amplitude", "Journey Analytics"]
   },
   {
     icon: Heart,
-    title: "Análise de Experiência e Satisfação",
-    description: "Mensuração contínua de satisfação, esforço e lealdade do cliente.",
+    title: "Experiência e Satisfação do Cliente",
+    description: "Mensuração contínua de satisfação, esforço e lealdade do cliente em todos os canais.",
     capabilities: [
-      "Análise de NPS com drivers e detratores",
-      "Tracking de Customer Effort Score (CES)",
-      "CSAT por touchpoint e jornada",
-      "Análise de Voz do Cliente (NLP)",
-      "Análise de sentimento em reviews e redes sociais",
-      "Automação de feedback em ciclo fechado"
+      "Análise de NPS com identificação de drivers e detratores",
+      "Tracking de Customer Effort Score (CES) por touchpoint",
+      "CSAT por ponto de contato e etapa da jornada",
+      "Análise de Voz do Cliente (VoC) com NLP avançado",
+      "Análise de sentimento em reviews, redes sociais e tickets",
+      "Automação de feedback em ciclo fechado (closed loop)"
     ],
-    technologies: ["Text Analytics", "Qualtrics", "Medallia"]
+    technologies: ["Text Analytics", "NLP", "Sentiment Analysis", "VoC Platforms"]
   },
   {
     icon: DollarSign,
     title: "Valor e Monetização do Cliente",
-    description: "Análise de valor do cliente para maximizar lifetime value e rentabilidade.",
+    description: "Análise de valor do cliente para maximizar Lifetime Value e rentabilidade.",
     capabilities: [
-      "Modelagem de Customer Lifetime Value (CLV)",
-      "Segmentação RFM automatizada",
-      "Análise de share of wallet",
-      "Scoring de propensão a cross-sell / upsell",
-      "Modelagem de sensibilidade e elasticidade de preço",
-      "Análise de rentabilidade por cliente"
+      "Modelagem de Customer Lifetime Value (CLV) preditivo",
+      "Segmentação RFM automatizada e dinâmica",
+      "Análise de Share of Wallet e potencial de expansão",
+      "Scoring de propensão: cross-sell, upsell, next best offer",
+      "Modelagem de elasticidade e sensibilidade de preço",
+      "Análise de rentabilidade por cliente e segmento"
     ],
-    technologies: ["Modelos Preditivos", "ML", "BI"]
+    technologies: ["Modelos Preditivos", "ML", "BI", "Revenue Analytics"]
   },
   {
     icon: UserCheck,
     title: "Inteligência de Retenção e Churn",
     description: "Prevenção proativa de churn com modelos preditivos e intervenções personalizadas.",
     capabilities: [
-      "Previsão de churn com lead time configurável",
-      "Sistema de alerta antecipado e health scores",
-      "Segmentação de clientes em risco",
-      "Otimização de campanhas de retenção",
-      "Modelagem de propensão a win-back",
-      "Análise de drivers de churn (causal)"
+      "Previsão de churn com lead time configurável (30, 60, 90 dias)",
+      "Sistema de Health Score e alertas antecipados",
+      "Segmentação de clientes em risco por probabilidade e valor",
+      "Otimização de campanhas de retenção e ofertas",
+      "Modelagem de propensão a win-back de clientes perdidos",
+      "Análise de drivers de churn com inferência causal"
     ],
-    technologies: ["Análise de Sobrevivência", "XGBoost", "Inferência Causal"]
+    technologies: ["Análise de Sobrevivência", "XGBoost", "Inferência Causal", "ML"]
   },
   {
     icon: Megaphone,
     title: "Efetividade de Marketing",
-    description: "Otimização de investimentos em marketing com mensuração de impacto real.",
+    description: "Otimização de investimentos em marketing com mensuração de impacto incremental real.",
     capabilities: [
-      "Marketing Mix Modeling (MMM)",
-      "Atribuição multi-touch (MTA)",
-      "Análise de ROI de campanhas",
-      "Otimização de canais e alocação de budget",
-      "Plataforma de A/B testing e experimentação",
-      "Testes de incrementalidade"
+      "Marketing Mix Modeling (MMM) para alocação de budget",
+      "Multi-Touch Attribution (MTA) para canais digitais",
+      "Análise de ROI de campanhas por canal e segmento",
+      "Otimização de canais e alocação orçamentária",
+      "Plataforma de A/B Testing e experimentação",
+      "Testes de incrementalidade para medir impacto causal"
     ],
-    technologies: ["Robyn", "LightweightMMM", "Experimentação"]
+    technologies: ["Robyn", "LightweightMMM", "Experimentação", "Causal ML"]
   },
 ];
 
 const segmentationApproaches = [
   {
     type: "Comportamental",
-    description: "Baseada em ações e comportamentos observados",
+    description: "Baseada em ações e comportamentos observados no histórico de interações.",
     variables: ["Frequência de compra", "Recência", "Ticket médio", "Categorias preferidas", "Canal preferido"],
     methods: ["RFM", "K-means", "DBSCAN"]
   },
   {
     type: "Psicográfica",
-    description: "Baseada em valores, atitudes e estilo de vida",
+    description: "Baseada em valores, atitudes, motivações e estilo de vida do cliente.",
     variables: ["Motivações", "Valores", "Interesses", "Opiniões", "Lifestyle"],
     methods: ["Análise Fatorial", "LCA", "Pesquisas"]
   },
   {
     type: "Baseada em Valor",
-    description: "Focada em rentabilidade e potencial de crescimento",
+    description: "Focada em rentabilidade atual, potencial de crescimento e custo de servir.",
     variables: ["CLV atual", "CLV potencial", "Margem", "Share of wallet", "Custo de servir"],
-    methods: ["Value-based", "Níveis de Rentabilidade"]
+    methods: ["Value Tiers", "Profit Clustering"]
   },
   {
     type: "Preditiva",
-    description: "Orientada por propensão a comportamentos futuros",
+    description: "Orientada por propensão a comportamentos futuros e next best action.",
     variables: ["Propensão churn", "Propensão compra", "Propensão upsell", "Next best product"],
-    methods: ["Modelos de ML", "Propensity scores"]
+    methods: ["ML Models", "Propensity Scores"]
   },
 ];
 
 const customerMetrics = [
-  { metric: "CLV", name: "Customer Lifetime Value", description: "Valor total do cliente ao longo da relação" },
-  { metric: "CAC", name: "Custo de Aquisição", description: "Custo de aquisição por cliente" },
+  { metric: "CLV", name: "Customer Lifetime Value", description: "Valor total esperado do cliente" },
+  { metric: "CAC", name: "Custo de Aquisição", description: "Custo para adquirir um cliente" },
   { metric: "NPS", name: "Net Promoter Score", description: "Lealdade e propensão a recomendar" },
   { metric: "Churn", name: "Taxa de Churn", description: "Taxa de perda de clientes" },
-  { metric: "ARPU", name: "Receita Média por Usuário", description: "Receita média por usuário" },
-  { metric: "NRR", name: "Retenção Líquida de Receita", description: "Retenção líquida de receita" },
+  { metric: "ARPU", name: "Receita Média por Usuário", description: "Receita média por cliente" },
+  { metric: "NRR", name: "Net Revenue Retention", description: "Retenção líquida de receita" },
 ];
 
 const methodology = [
   {
     phase: "01",
     title: "Avaliação de Dados",
-    description: "Inventário de dados de cliente, qualidade e gaps",
+    description: "Inventário completo de dados de cliente, avaliação de qualidade e identificação de gaps.",
     duration: "1-2 semanas"
   },
   {
     phase: "02",
     title: "Design de Arquitetura",
-    description: "Design de CDP, integrações e modelo de dados",
+    description: "Design de CDP, estratégia de integrações, modelo de dados unificado.",
     duration: "2-3 semanas"
   },
   {
     phase: "03",
     title: "Implementação",
-    description: "Integração de fontes, pipelines e dashboards",
+    description: "Integração de fontes, construção de pipelines, dashboards e modelos.",
     duration: "4-8 semanas"
   },
   {
     phase: "04",
     title: "Ativação",
-    description: "Modelos preditivos, segmentação e casos de uso",
+    description: "Deploy de modelos preditivos, segmentação operacional e casos de uso.",
     duration: "3-4 semanas"
   },
 ];
@@ -166,22 +171,22 @@ const differentiators = [
   {
     icon: Brain,
     title: "Comportamental + Analytics",
-    description: "Integramos behavioral science com customer analytics para entender não só o 'o quê' mas o 'por quê' por trás do comportamento."
+    description: "Integramos Behavioral Science com Customer Analytics para entender não só o 'o quê' mas o 'por quê' por trás do comportamento do cliente."
   },
   {
     icon: Network,
     title: "Integração de Dados 360°",
-    description: "Unificamos dados de CRM, transações, web, app, atendimento e marketing para uma visão verdadeiramente completa."
+    description: "Unificamos dados de CRM, transações, web, app, atendimento e marketing para uma visão verdadeiramente completa do cliente."
   },
   {
     icon: Zap,
     title: "Ativação em Tempo Real",
-    description: "Insights acionáveis em tempo real, não relatórios estáticos. Triggers automatizados para next best action."
+    description: "Insights acionáveis em tempo real, não relatórios estáticos. Triggers automatizados para next best action e personalização."
   },
   {
     icon: Shield,
     title: "Privacidade em Primeiro Lugar",
-    description: "Arquitetura LGPD-compliant desde o design. Estratégia de first-party data para um mundo sem cookies."
+    description: "Arquitetura LGPD-compliant desde o design. Estratégia de first-party data robusta para um mundo cookieless."
   },
   {
     icon: Lock,
@@ -190,6 +195,40 @@ const differentiators = [
   },
 ];
 
+const useCases = [
+  {
+    title: "Prevenção de Churn",
+    description: "Identificação proativa de clientes em risco com modelos preditivos e campanhas de retenção personalizadas.",
+    impact: "Redução de 20-35% no churn"
+  },
+  {
+    title: "Otimização de CLV",
+    description: "Segmentação por valor e potencial para priorizar investimentos em aquisição e retenção.",
+    impact: "Aumento de 25% no CLV médio"
+  },
+  {
+    title: "Personalização em Escala",
+    description: "Next best offer e recomendações personalizadas baseadas em comportamento e preferências.",
+    impact: "Aumento de 40% em conversão"
+  },
+  {
+    title: "Eficiência de Marketing",
+    description: "Alocação otimizada de budget com Marketing Mix Modeling e atribuição multi-touch.",
+    impact: "Melhoria de 30% no ROI de mídia"
+  },
+];
+
+const stats = [
+  { value: "500+", label: "Milhões de Clientes Analisados", description: "Em bases unificadas" },
+  { value: "92%", label: "Precisão em Modelos de Churn", description: "Média dos projetos" },
+  { value: "3.2x", label: "ROI Médio", description: "Retorno sobre investimento" },
+  { value: "NPS 75", label: "Satisfação de Clientes", description: "Em projetos de CX" },
+];
+
+// ============================================
+// COMPONENTE PRINCIPAL
+// ============================================
+
 export default function CustomerIntelligence() {
   return (
     <Layout>
@@ -197,17 +236,17 @@ export default function CustomerIntelligence() {
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 gradient-dark" />
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-orange-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-yellow-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-accent/15 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
         </div>
 
         {/* Customer Pattern */}
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full">
             <pattern id="customer-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-              <circle cx="30" cy="15" r="8" fill="none" stroke="rgba(251,146,60,0.5)" strokeWidth="1" />
-              <rect x="20" y="28" width="20" height="25" rx="3" fill="none" stroke="rgba(251,146,60,0.3)" strokeWidth="0.5" />
+              <circle cx="30" cy="15" r="8" fill="none" stroke="hsl(var(--primary) / 0.5)" strokeWidth="1" />
+              <rect x="20" y="28" width="20" height="25" rx="3" fill="none" stroke="hsl(var(--primary) / 0.3)" strokeWidth="0.5" />
             </pattern>
             <rect width="100%" height="100%" fill="url(#customer-pattern)" />
           </svg>
@@ -222,12 +261,12 @@ export default function CustomerIntelligence() {
             >
               <Link 
                 to="/consultoria" 
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-sm font-medium mb-8 hover:bg-orange-500/20 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium mb-8 hover:bg-primary/20 transition-colors"
               >
                 <Users className="w-4 h-4" />
                 Consultoria
                 <ChevronRight className="w-4 h-4" />
-                Inteligência de Clientes
+                Customer Intelligence
               </Link>
             </motion.div>
 
@@ -237,9 +276,9 @@ export default function CustomerIntelligence() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
             >
-              <span className="text-white">Inteligência de</span>{" "}
-              <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                Clientes
+              <span className="text-foreground">Customer</span>{" "}
+              <span className="gradient-text-purple">
+                Intelligence
               </span>
             </motion.h1>
 
@@ -259,10 +298,10 @@ export default function CustomerIntelligence() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/30"
+              className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30"
             >
-              <Lock className="w-4 h-4 text-orange-400" />
-              <span className="text-sm text-orange-400">Todos os projetos sob rigorosa confidencialidade</span>
+              <Lock className="w-4 h-4 text-primary" />
+              <span className="text-sm text-primary">Todos os projetos sob rigorosa confidencialidade</span>
             </motion.div>
 
             <motion.div
@@ -273,7 +312,7 @@ export default function CustomerIntelligence() {
             >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-orange-500 to-amber-500 text-white px-8 text-lg"
+                className="px-8 text-lg"
                 asChild
               >
                 <Link to="/contato">
@@ -281,16 +320,40 @@ export default function CustomerIntelligence() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg"
+                asChild
+              >
+                <Link to="/portfolio">Ver Cases</Link>
+              </Button>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
+            >
+              {stats.map((stat, index) => (
+                <div key={index} className="p-4 rounded-xl bg-card/50 border border-border/30">
+                  <div className="text-2xl md:text-3xl font-bold gradient-text-purple">{stat.value}</div>
+                  <div className="text-sm font-medium text-foreground mt-1">{stat.label}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{stat.description}</div>
+                </div>
+              ))}
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Customer Metrics */}
-      <section className="py-16 bg-muted/10">
+      <section className="py-16 bg-card/30">
         <div className="container-custom">
           <div className="text-center mb-8">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-sm font-medium">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium">
               <BarChart3 className="w-4 h-4" />
               Métricas de Cliente
             </span>
@@ -305,7 +368,7 @@ export default function CustomerIntelligence() {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 className="glass-card p-4 text-center hover-lift"
               >
-                <div className="text-xl font-bold text-orange-400">{item.metric}</div>
+                <div className="text-xl font-bold text-primary">{item.metric}</div>
                 <div className="text-sm font-medium text-foreground mt-1">{item.name}</div>
                 <div className="text-xs text-muted-foreground mt-1">{item.description}</div>
               </motion.div>
@@ -321,7 +384,7 @@ export default function CustomerIntelligence() {
             badge="Soluções"
             title="Inteligência de Clientes"
             titleHighlight="Completa"
-            description="Cobertura completa de analytics e inteligência do cliente."
+            description="Cobertura completa de analytics e inteligência do cliente, da aquisição à retenção."
           />
 
           <div className="mt-16 grid md:grid-cols-2 gap-8">
@@ -335,7 +398,7 @@ export default function CustomerIntelligence() {
                 className="glass-card card-shimmer p-8 hover-lift"
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-4 rounded-xl bg-orange-500/10 text-orange-400">
+                  <div className="p-4 rounded-xl bg-primary/10 text-primary">
                     <area.icon className="w-8 h-8" />
                   </div>
                   <div className="flex-1">
@@ -347,7 +410,7 @@ export default function CustomerIntelligence() {
                 <div className="mt-6 space-y-2">
                   {area.capabilities.slice(0, 4).map((capability, idx) => (
                     <div key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle2 className="w-4 h-4 text-orange-400 mt-0.5 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                       {capability}
                     </div>
                   ))}
@@ -355,7 +418,7 @@ export default function CustomerIntelligence() {
 
                 <div className="mt-6 pt-4 border-t border-border/50 flex flex-wrap gap-2">
                   {area.technologies.map((tech, idx) => (
-                    <span key={idx} className="px-2 py-1 rounded-md bg-orange-500/10 text-orange-400 text-xs">
+                    <span key={idx} className="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs">
                       {tech}
                     </span>
                   ))}
@@ -366,14 +429,46 @@ export default function CustomerIntelligence() {
         </div>
       </section>
 
+      {/* Use Cases Section */}
+      <section className="section-padding bg-card/30">
+        <div className="container-custom">
+          <SectionHeader
+            badge="Casos de Uso"
+            title="Resultados"
+            titleHighlight="Comprovados"
+            description="Exemplos de impacto real gerado por projetos de Customer Intelligence."
+          />
+
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {useCases.map((useCase, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="glass-card p-6 hover-lift"
+              >
+                <h4 className="text-lg font-bold text-foreground mb-3">{useCase.title}</h4>
+                <p className="text-sm text-muted-foreground mb-4">{useCase.description}</p>
+                <div className="pt-4 border-t border-border/50">
+                  <span className="text-xs text-muted-foreground">Impacto típico:</span>
+                  <div className="text-sm font-semibold text-primary mt-1">{useCase.impact}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Segmentation Approaches */}
-      <section className="section-padding bg-muted/10">
+      <section className="section-padding">
         <div className="container-custom">
           <SectionHeader
             badge="Segmentação"
             title="Abordagens de"
             titleHighlight="Segmentação"
-            description="Diferentes perspectivas para entender e agrupar seus clientes."
+            description="Diferentes perspectivas para entender e agrupar seus clientes de forma acionável."
           />
 
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -390,7 +485,7 @@ export default function CustomerIntelligence() {
                 <p className="mt-2 text-sm text-muted-foreground">{approach.description}</p>
                 
                 <div className="mt-4">
-                  <h5 className="text-xs font-semibold text-orange-400 mb-2">VARIÁVEIS</h5>
+                  <h5 className="text-xs font-semibold text-primary mb-2">VARIÁVEIS</h5>
                   <div className="flex flex-wrap gap-1.5">
                     {approach.variables.slice(0, 3).map((variable, idx) => (
                       <span key={idx} className="px-2 py-0.5 rounded bg-muted/50 text-foreground text-xs">
@@ -401,10 +496,10 @@ export default function CustomerIntelligence() {
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-border/50">
-                  <h5 className="text-xs font-semibold text-orange-400 mb-2">MÉTODOS</h5>
+                  <h5 className="text-xs font-semibold text-primary mb-2">MÉTODOS</h5>
                   <div className="flex flex-wrap gap-1.5">
                     {approach.methods.map((method, idx) => (
-                      <span key={idx} className="px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-400 text-xs">
+                      <span key={idx} className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs">
                         {method}
                       </span>
                     ))}
@@ -417,7 +512,7 @@ export default function CustomerIntelligence() {
       </section>
 
       {/* Methodology */}
-      <section className="section-padding">
+      <section className="section-padding bg-card/30">
         <div className="container-custom">
           <SectionHeader
             badge="Metodologia"
@@ -426,46 +521,49 @@ export default function CustomerIntelligence() {
             description="Processo estruturado para implementar Customer Intelligence de forma eficaz."
           />
 
-          <div className="mt-12 grid md:grid-cols-4 gap-6">
-            {methodology.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="relative"
-              >
-                {index < methodology.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-orange-500/50 to-transparent z-0" />
-                )}
-                <div className="glass-card p-6 relative z-10">
-                  <div className="text-4xl font-bold text-orange-400/20 mb-2">{step.phase}</div>
-                  <h4 className="text-lg font-bold text-foreground">{step.title}</h4>
-                  <p className="mt-2 text-sm text-muted-foreground">{step.description}</p>
-                  <div className="mt-4 flex items-center gap-2 text-xs text-orange-400">
-                    <Clock className="w-3 h-3" />
-                    {step.duration}
+          <div className="mt-12">
+            <div className="grid md:grid-cols-4 gap-6">
+              {methodology.map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="relative"
+                >
+                  {/* Connector Line */}
+                  {index < methodology.length - 1 && (
+                    <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-primary/50 to-transparent z-0" />
+                  )}
+                  
+                  <div className="glass-card p-6 relative z-10 h-full">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="text-2xl font-bold gradient-text-purple">{step.phase}</span>
+                      <div className="px-2 py-1 rounded-full bg-accent/10 text-accent text-xs">{step.duration}</div>
+                    </div>
+                    <h4 className="text-lg font-bold text-foreground mb-2">{step.title}</h4>
+                    <p className="text-sm text-muted-foreground">{step.description}</p>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Differentiators */}
-      <section className="section-padding bg-muted/10">
+      {/* Differentiators Section */}
+      <section className="section-padding">
         <div className="container-custom">
           <SectionHeader
-            badge="Por que nós"
-            title="Nossos"
-            titleHighlight="Diferenciais"
-            description="O que nos torna únicos em projetos de Customer Intelligence."
+            badge="Diferenciais"
+            title="Por que escolher a"
+            titleHighlight="Vixio"
+            description="Combinamos expertise técnica com profundo conhecimento de comportamento do consumidor."
           />
 
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {differentiators.map((diff, index) => (
+            {differentiators.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -474,11 +572,11 @@ export default function CustomerIntelligence() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="glass-card p-6 hover-lift"
               >
-                <div className="p-3 rounded-xl bg-orange-500/10 text-orange-400 w-fit mb-4">
-                  <diff.icon className="w-6 h-6" />
+                <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit mb-4">
+                  <item.icon className="w-6 h-6" />
                 </div>
-                <h4 className="text-lg font-bold text-foreground">{diff.title}</h4>
-                <p className="mt-2 text-sm text-muted-foreground">{diff.description}</p>
+                <h4 className="text-lg font-bold text-foreground mb-2">{item.title}</h4>
+                <p className="text-sm text-muted-foreground">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -486,43 +584,44 @@ export default function CustomerIntelligence() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding">
+      <section className="section-padding bg-card/30">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-500/20 via-amber-500/10 to-yellow-500/20 p-12 md:p-16"
+            className="glass-card p-10 md:p-16 text-center relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(251,146,60,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(251,146,60,0.05)_1px,transparent_1px)] bg-[size:30px_30px]" />
-            
-            <div className="relative z-10 max-w-3xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/20 border border-orange-500/30 mb-6">
-                <Lock className="w-4 h-4 text-orange-400" />
-                <span className="text-sm text-orange-400 font-medium">Confidencialidade Garantida</span>
+            {/* Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-60 h-60 bg-accent/10 rounded-full blur-3xl" />
+            </div>
+
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6">
+                <Lock className="w-4 h-4 text-primary" />
+                <span className="text-sm text-primary font-medium">100% Confidencial</span>
               </div>
-              
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                Pronto para conhecer melhor{" "}
-                <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
-                  seus clientes?
-                </span>
+
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Pronto para conhecer seus clientes de <span className="gradient-text-purple">verdade</span>?
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground">
-                Vamos discutir como transformar seus dados de cliente em vantagem competitiva.
-                Todo o trabalho é realizado sob rigorosos acordos de confidencialidade.
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+                Agende uma conversa com nossos especialistas e descubra como Customer Intelligence 
+                pode transformar sua relação com clientes e impulsionar resultados.
               </p>
-              <div className="mt-8">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-orange-500 to-amber-500 text-white px-8"
-                  asChild
-                >
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button size="lg" className="px-8" asChild>
                   <Link to="/contato">
-                    Agendar Conversa
+                    Iniciar Conversa
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <Link to="/consultoria">Ver Outras Especializações</Link>
                 </Button>
               </div>
             </div>
