@@ -50,6 +50,11 @@ const AdminWebhooks = lazy(() => import("./pages/admin/Webhooks"));
 const AdminAuditLog = lazy(() => import("./pages/admin/AuditLog"));
 const AdminCRMDashboard = lazy(() => import("./pages/admin/CRMDashboard"));
 const AdminCRMSettings = lazy(() => import("./pages/admin/CRMSettings"));
+const AdminDocumentTemplates = lazy(() => import("./pages/admin/DocumentTemplates"));
+const AdminTemplateEditor = lazy(() => import("./pages/admin/TemplateEditor"));
+const AdminDocuments = lazy(() => import("./pages/admin/Documents"));
+const AdminDocumentGenerator = lazy(() => import("./pages/admin/DocumentGenerator"));
+const AdminDocumentView = lazy(() => import("./pages/admin/DocumentView"));
 
 const queryClient = new QueryClient();
 
@@ -81,6 +86,11 @@ const App = () => (
             <Route path="/admin/webhooks" element={<AdminAuthProvider><AdminWebhooks /></AdminAuthProvider>} />
             <Route path="/admin/auditoria" element={<AdminAuthProvider><AdminAuditLog /></AdminAuthProvider>} />
             <Route path="/admin/crm-config" element={<AdminAuthProvider><AdminCRMSettings /></AdminAuthProvider>} />
+            <Route path="/admin/modelos" element={<AdminAuthProvider><AdminDocumentTemplates /></AdminAuthProvider>} />
+            <Route path="/admin/modelos/:id" element={<AdminAuthProvider><AdminTemplateEditor /></AdminAuthProvider>} />
+            <Route path="/admin/documentos" element={<AdminAuthProvider><AdminDocuments /></AdminAuthProvider>} />
+            <Route path="/admin/documentos/novo" element={<AdminAuthProvider><AdminDocumentGenerator /></AdminAuthProvider>} />
+            <Route path="/admin/documentos/:id" element={<AdminAuthProvider><AdminDocumentView /></AdminAuthProvider>} />
             
             {/* Mundo Consultoria */}
             <Route path="/consultoria" element={<ConsultoriaIndex />} />
