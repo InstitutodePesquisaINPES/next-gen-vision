@@ -175,7 +175,7 @@ const DocumentView = () => {
       <AdminPageHeader
         title={document.titulo}
         description={`Documento ${status.label.toLowerCase()}`}
-        action={
+        actions={
           <div className="flex gap-2">
             <Button variant="outline" onClick={() => navigate("/admin/documentos")}>
               <ArrowLeft className="w-4 h-4 mr-2" />

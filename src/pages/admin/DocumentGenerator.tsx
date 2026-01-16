@@ -288,7 +288,7 @@ const DocumentGenerator = () => {
       <AdminPageHeader
         title="Gerar Documento"
         description="Preencha o formulário para criar um novo documento"
-        action={
+        actions={
           <Button variant="outline" onClick={() => navigate(-1)}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import type { Json } from "@/integrations/supabase/types";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { Button } from "@/components/ui/button";
@@ -184,12 +185,12 @@ const TemplateEditor = () => {
       if (templateError) throw templateError;
 
       // Save version
-      await supabase.from("template_versions").insert({
+      await supabase.from("template_versions").insert([{
         template_id: template.id,
         versao: (template.versao || 1) + 1,
         conteudo: template.conteudo,
-        campos: fields,
-      });
+        campos: fields as unknown as Json,
+      }]);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["template", id] });
@@ -304,7 +305,7 @@ const TemplateEditor = () => {
       <AdminPageHeader
         title={template.nome}
         description="Editor de template de documento"
-        action={
+        actions={
           <div className="flex gap-2">
             <Button variant="outline" onClick={() => navigate("/admin/modelos")}>
               <ArrowLeft className="w-4 h-4 mr-2" />
