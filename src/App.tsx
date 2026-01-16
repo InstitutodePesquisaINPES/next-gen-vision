@@ -5,12 +5,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PageLoader } from "@/components/ui/page-loader";
+import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
 
 // Eager load main pages
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
-// Lazy load secondary pages for better performance
+// Lazy load secondary pages
 const Sobre = lazy(() => import("./pages/Sobre"));
 const Fundador = lazy(() => import("./pages/Fundador"));
 const Servicos = lazy(() => import("./pages/Servicos"));
@@ -32,6 +33,14 @@ const PlataformasIndex = lazy(() => import("./pages/plataformas/Index"));
 const MarketplaceIndex = lazy(() => import("./pages/marketplace/Index"));
 const EducacaoIndex = lazy(() => import("./pages/educacao/Index"));
 
+// Admin pages - Lazy loaded
+const AdminLogin = lazy(() => import("./pages/admin/Login"));
+const AdminDashboard = lazy(() => import("./pages/admin/Index"));
+const AdminContent = lazy(() => import("./pages/admin/Content"));
+const AdminNavigation = lazy(() => import("./pages/admin/Navigation"));
+const AdminSettings = lazy(() => import("./pages/admin/Settings"));
+const AdminUsers = lazy(() => import("./pages/admin/Users"));
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -44,6 +53,14 @@ const App = () => (
           <Routes>
             {/* Home Central */}
             <Route path="/" element={<Index />} />
+            
+            {/* Admin Panel */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/conteudo" element={<AdminContent />} />
+            <Route path="/admin/navegacao" element={<AdminNavigation />} />
+            <Route path="/admin/configuracoes" element={<AdminSettings />} />
+            <Route path="/admin/usuarios" element={<AdminUsers />} />
             
             {/* Mundo Consultoria */}
             <Route path="/consultoria" element={<ConsultoriaIndex />} />
