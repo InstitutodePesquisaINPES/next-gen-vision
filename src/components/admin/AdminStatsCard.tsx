@@ -1,4 +1,4 @@
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon, TrendingUp, TrendingDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface AdminStatsCardProps {
@@ -12,14 +12,30 @@ interface AdminStatsCardProps {
   };
   className?: string;
   variant?: 'default' | 'primary' | 'success' | 'warning' | 'danger';
+  size?: 'sm' | 'default';
 }
 
 const variantStyles = {
-  default: 'bg-muted/50 text-muted-foreground',
-  primary: 'bg-primary/10 text-primary',
-  success: 'bg-green-500/10 text-green-500',
-  warning: 'bg-yellow-500/10 text-yellow-500',
-  danger: 'bg-red-500/10 text-red-500',
+  default: {
+    icon: 'bg-muted text-muted-foreground',
+    gradient: 'from-muted/30 to-transparent',
+  },
+  primary: {
+    icon: 'bg-primary/10 text-primary',
+    gradient: 'from-primary/5 to-transparent',
+  },
+  success: {
+    icon: 'bg-emerald-500/10 text-emerald-500',
+    gradient: 'from-emerald-500/5 to-transparent',
+  },
+  warning: {
+    icon: 'bg-amber-500/10 text-amber-500',
+    gradient: 'from-amber-500/5 to-transparent',
+  },
+  danger: {
+    icon: 'bg-red-500/10 text-red-500',
+    gradient: 'from-red-500/5 to-transparent',
+  },
 };
 
 export function AdminStatsCard({
@@ -30,39 +46,63 @@ export function AdminStatsCard({
   trend,
   className,
   variant = 'primary',
+  size = 'default',
 }: AdminStatsCardProps) {
+  const styles = variantStyles[variant];
+  
   return (
     <div
       className={cn(
-        'p-6 rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm',
-        'hover:border-primary/30 transition-all duration-200',
+        'relative overflow-hidden rounded-xl border border-border/50 bg-card',
+        'hover:border-border hover:shadow-lg hover:shadow-black/5 transition-all duration-300',
+        size === 'sm' ? 'p-4' : 'p-6',
         className
       )}
     >
-      <div className="flex items-start justify-between">
-        <div className="space-y-2">
+      {/* Background gradient */}
+      <div className={cn(
+        'absolute inset-0 bg-gradient-to-br opacity-50',
+        styles.gradient
+      )} />
+      
+      <div className="relative flex items-start justify-between">
+        <div className="space-y-1">
           <p className="text-sm font-medium text-muted-foreground">{title}</p>
-          <div className="flex items-baseline gap-2">
-            <p className="text-3xl font-bold text-foreground">{value}</p>
+          <div className="flex items-baseline gap-3">
+            <p className={cn(
+              'font-bold text-foreground tracking-tight',
+              size === 'sm' ? 'text-2xl' : 'text-3xl'
+            )}>
+              {value}
+            </p>
             {trend && (
-              <span
+              <div
                 className={cn(
-                  'text-xs font-medium px-1.5 py-0.5 rounded',
+                  'flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-full',
                   trend.isPositive
-                    ? 'bg-green-500/10 text-green-500'
+                    ? 'bg-emerald-500/10 text-emerald-500'
                     : 'bg-red-500/10 text-red-500'
                 )}
               >
+                {trend.isPositive ? (
+                  <TrendingUp className="h-3 w-3" />
+                ) : (
+                  <TrendingDown className="h-3 w-3" />
+                )}
                 {trend.isPositive ? '+' : ''}{trend.value}%
-              </span>
+              </div>
             )}
           </div>
           {description && (
             <p className="text-xs text-muted-foreground">{description}</p>
           )}
         </div>
-        <div className={cn('p-3 rounded-lg', variantStyles[variant])}>
-          <Icon className="h-5 w-5" />
+        <div className={cn(
+          'rounded-xl flex items-center justify-center shrink-0',
+          styles.icon,
+          size === 'sm' ? 'p-2.5' : 'p-3'
+        )}>
+          <Icon className={size === 'sm' ? 'h-4 w-4' : 'h-5 w-5'} />
         </div>
       </div>
     </div>
