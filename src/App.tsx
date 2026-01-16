@@ -55,6 +55,8 @@ const AdminTemplateEditor = lazy(() => import("./pages/admin/TemplateEditor"));
 const AdminDocuments = lazy(() => import("./pages/admin/Documents"));
 const AdminDocumentGenerator = lazy(() => import("./pages/admin/DocumentGenerator"));
 const AdminDocumentView = lazy(() => import("./pages/admin/DocumentView"));
+const AdminDocumentDashboard = lazy(() => import("./pages/admin/DocumentDashboard"));
+const ValidateDocument = lazy(() => import("./pages/admin/ValidateDocument"));
 
 const queryClient = new QueryClient();
 
@@ -90,7 +92,11 @@ const App = () => (
             <Route path="/admin/modelos/:id" element={<AdminAuthProvider><AdminTemplateEditor /></AdminAuthProvider>} />
             <Route path="/admin/documentos" element={<AdminAuthProvider><AdminDocuments /></AdminAuthProvider>} />
             <Route path="/admin/documentos/novo" element={<AdminAuthProvider><AdminDocumentGenerator /></AdminAuthProvider>} />
+            <Route path="/admin/documentos/dashboard" element={<AdminAuthProvider><AdminDocumentDashboard /></AdminAuthProvider>} />
             <Route path="/admin/documentos/:id" element={<AdminAuthProvider><AdminDocumentView /></AdminAuthProvider>} />
+            
+            {/* Public validation page */}
+            <Route path="/validar" element={<ValidateDocument />} />
             
             {/* Mundo Consultoria */}
             <Route path="/consultoria" element={<ConsultoriaIndex />} />
