@@ -48,6 +48,7 @@ const AdminPipeline = lazy(() => import("./pages/admin/Pipeline"));
 const AdminTasks = lazy(() => import("./pages/admin/Tasks"));
 const AdminWebhooks = lazy(() => import("./pages/admin/Webhooks"));
 const AdminAuditLog = lazy(() => import("./pages/admin/AuditLog"));
+const AdminCRMDashboard = lazy(() => import("./pages/admin/CRMDashboard"));
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,7 @@ const App = () => (
             <Route path="/admin/backup" element={<AdminAuthProvider><AdminBackup /></AdminAuthProvider>} />
             <Route path="/admin/analytics" element={<AdminAuthProvider><AdminAnalytics /></AdminAuthProvider>} />
             <Route path="/admin/leads" element={<AdminAuthProvider><AdminLeads /></AdminAuthProvider>} />
+            <Route path="/admin/crm" element={<AdminAuthProvider><AdminCRMDashboard /></AdminAuthProvider>} />
             <Route path="/admin/leads/:id" element={<AdminAuthProvider><AdminLeadDetail /></AdminAuthProvider>} />
             <Route path="/admin/pipeline" element={<AdminAuthProvider><AdminPipeline /></AdminAuthProvider>} />
             <Route path="/admin/tarefas" element={<AdminAuthProvider><AdminTasks /></AdminAuthProvider>} />
