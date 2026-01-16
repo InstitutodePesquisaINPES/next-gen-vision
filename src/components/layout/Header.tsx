@@ -19,7 +19,7 @@ const consultoriaSubmenu = [
   { name: "Analytics & BI", path: "/consultoria/analytics", icon: BarChart3, description: "Dashboards e insights" },
   { name: "People Analytics", path: "/consultoria/people-analytics", icon: Users, description: "Inteligência de RH" },
   { name: "Customer Intelligence", path: "/consultoria/customer-intelligence", icon: Target, description: "CLV, segmentação e churn" },
-  { name: "Behavioral Analytics", path: "/consultoria/behavioral-analytics", icon: Activity, description: "Análise comportamental" },
+  { name: "Behavioral Analytics", path: "/consultoria/behavioral", icon: Activity, description: "Análise comportamental" },
   { name: "Planejamento Estratégico", path: "/consultoria/planejamento", icon: TrendingUp, description: "OKRs e modelagem financeira" },
 ];
 
