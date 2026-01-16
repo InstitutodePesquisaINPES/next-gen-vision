@@ -253,6 +253,59 @@ export type Database = {
         }
         Relationships: []
       }
+      document_signatures: {
+        Row: {
+          assinatura_hash: string
+          assinatura_imagem: string | null
+          created_at: string
+          document_id: string
+          documento_assinante: string | null
+          email_assinante: string | null
+          id: string
+          ip_address: string | null
+          localizacao: Json | null
+          nome_assinante: string
+          tipo_assinante: string
+          user_agent: string | null
+        }
+        Insert: {
+          assinatura_hash: string
+          assinatura_imagem?: string | null
+          created_at?: string
+          document_id: string
+          documento_assinante?: string | null
+          email_assinante?: string | null
+          id?: string
+          ip_address?: string | null
+          localizacao?: Json | null
+          nome_assinante: string
+          tipo_assinante?: string
+          user_agent?: string | null
+        }
+        Update: {
+          assinatura_hash?: string
+          assinatura_imagem?: string | null
+          created_at?: string
+          document_id?: string
+          documento_assinante?: string | null
+          email_assinante?: string | null
+          id?: string
+          ip_address?: string | null
+          localizacao?: Json | null
+          nome_assinante?: string
+          tipo_assinante?: string
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "document_signatures_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "generated_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       document_templates: {
         Row: {
           atualizado_por: string | null
@@ -306,6 +359,12 @@ export type Database = {
       generated_documents: {
         Row: {
           arquivo_url: string | null
+          assinado_em: string | null
+          assinado_por: string | null
+          assinatura_data: Json | null
+          assinatura_hash: string | null
+          assinatura_ip: string | null
+          codigo_validacao: string | null
           conteudo_html: string
           created_at: string
           criado_por: string | null
@@ -321,6 +380,12 @@ export type Database = {
         }
         Insert: {
           arquivo_url?: string | null
+          assinado_em?: string | null
+          assinado_por?: string | null
+          assinatura_data?: Json | null
+          assinatura_hash?: string | null
+          assinatura_ip?: string | null
+          codigo_validacao?: string | null
           conteudo_html: string
           created_at?: string
           criado_por?: string | null
@@ -336,6 +401,12 @@ export type Database = {
         }
         Update: {
           arquivo_url?: string | null
+          assinado_em?: string | null
+          assinado_por?: string | null
+          assinatura_data?: Json | null
+          assinatura_hash?: string | null
+          assinatura_ip?: string | null
+          codigo_validacao?: string | null
           conteudo_html?: string
           created_at?: string
           criado_por?: string | null
@@ -1034,7 +1105,18 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      document_stats: {
+        Row: {
+          assinados: number | null
+          enviados: number | null
+          finalizados: number | null
+          rascunhos: number | null
+          total_documents: number | null
+          ultimos_30_dias: number | null
+          ultimos_7_dias: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       calculate_lead_score: { Args: { lead_id: string }; Returns: number }
