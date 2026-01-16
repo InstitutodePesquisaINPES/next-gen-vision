@@ -112,12 +112,12 @@ export default function AdminUsers() {
   });
 
   const removeRoleMutation = useMutation({
-    mutationFn: async ({ userId, role }: { userId: string; role: string }) => {
+    mutationFn: async ({ userId, role }: { userId: string; role: AppRole }) => {
       const { error } = await supabase
         .from('user_roles')
         .delete()
         .eq('user_id', userId)
-        .eq('role', role);
+        .eq('role', role as AppRole);
       
       if (error) throw error;
     },
@@ -212,7 +212,7 @@ export default function AdminUsers() {
                               <AlertDialogFooter>
                                 <AlertDialogCancel>Cancelar</AlertDialogCancel>
                                 <AlertDialogAction
-                                  onClick={() => removeRoleMutation.mutate({ userId: user.id, role: r.role })}
+                                  onClick={() => removeRoleMutation.mutate({ userId: user.id, role: r.role as AppRole })}
                                 >
                                   Remover
                                 </AlertDialogAction>
