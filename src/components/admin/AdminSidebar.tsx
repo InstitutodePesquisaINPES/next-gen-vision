@@ -16,7 +16,9 @@ import {
   Webhook,
   ScrollText,
   TrendingUp,
-  MessageSquare
+  MessageSquare,
+  FileStack,
+  FilePlus2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { VixioLogo } from '@/components/brand/VixioLogo';
@@ -57,8 +59,20 @@ const navItems = [
     requiredRole: 'editor' as const
   },
   { 
+    path: '/admin/modelos', 
+    label: 'Modelos', 
+    icon: FileStack,
+    requiredRole: 'editor' as const
+  },
+  { 
+    path: '/admin/documentos', 
+    label: 'Documentos', 
+    icon: FilePlus2,
+    requiredRole: 'editor' as const
+  },
+  { 
     path: '/admin/conteudo', 
-    label: 'Conteúdo', 
+    label: 'Conteúdo',
     icon: FileText,
     requiredRole: 'editor' as const
   },
