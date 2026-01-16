@@ -26,6 +26,7 @@ import {
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { AdminCard } from '@/components/admin/AdminCard';
 import { AdminConfirmDialog } from '@/components/admin/AdminConfirmDialog';
+import { WhatsAppDialog } from '@/components/admin/crm/WhatsAppDialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -312,18 +313,15 @@ export default function LeadDetail() {
                 </a>
               </Button>
             )}
-            {lead.whatsapp && (
-              <Button variant="outline" size="sm" asChild>
-                <a
-                  href={`https://wa.me/${lead.whatsapp.replace(/\D/g, '')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageSquare className="h-4 w-4 mr-2" />
-                  WhatsApp
-                </a>
-              </Button>
-            )}
+            
+            {/* WhatsApp Business API Integration */}
+            <WhatsAppDialog 
+              leadId={lead.id}
+              leadName={lead.nome}
+              phoneNumber={lead.telefone}
+              whatsapp={lead.whatsapp}
+            />
+            
             {lead.telefone && (
               <Button variant="outline" size="sm" asChild>
                 <a href={`tel:${lead.telefone}`}>

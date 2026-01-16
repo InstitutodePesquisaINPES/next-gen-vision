@@ -14,7 +14,8 @@ import {
   Kanban,
   CheckSquare,
   Webhook,
-  ScrollText
+  ScrollText,
+  TrendingUp
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { VixioLogo } from '@/components/brand/VixioLogo';
@@ -29,6 +30,12 @@ const navItems = [
     label: 'Dashboard', 
     icon: LayoutDashboard,
     exact: true 
+  },
+  { 
+    path: '/admin/crm', 
+    label: 'CRM Dashboard', 
+    icon: TrendingUp,
+    requiredRole: 'editor' as const
   },
   { 
     path: '/admin/leads', 
