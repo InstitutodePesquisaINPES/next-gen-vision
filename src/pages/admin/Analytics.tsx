@@ -19,6 +19,7 @@ import { AdminPageHeader } from '@/components/admin/AdminPageHeader';
 import { AdminCard } from '@/components/admin/AdminCard';
 import { AdminStatsCard } from '@/components/admin/AdminStatsCard';
 import { AdminEmptyState } from '@/components/admin/AdminEmptyState';
+import { AnalyticsAlerts } from '@/components/admin/AnalyticsAlerts';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -822,6 +823,13 @@ export default function AdminAnalytics() {
                   </div>
                 ))}
               </div>
+            </div>
+          </AdminCard>
+
+          {/* Alerts Section */}
+          <AdminCard className="mt-6" title="Monitoramento de Anomalias">
+            <div className="mt-4">
+              <AnalyticsAlerts />
             </div>
           </AdminCard>
 

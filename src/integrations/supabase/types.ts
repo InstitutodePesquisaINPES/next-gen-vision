@@ -14,6 +14,113 @@ export type Database = {
   }
   public: {
     Tables: {
+      analytics_alert_configs: {
+        Row: {
+          alert_type: string
+          comparison_period: string
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          is_active: boolean
+          name: string
+          notify_email: boolean
+          threshold_percentage: number
+          updated_at: string
+        }
+        Insert: {
+          alert_type: string
+          comparison_period?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          name: string
+          notify_email?: boolean
+          threshold_percentage?: number
+          updated_at?: string
+        }
+        Update: {
+          alert_type?: string
+          comparison_period?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          name?: string
+          notify_email?: boolean
+          threshold_percentage?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      analytics_alerts: {
+        Row: {
+          affected_path: string | null
+          alert_type: string
+          config_id: string | null
+          deviation_percentage: number | null
+          dismissed_at: string | null
+          dismissed_by: string | null
+          expected_value: number | null
+          id: string
+          is_dismissed: boolean
+          is_read: boolean
+          message: string
+          metric_value: number | null
+          read_at: string | null
+          severity: string
+          title: string
+          triggered_at: string
+        }
+        Insert: {
+          affected_path?: string | null
+          alert_type: string
+          config_id?: string | null
+          deviation_percentage?: number | null
+          dismissed_at?: string | null
+          dismissed_by?: string | null
+          expected_value?: number | null
+          id?: string
+          is_dismissed?: boolean
+          is_read?: boolean
+          message: string
+          metric_value?: number | null
+          read_at?: string | null
+          severity: string
+          title: string
+          triggered_at?: string
+        }
+        Update: {
+          affected_path?: string | null
+          alert_type?: string
+          config_id?: string | null
+          deviation_percentage?: number | null
+          dismissed_at?: string | null
+          dismissed_by?: string | null
+          expected_value?: number | null
+          id?: string
+          is_dismissed?: boolean
+          is_read?: boolean
+          message?: string
+          metric_value?: number | null
+          read_at?: string | null
+          severity?: string
+          title?: string
+          triggered_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_alerts_config_id_fkey"
+            columns: ["config_id"]
+            isOneToOne: false
+            referencedRelation: "analytics_alert_configs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       content_backups: {
         Row: {
           backup_data: Json
@@ -228,6 +335,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_analytics_anomalies: { Args: never; Returns: undefined }
       get_page_view_stats: {
         Args: { end_date?: string; start_date?: string }
         Returns: {
