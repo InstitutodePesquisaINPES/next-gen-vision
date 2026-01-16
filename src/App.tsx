@@ -42,6 +42,12 @@ const AdminSettings = lazy(() => import("./pages/admin/Settings"));
 const AdminUsers = lazy(() => import("./pages/admin/Users"));
 const AdminBackup = lazy(() => import("./pages/admin/Backup"));
 const AdminAnalytics = lazy(() => import("./pages/admin/Analytics"));
+const AdminLeads = lazy(() => import("./pages/admin/Leads"));
+const AdminLeadDetail = lazy(() => import("./pages/admin/LeadDetail"));
+const AdminPipeline = lazy(() => import("./pages/admin/Pipeline"));
+const AdminTasks = lazy(() => import("./pages/admin/Tasks"));
+const AdminWebhooks = lazy(() => import("./pages/admin/Webhooks"));
+const AdminAuditLog = lazy(() => import("./pages/admin/AuditLog"));
 
 const queryClient = new QueryClient();
 
@@ -65,6 +71,12 @@ const App = () => (
             <Route path="/admin/usuarios" element={<AdminAuthProvider><AdminUsers /></AdminAuthProvider>} />
             <Route path="/admin/backup" element={<AdminAuthProvider><AdminBackup /></AdminAuthProvider>} />
             <Route path="/admin/analytics" element={<AdminAuthProvider><AdminAnalytics /></AdminAuthProvider>} />
+            <Route path="/admin/leads" element={<AdminAuthProvider><AdminLeads /></AdminAuthProvider>} />
+            <Route path="/admin/leads/:id" element={<AdminAuthProvider><AdminLeadDetail /></AdminAuthProvider>} />
+            <Route path="/admin/pipeline" element={<AdminAuthProvider><AdminPipeline /></AdminAuthProvider>} />
+            <Route path="/admin/tarefas" element={<AdminAuthProvider><AdminTasks /></AdminAuthProvider>} />
+            <Route path="/admin/webhooks" element={<AdminAuthProvider><AdminWebhooks /></AdminAuthProvider>} />
+            <Route path="/admin/auditoria" element={<AdminAuthProvider><AdminAuditLog /></AdminAuthProvider>} />
             
             {/* Mundo Consultoria */}
             <Route path="/consultoria" element={<ConsultoriaIndex />} />

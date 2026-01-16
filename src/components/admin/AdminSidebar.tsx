@@ -9,7 +9,12 @@ import {
   ChevronRight,
   Home,
   Database,
-  BarChart3
+  BarChart3,
+  UserCircle,
+  Kanban,
+  CheckSquare,
+  Webhook,
+  ScrollText
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { VixioLogo } from '@/components/brand/VixioLogo';
@@ -24,6 +29,24 @@ const navItems = [
     label: 'Dashboard', 
     icon: LayoutDashboard,
     exact: true 
+  },
+  { 
+    path: '/admin/leads', 
+    label: 'Leads', 
+    icon: UserCircle,
+    requiredRole: 'editor' as const
+  },
+  { 
+    path: '/admin/pipeline', 
+    label: 'Pipeline', 
+    icon: Kanban,
+    requiredRole: 'editor' as const
+  },
+  { 
+    path: '/admin/tarefas', 
+    label: 'Tarefas', 
+    icon: CheckSquare,
+    requiredRole: 'editor' as const
   },
   { 
     path: '/admin/conteudo', 
@@ -41,6 +64,18 @@ const navItems = [
     path: '/admin/analytics', 
     label: 'Analytics', 
     icon: BarChart3,
+    requiredRole: 'admin' as const
+  },
+  { 
+    path: '/admin/webhooks', 
+    label: 'Webhooks', 
+    icon: Webhook,
+    requiredRole: 'admin' as const
+  },
+  { 
+    path: '/admin/auditoria', 
+    label: 'Auditoria', 
+    icon: ScrollText,
     requiredRole: 'admin' as const
   },
   { 
