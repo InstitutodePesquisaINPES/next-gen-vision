@@ -48,7 +48,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -65,11 +65,11 @@ export function Header() {
           </div>
 
           {/* Desktop Actions - Clear hierarchy */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
             <Button
               variant="ghost"
               size="sm"
-              className="text-muted-foreground hover:text-foreground hover:bg-muted/30"
+              className="text-muted-foreground hover:text-foreground hover:bg-muted/30 hidden lg:inline-flex"
               asChild
             >
               <a
@@ -83,7 +83,7 @@ export function Header() {
             </Button>
             <Button 
               size="sm" 
-              className="gradient-primary text-primary-foreground glow-primary font-semibold px-5"
+              className="gradient-primary text-primary-foreground glow-primary font-semibold px-4 lg:px-5"
               asChild
             >
               <Link to="/contato">
@@ -95,7 +95,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-foreground"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -114,7 +114,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border"
+            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border"
           >
             <div className="container-custom py-6 space-y-4">
               {navLinks.map((link, index) => (
