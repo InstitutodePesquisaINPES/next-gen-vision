@@ -136,57 +136,76 @@ export function Header() {
                     <AnimatePresence>
                       {openDropdown === link.name && link.submenu && (
                         <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          initial={{ opacity: 0, y: 8, scale: 0.96 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
+                          exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-4"
                         >
-                          {/* FUNDO SÓLIDO - cor de background do tema */}
-                          <div className="bg-[hsl(210,45%,13%)] border border-border/80 rounded-xl shadow-2xl shadow-black/40 p-2 w-[320px]">
+                          {/* Dropdown com fundo sólido e gradiente sutil */}
+                          <div className="bg-card border border-border rounded-2xl shadow-xl shadow-black/30 p-3 w-[340px]">
                             {/* Header do dropdown */}
-                            <div className="px-3 py-2 mb-1 border-b border-border/50">
+                            <div className="px-3 py-2.5 mb-2 border-b border-border/40">
                               <Link 
                                 to={link.path}
-                                className="text-sm font-semibold text-foreground hover:text-primary transition-colors flex items-center gap-1"
+                                className="text-sm font-semibold text-foreground hover:text-primary transition-all duration-300 flex items-center gap-2 group"
                               >
-                                {link.viewAllLabel}
-                                <ChevronDown className="h-3 w-3 rotate-[-90deg]" />
+                                <span>{link.viewAllLabel}</span>
+                                <motion.span
+                                  className="inline-block"
+                                  whileHover={{ x: 3 }}
+                                  transition={{ duration: 0.2 }}
+                                >
+                                  →
+                                </motion.span>
                               </Link>
                             </div>
 
-                            {/* Items */}
-                            <div className="space-y-0.5 max-h-[400px] overflow-y-auto">
-                              {link.submenu.map((item) => (
-                                <Link
+                            {/* Items com hover suave */}
+                            <div className="space-y-1 max-h-[420px] overflow-y-auto">
+                              {link.submenu.map((item, idx) => (
+                                <motion.div
                                   key={item.path + item.name}
-                                  to={item.path}
-                                  className={`flex items-start gap-3 p-3 rounded-lg transition-all duration-200 group ${
-                                    location.pathname === item.path
-                                      ? "bg-primary/15 text-primary"
-                                      : "hover:bg-muted/60"
-                                  }`}
+                                  initial={{ opacity: 0, x: -10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: idx * 0.03, duration: 0.2 }}
                                 >
-                                  <div className={`p-2 rounded-lg transition-colors ${
-                                    location.pathname === item.path
-                                      ? "bg-primary/20 text-primary"
-                                      : "bg-muted/60 text-muted-foreground group-hover:bg-primary/15 group-hover:text-primary"
-                                  }`}>
-                                    <item.icon className="h-4 w-4" />
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <p className={`text-sm font-medium ${
+                                  <Link
+                                    to={item.path}
+                                    className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-300 ease-out group relative overflow-hidden ${
                                       location.pathname === item.path
-                                        ? "text-primary"
-                                        : "text-foreground group-hover:text-primary"
-                                    }`}>
-                                      {item.name}
-                                    </p>
-                                    <p className="text-xs text-muted-foreground mt-0.5 truncate">
-                                      {item.description}
-                                    </p>
-                                  </div>
-                                </Link>
+                                        ? "bg-primary/15"
+                                        : "hover:bg-accent/50"
+                                    }`}
+                                  >
+                                    {/* Hover gradient overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    
+                                    <motion.div 
+                                      className={`relative p-2.5 rounded-xl transition-all duration-300 ${
+                                        location.pathname === item.path
+                                          ? "bg-primary/20 text-primary"
+                                          : "bg-muted/40 text-muted-foreground group-hover:bg-primary/15 group-hover:text-primary group-hover:scale-110"
+                                      }`}
+                                      whileHover={{ rotate: [0, -5, 5, 0] }}
+                                      transition={{ duration: 0.4 }}
+                                    >
+                                      <item.icon className="h-4 w-4" />
+                                    </motion.div>
+                                    <div className="flex-1 min-w-0 relative">
+                                      <p className={`text-sm font-medium transition-all duration-300 ${
+                                        location.pathname === item.path
+                                          ? "text-primary"
+                                          : "text-foreground group-hover:text-primary group-hover:translate-x-1"
+                                      }`}>
+                                        {item.name}
+                                      </p>
+                                      <p className="text-xs text-muted-foreground mt-0.5 truncate transition-colors duration-300 group-hover:text-muted-foreground/80">
+                                        {item.description}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                </motion.div>
                               ))}
                             </div>
                           </div>
