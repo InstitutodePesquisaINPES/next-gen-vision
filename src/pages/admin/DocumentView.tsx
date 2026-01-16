@@ -46,6 +46,7 @@ import {
 } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { printDocument } from "@/lib/pdf-generator";
 
 interface Document {
   id: string;
@@ -133,27 +134,19 @@ const DocumentView = () => {
   });
 
   const handlePrint = () => {
-    const printWindow = window.open("", "_blank");
-    if (printWindow && document) {
-      printWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>${document.titulo}</title>
-          <style>
-            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-            @media print {
-              body { margin: 0; }
-            }
-          </style>
-        </head>
-        <body>
-          ${document.conteudo_html}
-        </body>
-        </html>
-      `);
-      printWindow.document.close();
-      printWindow.print();
+    if (document) {
+      printDocument({
+        title: document.titulo,
+        content: document.conteudo_html,
+        companyName: "Vixio",
+        companyInfo: {
+          email: "contato@vixio.com.br",
+          website: "www.vixio.com.br",
+        },
+        showHeader: true,
+        showFooter: true,
+        headerColor: "#1a365d",
+      });
     }
   };
 
