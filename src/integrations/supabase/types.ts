@@ -217,6 +217,155 @@ export type Database = {
         }
         Relationships: []
       }
+      document_categories: {
+        Row: {
+          cor: string | null
+          created_at: string
+          descricao: string | null
+          icone: string | null
+          id: string
+          is_active: boolean
+          nome: string
+          ordem: number | null
+          updated_at: string
+        }
+        Insert: {
+          cor?: string | null
+          created_at?: string
+          descricao?: string | null
+          icone?: string | null
+          id?: string
+          is_active?: boolean
+          nome: string
+          ordem?: number | null
+          updated_at?: string
+        }
+        Update: {
+          cor?: string | null
+          created_at?: string
+          descricao?: string | null
+          icone?: string | null
+          id?: string
+          is_active?: boolean
+          nome?: string
+          ordem?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      document_templates: {
+        Row: {
+          atualizado_por: string | null
+          category_id: string | null
+          conteudo: string
+          created_at: string
+          criado_por: string | null
+          descricao: string | null
+          id: string
+          is_active: boolean
+          nome: string
+          updated_at: string
+          versao: number | null
+        }
+        Insert: {
+          atualizado_por?: string | null
+          category_id?: string | null
+          conteudo: string
+          created_at?: string
+          criado_por?: string | null
+          descricao?: string | null
+          id?: string
+          is_active?: boolean
+          nome: string
+          updated_at?: string
+          versao?: number | null
+        }
+        Update: {
+          atualizado_por?: string | null
+          category_id?: string | null
+          conteudo?: string
+          created_at?: string
+          criado_por?: string | null
+          descricao?: string | null
+          id?: string
+          is_active?: boolean
+          nome?: string
+          updated_at?: string
+          versao?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "document_templates_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "document_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      generated_documents: {
+        Row: {
+          arquivo_url: string | null
+          conteudo_html: string
+          created_at: string
+          criado_por: string | null
+          dados_preenchidos: Json
+          enviado_em: string | null
+          enviado_para: string | null
+          id: string
+          lead_id: string | null
+          status: string | null
+          template_id: string | null
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          arquivo_url?: string | null
+          conteudo_html: string
+          created_at?: string
+          criado_por?: string | null
+          dados_preenchidos?: Json
+          enviado_em?: string | null
+          enviado_para?: string | null
+          id?: string
+          lead_id?: string | null
+          status?: string | null
+          template_id?: string | null
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          arquivo_url?: string | null
+          conteudo_html?: string
+          created_at?: string
+          criado_por?: string | null
+          dados_preenchidos?: Json
+          enviado_em?: string | null
+          enviado_para?: string | null
+          id?: string
+          lead_id?: string | null
+          status?: string | null
+          template_id?: string | null
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "generated_documents_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "generated_documents_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "document_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       lead_interactions: {
         Row: {
           arquivo_url: string | null
@@ -645,6 +794,109 @@ export type Database = {
             columns: ["lead_id"]
             isOneToOne: false
             referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      template_fields: {
+        Row: {
+          campo_fonte: string | null
+          created_at: string
+          dica: string | null
+          fonte_dados: string | null
+          grupo: string | null
+          id: string
+          label: string
+          mascara: string | null
+          nome: string
+          obrigatorio: boolean | null
+          opcoes: Json | null
+          ordem: number | null
+          placeholder: string | null
+          template_id: string
+          tipo: string
+          valor_padrao: string | null
+        }
+        Insert: {
+          campo_fonte?: string | null
+          created_at?: string
+          dica?: string | null
+          fonte_dados?: string | null
+          grupo?: string | null
+          id?: string
+          label: string
+          mascara?: string | null
+          nome: string
+          obrigatorio?: boolean | null
+          opcoes?: Json | null
+          ordem?: number | null
+          placeholder?: string | null
+          template_id: string
+          tipo?: string
+          valor_padrao?: string | null
+        }
+        Update: {
+          campo_fonte?: string | null
+          created_at?: string
+          dica?: string | null
+          fonte_dados?: string | null
+          grupo?: string | null
+          id?: string
+          label?: string
+          mascara?: string | null
+          nome?: string
+          obrigatorio?: boolean | null
+          opcoes?: Json | null
+          ordem?: number | null
+          placeholder?: string | null
+          template_id?: string
+          tipo?: string
+          valor_padrao?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "template_fields_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "document_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      template_versions: {
+        Row: {
+          campos: Json | null
+          conteudo: string
+          created_at: string
+          criado_por: string | null
+          id: string
+          template_id: string
+          versao: number
+        }
+        Insert: {
+          campos?: Json | null
+          conteudo: string
+          created_at?: string
+          criado_por?: string | null
+          id?: string
+          template_id: string
+          versao: number
+        }
+        Update: {
+          campos?: Json | null
+          conteudo?: string
+          created_at?: string
+          criado_por?: string | null
+          id?: string
+          template_id?: string
+          versao?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "template_versions_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "document_templates"
             referencedColumns: ["id"]
           },
         ]
