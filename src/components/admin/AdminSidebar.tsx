@@ -71,6 +71,12 @@ const navItems = [
     requiredRole: 'editor' as const
   },
   { 
+    path: '/admin/documentos/dashboard', 
+    label: 'Relatórios Docs', 
+    icon: BarChart3,
+    requiredRole: 'editor' as const
+  },
+  { 
     path: '/admin/conteudo', 
     label: 'Conteúdo',
     icon: FileText,

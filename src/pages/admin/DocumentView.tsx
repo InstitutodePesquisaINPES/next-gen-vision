@@ -43,10 +43,15 @@ import {
   User,
   Calendar,
   Mail,
+  PenTool,
+  Shield,
+  Hash,
+  ExternalLink,
 } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { printDocument } from "@/lib/pdf-generator";
+import { SignatureDialog } from "@/components/admin/documents/SignatureDialog";
 
 interface Document {
   id: string;
@@ -61,6 +66,10 @@ interface Document {
   updated_at: string;
   template_id: string | null;
   lead_id: string | null;
+  codigo_validacao: string | null;
+  assinado_por: string | null;
+  assinado_em: string | null;
+  assinatura_hash: string | null;
   document_templates: { nome: string } | null;
   leads: { nome: string; email: string | null; empresa: string | null } | null;
 }
@@ -77,6 +86,7 @@ const DocumentView = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [sendDialogOpen, setSendDialogOpen] = useState(false);
+  const [signatureDialogOpen, setSignatureDialogOpen] = useState(false);
   const [sendEmail, setSendEmail] = useState("");
 
   const { data: document, isLoading } = useQuery({
@@ -176,8 +186,14 @@ const DocumentView = () => {
             </Button>
             <Button variant="outline" onClick={handlePrint}>
               <Printer className="w-4 h-4 mr-2" />
-              Imprimir
+              Imprimir / PDF
             </Button>
+            {document.status !== "assinado" && (
+              <Button variant="outline" onClick={() => setSignatureDialogOpen(true)}>
+                <PenTool className="w-4 h-4 mr-2" />
+                Assinar
+              </Button>
+            )}
             <Button onClick={() => {
               setSendEmail(document.leads?.email || "");
               setSendDialogOpen(true);
@@ -246,6 +262,67 @@ const DocumentView = () => {
               )}
             </CardContent>
           </Card>
+
+          {/* Validation Code */}
+          {document.codigo_validacao && (
+            <Card className="border-primary/20">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-primary" />
+                  Código de Validação
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="bg-muted rounded-lg p-3 text-center">
+                  <p className="font-mono text-xl tracking-widest font-bold">
+                    {document.codigo_validacao}
+                  </p>
+                </div>
+                <Button 
+                  variant="outline" 
+                  className="w-full" 
+                  onClick={() => window.open(`/validar?code=${document.codigo_validacao}`, '_blank')}
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Verificar Autenticidade
+                </Button>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Signature Info */}
+          {document.status === "assinado" && document.assinado_por && (
+            <Card className="border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-950/20">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base flex items-center gap-2 text-green-700 dark:text-green-300">
+                  <CheckCircle className="w-4 h-4" />
+                  Documento Assinado
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2 text-sm">
+                <div className="flex items-center gap-2">
+                  <User className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-muted-foreground">Por:</span>
+                  <span className="font-medium">{document.assinado_por}</span>
+                </div>
+                {document.assinado_em && (
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-muted-foreground">Em:</span>
+                    <span className="font-medium">
+                      {format(new Date(document.assinado_em), "dd/MM/yyyy HH:mm", { locale: ptBR })}
+                    </span>
+                  </div>
+                )}
+                {document.assinatura_hash && (
+                  <div className="pt-2 border-t">
+                    <p className="text-xs text-muted-foreground">Hash:</p>
+                    <p className="font-mono text-xs truncate">{document.assinatura_hash.slice(0, 32)}...</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
 
           <Card>
             <CardHeader>
@@ -327,6 +404,14 @@ const DocumentView = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Signature Dialog */}
+      <SignatureDialog
+        open={signatureDialogOpen}
+        onOpenChange={setSignatureDialogOpen}
+        documentId={document.id}
+        documentTitle={document.titulo}
+      />
     </AdminLayout>
   );
 };
