@@ -40,6 +40,8 @@ const AdminContent = lazy(() => import("./pages/admin/Content"));
 const AdminNavigation = lazy(() => import("./pages/admin/Navigation"));
 const AdminSettings = lazy(() => import("./pages/admin/Settings"));
 const AdminUsers = lazy(() => import("./pages/admin/Users"));
+const AdminBackup = lazy(() => import("./pages/admin/Backup"));
+const AdminAnalytics = lazy(() => import("./pages/admin/Analytics"));
 
 const queryClient = new QueryClient();
 
@@ -61,6 +63,8 @@ const App = () => (
             <Route path="/admin/navegacao" element={<AdminNavigation />} />
             <Route path="/admin/configuracoes" element={<AdminSettings />} />
             <Route path="/admin/usuarios" element={<AdminUsers />} />
+            <Route path="/admin/backup" element={<AdminBackup />} />
+            <Route path="/admin/analytics" element={<AdminAnalytics />} />
             
             {/* Mundo Consultoria */}
             <Route path="/consultoria" element={<ConsultoriaIndex />} />
