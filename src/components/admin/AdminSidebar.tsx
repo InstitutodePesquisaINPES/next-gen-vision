@@ -15,7 +15,8 @@ import {
   CheckSquare,
   Webhook,
   ScrollText,
-  TrendingUp
+  TrendingUp,
+  MessageSquare
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { VixioLogo } from '@/components/brand/VixioLogo';
@@ -83,6 +84,12 @@ const navItems = [
     path: '/admin/auditoria', 
     label: 'Auditoria', 
     icon: ScrollText,
+    requiredRole: 'admin' as const
+  },
+  { 
+    path: '/admin/crm-config', 
+    label: 'Config. CRM', 
+    icon: MessageSquare,
     requiredRole: 'admin' as const
   },
   { 

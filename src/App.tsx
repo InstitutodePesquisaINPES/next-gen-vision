@@ -49,6 +49,7 @@ const AdminTasks = lazy(() => import("./pages/admin/Tasks"));
 const AdminWebhooks = lazy(() => import("./pages/admin/Webhooks"));
 const AdminAuditLog = lazy(() => import("./pages/admin/AuditLog"));
 const AdminCRMDashboard = lazy(() => import("./pages/admin/CRMDashboard"));
+const AdminCRMSettings = lazy(() => import("./pages/admin/CRMSettings"));
 
 const queryClient = new QueryClient();
 
@@ -79,6 +80,7 @@ const App = () => (
             <Route path="/admin/tarefas" element={<AdminAuthProvider><AdminTasks /></AdminAuthProvider>} />
             <Route path="/admin/webhooks" element={<AdminAuthProvider><AdminWebhooks /></AdminAuthProvider>} />
             <Route path="/admin/auditoria" element={<AdminAuthProvider><AdminAuditLog /></AdminAuthProvider>} />
+            <Route path="/admin/crm-config" element={<AdminAuthProvider><AdminCRMSettings /></AdminAuthProvider>} />
             
             {/* Mundo Consultoria */}
             <Route path="/consultoria" element={<ConsultoriaIndex />} />
