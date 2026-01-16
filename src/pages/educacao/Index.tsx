@@ -13,6 +13,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 const services = [
   {
     icon: ClipboardCheck,
+    anchorId: "diagnostico-empresarial",
     title: "Diagnóstico Empresarial & Organizacional",
     description: "Avaliação técnica e estratégica da empresa antes de qualquer decisão crítica.",
     capabilities: [
@@ -28,6 +29,7 @@ const services = [
   },
   {
     icon: BookOpen,
+    anchorId: "capacitacoes-in-company",
     title: "Capacitações & Formação In Company",
     description: "Programas sob medida para equipes técnicas, gestores e liderança.",
     capabilities: [
@@ -43,6 +45,7 @@ const services = [
   },
   {
     icon: Presentation,
+    anchorId: "workshops-executivos",
     title: "Workshops Estratégicos & Executivos",
     description: "Intervenções de curta duração, focadas em decisão e alinhamento.",
     capabilities: [
@@ -247,6 +250,7 @@ export default function EducacaoIndex() {
             {services.map((service, index) => (
               <motion.div
                 key={index}
+                id={service.anchorId}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -314,8 +318,7 @@ export default function EducacaoIndex() {
         </div>
       </section>
 
-      {/* Training Programs */}
-      <section className="section-padding bg-muted/10">
+      <section id="capacitacoes" className="section-padding bg-muted/10">
         <div className="container-custom">
           <SectionHeader
             badge="Capacitações"
@@ -325,6 +328,7 @@ export default function EducacaoIndex() {
           />
 
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="formacao-liderancas" className="sr-only" />
             {trainingPrograms.map((program, index) => (
               <motion.div
                 key={index}

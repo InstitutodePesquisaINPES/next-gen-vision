@@ -24,20 +24,20 @@ const consultoriaSubmenu = [
 ];
 
 const sistemasSubmenu = [
-  { name: "Secretária WhatsApp", path: "/sistemas#sob-medida", icon: Bot, description: "Atendimento 24/7 com IA" },
-  { name: "Gestão de Atendimento", path: "/sistemas#sob-medida", icon: MessageSquare, description: "CRM e multicanal" },
-  { name: "Sistemas para Clínicas", path: "/sistemas#sob-medida", icon: HeartPulse, description: "Prontuário e agendamento" },
-  { name: "Gestão de Frotas", path: "/sistemas#sob-medida", icon: Car, description: "Controle de veículos" },
-  { name: "E-commerce", path: "/sistemas#sob-medida", icon: ShoppingBag, description: "Lojas virtuais" },
+  { name: "Secretária WhatsApp", path: "/sistemas#whatsapp-secretaria", icon: Bot, description: "Atendimento 24/7 com IA" },
+  { name: "Gestão de Atendimento", path: "/sistemas#gestao-atendimento", icon: MessageSquare, description: "CRM e multicanal" },
+  { name: "Sistemas para Clínicas", path: "/sistemas#clinicas-saude", icon: HeartPulse, description: "Prontuário e agendamento" },
+  { name: "Gestão de Frotas", path: "/sistemas#frota", icon: Car, description: "Controle de veículos" },
+  { name: "E-commerce", path: "/sistemas#ecommerce", icon: ShoppingBag, description: "Lojas virtuais" },
   { name: "Plataformas SaaS", path: "/sistemas#plataformas", icon: Cloud, description: "Sistemas prontos" },
   { name: "Marketplace", path: "/sistemas#marketplace", icon: Package, description: "Código & licenças" },
 ];
 
 const educacaoSubmenu = [
-  { name: "Diagnóstico Empresarial", path: "/educacao", icon: ClipboardCheck, description: "Avaliação de maturidade" },
-  { name: "Capacitações In Company", path: "/educacao", icon: BookOpen, description: "Formação personalizada" },
-  { name: "Workshops Executivos", path: "/educacao", icon: Presentation, description: "Decisão e alinhamento" },
-  { name: "Formação de Lideranças", path: "/educacao", icon: GraduationCap, description: "Cultura data-driven" },
+  { name: "Diagnóstico Empresarial", path: "/educacao#diagnostico-empresarial", icon: ClipboardCheck, description: "Avaliação de maturidade" },
+  { name: "Capacitações In Company", path: "/educacao#capacitacoes-in-company", icon: BookOpen, description: "Formação personalizada" },
+  { name: "Workshops Executivos", path: "/educacao#workshops-executivos", icon: Presentation, description: "Decisão e alinhamento" },
+  { name: "Formação de Lideranças", path: "/educacao#formacao-liderancas", icon: GraduationCap, description: "Cultura data-driven" },
 ];
 
 interface SubmenuItem {
