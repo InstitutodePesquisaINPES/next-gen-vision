@@ -140,8 +140,10 @@ export function Header() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 8, scale: 0.96 }}
                           transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 pt-4"
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-2"
                         >
+                          {/* Área invisível para manter hover */}
+                          <div className="absolute -top-2 left-0 right-0 h-4" />
                           {/* Dropdown com fundo sólido e gradiente sutil */}
                           <div className="bg-card border border-border rounded-2xl shadow-xl shadow-black/30 p-3 w-[340px]">
                             {/* Header do dropdown */}
