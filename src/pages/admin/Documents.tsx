@@ -118,7 +118,7 @@ const Documents = () => {
       <AdminPageHeader
         title="Documentos Gerados"
         description="Visualize e gerencie documentos criados a partir dos templates"
-        action={
+        actions={
           <Button asChild>
             <Link to="/admin/documentos/novo">
               <Plus className="w-4 h-4 mr-2" />

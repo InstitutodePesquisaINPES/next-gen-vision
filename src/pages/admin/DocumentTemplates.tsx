@@ -280,7 +280,7 @@ const DocumentTemplates = () => {
       <AdminPageHeader
         title="Modelos de Documentos"
         description="Crie e gerencie templates para orçamentos, contratos e relatórios"
-        action={
+        actions={
           <Dialog open={createDialogOpen} onOpenChange={setCreateDialogOpen}>
             <DialogTrigger asChild>
               <Button>
