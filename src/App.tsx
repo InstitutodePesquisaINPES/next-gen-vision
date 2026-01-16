@@ -56,15 +56,15 @@ const App = () => (
             {/* Home Central */}
             <Route path="/" element={<Index />} />
             
-            {/* Admin Panel */}
+            {/* Admin Panel - wrapped in AdminAuthProvider */}
             <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/conteudo" element={<AdminContent />} />
-            <Route path="/admin/navegacao" element={<AdminNavigation />} />
-            <Route path="/admin/configuracoes" element={<AdminSettings />} />
-            <Route path="/admin/usuarios" element={<AdminUsers />} />
-            <Route path="/admin/backup" element={<AdminBackup />} />
-            <Route path="/admin/analytics" element={<AdminAnalytics />} />
+            <Route path="/admin" element={<AdminAuthProvider><AdminDashboard /></AdminAuthProvider>} />
+            <Route path="/admin/conteudo" element={<AdminAuthProvider><AdminContent /></AdminAuthProvider>} />
+            <Route path="/admin/navegacao" element={<AdminAuthProvider><AdminNavigation /></AdminAuthProvider>} />
+            <Route path="/admin/configuracoes" element={<AdminAuthProvider><AdminSettings /></AdminAuthProvider>} />
+            <Route path="/admin/usuarios" element={<AdminAuthProvider><AdminUsers /></AdminAuthProvider>} />
+            <Route path="/admin/backup" element={<AdminAuthProvider><AdminBackup /></AdminAuthProvider>} />
+            <Route path="/admin/analytics" element={<AdminAuthProvider><AdminAnalytics /></AdminAuthProvider>} />
             
             {/* Mundo Consultoria */}
             <Route path="/consultoria" element={<ConsultoriaIndex />} />
