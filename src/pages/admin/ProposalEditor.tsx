@@ -23,8 +23,11 @@ import {
   Package,
   Calendar,
   DollarSign,
-  Settings
+  Settings,
+  FileStack,
+  Import
 } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { generateProposalPDF, type ProposalData } from '@/lib/proposal-pdf-generator';
 import type { Json } from '@/integrations/supabase/types';
 
@@ -109,8 +112,22 @@ export default function ProposalEditor() {
     }
   });
 
-  const [selectedLeadId, setSelectedLeadId] = useState<string>('');
+  // Fetch proposal templates
+  const { data: templates } = useQuery({
+    queryKey: ['proposal-templates-for-editor'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('proposal_templates')
+        .select('*')
+        .eq('is_active', true)
+        .order('nome');
+      if (error) throw error;
+      return data;
+    }
+  });
 
+  const [selectedLeadId, setSelectedLeadId] = useState<string>('');
+  const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false);
   // Populate form when proposal loads
   useEffect(() => {
     if (proposal) {
@@ -242,6 +259,38 @@ export default function ProposalEditor() {
   };
   const removeScheduleItem = (index: number) => setCronograma(cronograma.filter((_, i) => i !== index));
 
+  // Import from template
+  const importFromTemplate = (templateId: string) => {
+    const template = templates?.find(t => t.id === templateId);
+    if (!template) return;
+
+    const escopoItems = Array.isArray(template.escopo_items) 
+      ? (template.escopo_items as unknown as ScopeItem[]) 
+      : [];
+    const entregaveisItems = Array.isArray(template.entregaveis_items) 
+      ? (template.entregaveis_items as unknown as DeliverableItem[]) 
+      : [];
+    const cronogramaItems = Array.isArray(template.cronograma_items) 
+      ? (template.cronograma_items as unknown as ScheduleItem[]) 
+      : [];
+
+    setEscopo(escopoItems);
+    setEntregaveis(entregaveisItems);
+    setCronograma(cronogramaItems);
+    
+    if (template.termos_padrao) {
+      setFormData(prev => ({ ...prev, termos_condicoes: template.termos_padrao || '' }));
+    }
+    if (template.prazo_padrao_dias) {
+      setFormData(prev => ({ ...prev, prazo_execucao_dias: template.prazo_padrao_dias?.toString() || '' }));
+    }
+    if (template.tipo_servico) {
+      setFormData(prev => ({ ...prev, tipo_servico: template.tipo_servico as ServiceType }));
+    }
+
+    setIsTemplateDialogOpen(false);
+    toast.success(`Template "${template.nome}" importado!`);
+  };
   if (!isNew && isLoading) {
     return (
       <AdminLayout>
@@ -274,6 +323,41 @@ export default function ProposalEditor() {
           <Download className="h-4 w-4 mr-2" />
           Gerar PDF
         </Button>
+        
+        {isNew && templates && templates.length > 0 && (
+          <Dialog open={isTemplateDialogOpen} onOpenChange={setIsTemplateDialogOpen}>
+            <DialogTrigger asChild>
+              <Button variant="outline">
+                <FileStack className="h-4 w-4 mr-2" />
+                Importar Template
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-lg">
+              <DialogHeader>
+                <DialogTitle>Importar de Template</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-3 mt-4 max-h-[400px] overflow-y-auto">
+                {templates.map((template) => (
+                  <button
+                    key={template.id}
+                    onClick={() => importFromTemplate(template.id)}
+                    className="w-full text-left p-4 border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors"
+                  >
+                    <div className="font-medium">{template.nome}</div>
+                    {template.descricao && (
+                      <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{template.descricao}</p>
+                    )}
+                    <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
+                      <span>{Array.isArray(template.escopo_items) ? (template.escopo_items as unknown[]).length : 0} itens de escopo</span>
+                      <span>{Array.isArray(template.entregaveis_items) ? (template.entregaveis_items as unknown[]).length : 0} entregáveis</span>
+                      <span>{Array.isArray(template.cronograma_items) ? (template.cronograma_items as unknown[]).length : 0} fases</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
       </div>
 
       <Tabs defaultValue="geral" className="space-y-6">

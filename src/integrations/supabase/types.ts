@@ -1034,6 +1034,54 @@ export type Database = {
           },
         ]
       }
+      proposal_templates: {
+        Row: {
+          created_at: string
+          criado_por: string | null
+          cronograma_items: Json | null
+          descricao: string | null
+          entregaveis_items: Json | null
+          escopo_items: Json | null
+          id: string
+          is_active: boolean | null
+          nome: string
+          prazo_padrao_dias: number | null
+          termos_padrao: string | null
+          tipo_servico: Database["public"]["Enums"]["service_type"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          criado_por?: string | null
+          cronograma_items?: Json | null
+          descricao?: string | null
+          entregaveis_items?: Json | null
+          escopo_items?: Json | null
+          id?: string
+          is_active?: boolean | null
+          nome: string
+          prazo_padrao_dias?: number | null
+          termos_padrao?: string | null
+          tipo_servico: Database["public"]["Enums"]["service_type"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          criado_por?: string | null
+          cronograma_items?: Json | null
+          descricao?: string | null
+          entregaveis_items?: Json | null
+          escopo_items?: Json | null
+          id?: string
+          is_active?: boolean | null
+          nome?: string
+          prazo_padrao_dias?: number | null
+          termos_padrao?: string | null
+          tipo_servico?: Database["public"]["Enums"]["service_type"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       proposals: {
         Row: {
           arquivo_url: string | null

@@ -74,6 +74,7 @@ const navGroups: NavGroup[] = [
     items: [
       { path: '/admin/projetos', label: 'Projetos', icon: FolderKanban, requiredRole: 'editor' },
       { path: '/admin/propostas', label: 'Propostas', icon: FileSignature, requiredRole: 'editor' },
+      { path: '/admin/templates-propostas', label: 'Templates', icon: FileStack, requiredRole: 'editor' },
       { path: '/admin/cases', label: 'Cases', icon: Award, requiredRole: 'editor' },
       { path: '/admin/roi-calculator', label: 'Calculadora ROI', icon: Calculator, requiredRole: 'editor' },
       { path: '/admin/metricas-equipe', label: 'Métricas da Equipe', icon: UsersRound, requiredRole: 'editor' },
