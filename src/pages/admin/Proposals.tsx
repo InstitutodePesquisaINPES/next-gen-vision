@@ -40,6 +40,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Link } from 'react-router-dom';
+import { generateProposalPDF, type ProposalData } from '@/lib/proposal-pdf-generator';
+import type { Json } from '@/integrations/supabase/types';
 
 type ServiceType = 'data_science' | 'analytics' | 'people_analytics' | 'behavioral_analytics' | 'customer_intelligence' | 'bioestatistica' | 'sistemas' | 'plataformas' | 'educacao' | 'outro';
 type ProposalStatus = 'rascunho' | 'enviada' | 'em_analise' | 'aprovada' | 'rejeitada' | 'revisao' | 'expirada';
@@ -227,6 +229,45 @@ export default function AdminProposals() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     createMutation.mutate(formData);
+  };
+
+  const handleExportPDF = async (proposal: Proposal) => {
+    // Fetch full proposal with JSON fields
+    const { data: fullProposal, error } = await supabase
+      .from('proposals')
+      .select('*, leads(nome, empresa)')
+      .eq('id', proposal.id)
+      .single();
+    
+    if (error) {
+      toast.error('Erro ao carregar dados da proposta');
+      return;
+    }
+
+    const escopoData = fullProposal.escopo_detalhado as { titulo: string; descricao: string }[] | null;
+    const entregaveisData = fullProposal.entregaveis as { titulo: string; descricao: string }[] | null;
+    const cronogramaData = fullProposal.cronograma as { fase: string; duracao: string; descricao: string }[] | null;
+
+    const pdfData: ProposalData = {
+      numero: fullProposal.numero,
+      titulo: fullProposal.titulo,
+      descricao: fullProposal.descricao,
+      tipoServico: fullProposal.tipo_servico,
+      clienteNome: fullProposal.leads?.nome || null,
+      clienteEmpresa: fullProposal.leads?.empresa || null,
+      valorTotal: fullProposal.valor_total,
+      descontoPercentual: fullProposal.desconto_percentual,
+      valorFinal: fullProposal.valor_final,
+      prazoExecucaoDias: fullProposal.prazo_execucao_dias,
+      validadeProposta: fullProposal.validade_proposta,
+      escopo: escopoData || [],
+      entregaveis: entregaveisData || [],
+      cronograma: cronogramaData || [],
+      termosCondicoes: fullProposal.termos_condicoes
+    };
+
+    generateProposalPDF(pdfData);
+    toast.success('PDF gerado! Use Ctrl+P para salvar.');
   };
 
   const formatCurrency = (value: number | null) => {
@@ -527,7 +568,7 @@ export default function AdminProposals() {
                         <Copy className="h-4 w-4 mr-2" />
                         Duplicar
                       </DropdownMenuItem>
-                      <DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleExportPDF(proposal)}>
                         <Download className="h-4 w-4 mr-2" />
                         Exportar PDF
                       </DropdownMenuItem>
