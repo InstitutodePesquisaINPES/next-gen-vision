@@ -57,6 +57,10 @@ const AdminDocumentGenerator = lazy(() => import("./pages/admin/DocumentGenerato
 const AdminDocumentView = lazy(() => import("./pages/admin/DocumentView"));
 const AdminDocumentDashboard = lazy(() => import("./pages/admin/DocumentDashboard"));
 const ValidateDocument = lazy(() => import("./pages/admin/ValidateDocument"));
+const AdminProjects = lazy(() => import("./pages/admin/Projects"));
+const AdminProposals = lazy(() => import("./pages/admin/Proposals"));
+const AdminCaseStudies = lazy(() => import("./pages/admin/CaseStudies"));
+const AdminConsultingDashboard = lazy(() => import("./pages/admin/ConsultingDashboard"));
 
 const queryClient = new QueryClient();
 
@@ -94,6 +98,10 @@ const App = () => (
             <Route path="/admin/documentos/novo" element={<AdminAuthProvider><AdminDocumentGenerator /></AdminAuthProvider>} />
             <Route path="/admin/documentos/dashboard" element={<AdminAuthProvider><AdminDocumentDashboard /></AdminAuthProvider>} />
             <Route path="/admin/documentos/:id" element={<AdminAuthProvider><AdminDocumentView /></AdminAuthProvider>} />
+            <Route path="/admin/projetos" element={<AdminAuthProvider><AdminProjects /></AdminAuthProvider>} />
+            <Route path="/admin/propostas" element={<AdminAuthProvider><AdminProposals /></AdminAuthProvider>} />
+            <Route path="/admin/cases" element={<AdminAuthProvider><AdminCaseStudies /></AdminAuthProvider>} />
+            <Route path="/admin/consultoria" element={<AdminAuthProvider><AdminConsultingDashboard /></AdminAuthProvider>} />
             
             {/* Public validation page */}
             <Route path="/validar" element={<ValidateDocument />} />

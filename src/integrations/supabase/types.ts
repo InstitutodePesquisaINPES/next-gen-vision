@@ -163,6 +163,81 @@ export type Database = {
         }
         Relationships: []
       }
+      case_studies: {
+        Row: {
+          ano: number | null
+          autor_depoimento: string | null
+          cargo_autor: string | null
+          cliente: string | null
+          created_at: string
+          criado_por: string | null
+          depoimento: string | null
+          desafio: string | null
+          duracao_meses: number | null
+          id: string
+          imagem_url: string | null
+          industria: string | null
+          is_featured: boolean | null
+          is_public: boolean | null
+          metricas: Json | null
+          resultados: string | null
+          solucao: string | null
+          tags: string[] | null
+          tecnologias: string[] | null
+          tipo_servico: Database["public"]["Enums"]["service_type"]
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          ano?: number | null
+          autor_depoimento?: string | null
+          cargo_autor?: string | null
+          cliente?: string | null
+          created_at?: string
+          criado_por?: string | null
+          depoimento?: string | null
+          desafio?: string | null
+          duracao_meses?: number | null
+          id?: string
+          imagem_url?: string | null
+          industria?: string | null
+          is_featured?: boolean | null
+          is_public?: boolean | null
+          metricas?: Json | null
+          resultados?: string | null
+          solucao?: string | null
+          tags?: string[] | null
+          tecnologias?: string[] | null
+          tipo_servico: Database["public"]["Enums"]["service_type"]
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          ano?: number | null
+          autor_depoimento?: string | null
+          cargo_autor?: string | null
+          cliente?: string | null
+          created_at?: string
+          criado_por?: string | null
+          depoimento?: string | null
+          desafio?: string | null
+          duracao_meses?: number | null
+          id?: string
+          imagem_url?: string | null
+          industria?: string | null
+          is_featured?: boolean | null
+          is_public?: boolean | null
+          metricas?: Json | null
+          resultados?: string | null
+          solucao?: string | null
+          tags?: string[] | null
+          tecnologias?: string[] | null
+          tipo_servico?: Database["public"]["Enums"]["service_type"]
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       content_backups: {
         Row: {
           backup_data: Json
@@ -738,6 +813,329 @@ export type Database = {
         }
         Relationships: []
       }
+      project_deliverables: {
+        Row: {
+          arquivo_url: string | null
+          created_at: string
+          criado_por: string | null
+          data_entrega: string | null
+          data_prevista: string | null
+          descricao: string | null
+          fase: Database["public"]["Enums"]["project_phase"]
+          id: string
+          observacoes: string | null
+          ordem: number | null
+          project_id: string
+          status: string | null
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          arquivo_url?: string | null
+          created_at?: string
+          criado_por?: string | null
+          data_entrega?: string | null
+          data_prevista?: string | null
+          descricao?: string | null
+          fase: Database["public"]["Enums"]["project_phase"]
+          id?: string
+          observacoes?: string | null
+          ordem?: number | null
+          project_id: string
+          status?: string | null
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          arquivo_url?: string | null
+          created_at?: string
+          criado_por?: string | null
+          data_entrega?: string | null
+          data_prevista?: string | null
+          descricao?: string | null
+          fase?: Database["public"]["Enums"]["project_phase"]
+          id?: string
+          observacoes?: string | null
+          ordem?: number | null
+          project_id?: string
+          status?: string | null
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_deliverables_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      project_phase_history: {
+        Row: {
+          created_at: string
+          data_transicao: string
+          fase_anterior: Database["public"]["Enums"]["project_phase"] | null
+          fase_nova: Database["public"]["Enums"]["project_phase"]
+          id: string
+          observacoes: string | null
+          project_id: string
+          usuario_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          data_transicao?: string
+          fase_anterior?: Database["public"]["Enums"]["project_phase"] | null
+          fase_nova: Database["public"]["Enums"]["project_phase"]
+          id?: string
+          observacoes?: string | null
+          project_id: string
+          usuario_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          data_transicao?: string
+          fase_anterior?: Database["public"]["Enums"]["project_phase"] | null
+          fase_nova?: Database["public"]["Enums"]["project_phase"]
+          id?: string
+          observacoes?: string | null
+          project_id?: string
+          usuario_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_phase_history_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          atualizado_por: string | null
+          created_at: string
+          criado_por: string | null
+          data_estimada_fim: string | null
+          data_inicio: string | null
+          data_real_fim: string | null
+          descricao: string | null
+          fase_atual: Database["public"]["Enums"]["project_phase"]
+          id: string
+          lead_id: string | null
+          nome: string
+          observacoes: string | null
+          percentual_conclusao: number | null
+          responsavel_id: string | null
+          status: Database["public"]["Enums"]["project_status"]
+          tecnologias: string[] | null
+          tipo_servico: Database["public"]["Enums"]["service_type"]
+          updated_at: string
+          valor_contrato: number | null
+          valor_recebido: number | null
+        }
+        Insert: {
+          atualizado_por?: string | null
+          created_at?: string
+          criado_por?: string | null
+          data_estimada_fim?: string | null
+          data_inicio?: string | null
+          data_real_fim?: string | null
+          descricao?: string | null
+          fase_atual?: Database["public"]["Enums"]["project_phase"]
+          id?: string
+          lead_id?: string | null
+          nome: string
+          observacoes?: string | null
+          percentual_conclusao?: number | null
+          responsavel_id?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          tecnologias?: string[] | null
+          tipo_servico?: Database["public"]["Enums"]["service_type"]
+          updated_at?: string
+          valor_contrato?: number | null
+          valor_recebido?: number | null
+        }
+        Update: {
+          atualizado_por?: string | null
+          created_at?: string
+          criado_por?: string | null
+          data_estimada_fim?: string | null
+          data_inicio?: string | null
+          data_real_fim?: string | null
+          descricao?: string | null
+          fase_atual?: Database["public"]["Enums"]["project_phase"]
+          id?: string
+          lead_id?: string | null
+          nome?: string
+          observacoes?: string | null
+          percentual_conclusao?: number | null
+          responsavel_id?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          tecnologias?: string[] | null
+          tipo_servico?: Database["public"]["Enums"]["service_type"]
+          updated_at?: string
+          valor_contrato?: number | null
+          valor_recebido?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      proposal_items: {
+        Row: {
+          created_at: string
+          descricao: string
+          id: string
+          observacoes: string | null
+          ordem: number | null
+          proposal_id: string
+          quantidade: number | null
+          valor_total: number | null
+          valor_unitario: number | null
+        }
+        Insert: {
+          created_at?: string
+          descricao: string
+          id?: string
+          observacoes?: string | null
+          ordem?: number | null
+          proposal_id: string
+          quantidade?: number | null
+          valor_total?: number | null
+          valor_unitario?: number | null
+        }
+        Update: {
+          created_at?: string
+          descricao?: string
+          id?: string
+          observacoes?: string | null
+          ordem?: number | null
+          proposal_id?: string
+          quantidade?: number | null
+          valor_total?: number | null
+          valor_unitario?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "proposal_items_proposal_id_fkey"
+            columns: ["proposal_id"]
+            isOneToOne: false
+            referencedRelation: "proposals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      proposals: {
+        Row: {
+          arquivo_url: string | null
+          atualizado_por: string | null
+          conteudo_html: string | null
+          created_at: string
+          criado_por: string | null
+          cronograma: Json | null
+          data_envio: string | null
+          data_resposta: string | null
+          desconto_percentual: number | null
+          descricao: string | null
+          entregaveis: Json | null
+          escopo_detalhado: Json | null
+          id: string
+          lead_id: string | null
+          motivo_rejeicao: string | null
+          numero: string | null
+          prazo_execucao_dias: number | null
+          project_id: string | null
+          status: Database["public"]["Enums"]["proposal_status"]
+          termos_condicoes: string | null
+          tipo_servico: Database["public"]["Enums"]["service_type"]
+          titulo: string
+          updated_at: string
+          validade_proposta: string | null
+          valor_final: number | null
+          valor_total: number | null
+        }
+        Insert: {
+          arquivo_url?: string | null
+          atualizado_por?: string | null
+          conteudo_html?: string | null
+          created_at?: string
+          criado_por?: string | null
+          cronograma?: Json | null
+          data_envio?: string | null
+          data_resposta?: string | null
+          desconto_percentual?: number | null
+          descricao?: string | null
+          entregaveis?: Json | null
+          escopo_detalhado?: Json | null
+          id?: string
+          lead_id?: string | null
+          motivo_rejeicao?: string | null
+          numero?: string | null
+          prazo_execucao_dias?: number | null
+          project_id?: string | null
+          status?: Database["public"]["Enums"]["proposal_status"]
+          termos_condicoes?: string | null
+          tipo_servico: Database["public"]["Enums"]["service_type"]
+          titulo: string
+          updated_at?: string
+          validade_proposta?: string | null
+          valor_final?: number | null
+          valor_total?: number | null
+        }
+        Update: {
+          arquivo_url?: string | null
+          atualizado_por?: string | null
+          conteudo_html?: string | null
+          created_at?: string
+          criado_por?: string | null
+          cronograma?: Json | null
+          data_envio?: string | null
+          data_resposta?: string | null
+          desconto_percentual?: number | null
+          descricao?: string | null
+          entregaveis?: Json | null
+          escopo_detalhado?: Json | null
+          id?: string
+          lead_id?: string | null
+          motivo_rejeicao?: string | null
+          numero?: string | null
+          prazo_execucao_dias?: number | null
+          project_id?: string | null
+          status?: Database["public"]["Enums"]["proposal_status"]
+          termos_condicoes?: string | null
+          tipo_servico?: Database["public"]["Enums"]["service_type"]
+          titulo?: string
+          updated_at?: string
+          validade_proposta?: string | null
+          valor_final?: number | null
+          valor_total?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "proposals_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "proposals_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       site_content: {
         Row: {
           content_type: string
@@ -868,6 +1266,36 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      technologies: {
+        Row: {
+          categoria: string | null
+          created_at: string
+          descricao: string | null
+          icone: string | null
+          id: string
+          is_active: boolean | null
+          nome: string
+        }
+        Insert: {
+          categoria?: string | null
+          created_at?: string
+          descricao?: string | null
+          icone?: string | null
+          id?: string
+          is_active?: boolean | null
+          nome: string
+        }
+        Update: {
+          categoria?: string | null
+          created_at?: string
+          descricao?: string | null
+          icone?: string | null
+          id?: string
+          is_active?: boolean | null
+          nome?: string
+        }
+        Relationships: []
       }
       template_fields: {
         Row: {
@@ -1105,6 +1533,18 @@ export type Database = {
       }
     }
     Views: {
+      consulting_metrics: {
+        Row: {
+          projetos_ativos: number | null
+          projetos_concluidos: number | null
+          propostas_aprovadas: number | null
+          propostas_pendentes: number | null
+          receita_em_andamento: number | null
+          receita_total: number | null
+          taxa_conversao_propostas: number | null
+        }
+        Relationships: []
+      }
       document_stats: {
         Row: {
           assinados: number | null
@@ -1172,6 +1612,39 @@ export type Database = {
         | "fechado_perdido"
         | "arquivado"
       priority_level: "baixa" | "media" | "alta" | "urgente"
+      project_phase:
+        | "discovery"
+        | "exploration"
+        | "development"
+        | "production"
+        | "operations"
+        | "concluido"
+      project_status:
+        | "proposta"
+        | "aprovado"
+        | "em_andamento"
+        | "pausado"
+        | "concluido"
+        | "cancelado"
+      proposal_status:
+        | "rascunho"
+        | "enviada"
+        | "em_analise"
+        | "aprovada"
+        | "rejeitada"
+        | "revisao"
+        | "expirada"
+      service_type:
+        | "data_science"
+        | "analytics"
+        | "people_analytics"
+        | "behavioral_analytics"
+        | "customer_intelligence"
+        | "bioestatistica"
+        | "sistemas"
+        | "plataformas"
+        | "educacao"
+        | "outro"
       task_status: "pendente" | "em_progresso" | "concluida" | "cancelada"
     }
     CompositeTypes: {
@@ -1320,6 +1793,43 @@ export const Constants = {
         "arquivado",
       ],
       priority_level: ["baixa", "media", "alta", "urgente"],
+      project_phase: [
+        "discovery",
+        "exploration",
+        "development",
+        "production",
+        "operations",
+        "concluido",
+      ],
+      project_status: [
+        "proposta",
+        "aprovado",
+        "em_andamento",
+        "pausado",
+        "concluido",
+        "cancelado",
+      ],
+      proposal_status: [
+        "rascunho",
+        "enviada",
+        "em_analise",
+        "aprovada",
+        "rejeitada",
+        "revisao",
+        "expirada",
+      ],
+      service_type: [
+        "data_science",
+        "analytics",
+        "people_analytics",
+        "behavioral_analytics",
+        "customer_intelligence",
+        "bioestatistica",
+        "sistemas",
+        "plataformas",
+        "educacao",
+        "outro",
+      ],
       task_status: ["pendente", "em_progresso", "concluida", "cancelada"],
     },
   },
