@@ -20,7 +20,12 @@ import {
   ChevronRight,
   Sparkles,
   Shield,
-  Zap
+  Zap,
+  FolderKanban,
+  FileSignature,
+  Award,
+  PieChart,
+  Calculator
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { VixioLogo } from '@/components/brand/VixioLogo';
@@ -60,6 +65,16 @@ const navGroups: NavGroup[] = [
     items: [
       { path: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
       { path: '/admin/crm', label: 'CRM Dashboard', icon: TrendingUp, requiredRole: 'editor' },
+      { path: '/admin/consultoria', label: 'Consultoria', icon: PieChart, requiredRole: 'editor' },
+    ]
+  },
+  {
+    label: 'Consultoria',
+    items: [
+      { path: '/admin/projetos', label: 'Projetos', icon: FolderKanban, requiredRole: 'editor' },
+      { path: '/admin/propostas', label: 'Propostas', icon: FileSignature, requiredRole: 'editor' },
+      { path: '/admin/cases', label: 'Cases', icon: Award, requiredRole: 'editor' },
+      { path: '/admin/roi-calculator', label: 'Calculadora ROI', icon: Calculator, requiredRole: 'editor' },
     ]
   },
   {

@@ -58,9 +58,11 @@ const AdminDocumentView = lazy(() => import("./pages/admin/DocumentView"));
 const AdminDocumentDashboard = lazy(() => import("./pages/admin/DocumentDashboard"));
 const ValidateDocument = lazy(() => import("./pages/admin/ValidateDocument"));
 const AdminProjects = lazy(() => import("./pages/admin/Projects"));
+const AdminProjectDetail = lazy(() => import("./pages/admin/ProjectDetail"));
 const AdminProposals = lazy(() => import("./pages/admin/Proposals"));
 const AdminCaseStudies = lazy(() => import("./pages/admin/CaseStudies"));
 const AdminConsultingDashboard = lazy(() => import("./pages/admin/ConsultingDashboard"));
+const AdminROICalculator = lazy(() => import("./pages/admin/ROICalculator"));
 
 const queryClient = new QueryClient();
 
