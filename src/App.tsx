@@ -63,6 +63,8 @@ const AdminProposals = lazy(() => import("./pages/admin/Proposals"));
 const AdminCaseStudies = lazy(() => import("./pages/admin/CaseStudies"));
 const AdminConsultingDashboard = lazy(() => import("./pages/admin/ConsultingDashboard"));
 const AdminROICalculator = lazy(() => import("./pages/admin/ROICalculator"));
+const AdminProposalEditor = lazy(() => import("./pages/admin/ProposalEditor"));
+const AdminTeamMetrics = lazy(() => import("./pages/admin/TeamMetrics"));
 
 const queryClient = new QueryClient();
 
@@ -104,6 +106,10 @@ const App = () => (
             <Route path="/admin/propostas" element={<AdminAuthProvider><AdminProposals /></AdminAuthProvider>} />
             <Route path="/admin/cases" element={<AdminAuthProvider><AdminCaseStudies /></AdminAuthProvider>} />
             <Route path="/admin/consultoria" element={<AdminAuthProvider><AdminConsultingDashboard /></AdminAuthProvider>} />
+            <Route path="/admin/projetos/:id" element={<AdminAuthProvider><AdminProjectDetail /></AdminAuthProvider>} />
+            <Route path="/admin/propostas/:id" element={<AdminAuthProvider><AdminProposalEditor /></AdminAuthProvider>} />
+            <Route path="/admin/roi-calculator" element={<AdminAuthProvider><AdminROICalculator /></AdminAuthProvider>} />
+            <Route path="/admin/metricas-equipe" element={<AdminAuthProvider><AdminTeamMetrics /></AdminAuthProvider>} />
             
             {/* Public validation page */}
             <Route path="/validar" element={<ValidateDocument />} />
