@@ -30,7 +30,8 @@ import {
   XCircle,
   Clock,
   Copy,
-  Download
+  Download,
+  FileCheck
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -41,6 +42,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Link } from 'react-router-dom';
 import { generateProposalPDF, type ProposalData } from '@/lib/proposal-pdf-generator';
+import { generateContractPDF, type ContractData } from '@/lib/contract-pdf-generator';
 import type { Json } from '@/integrations/supabase/types';
 
 type ServiceType = 'data_science' | 'analytics' | 'people_analytics' | 'behavioral_analytics' | 'customer_intelligence' | 'bioestatistica' | 'sistemas' | 'plataformas' | 'educacao' | 'outro';
@@ -268,6 +270,47 @@ export default function AdminProposals() {
 
     generateProposalPDF(pdfData);
     toast.success('PDF gerado! Use Ctrl+P para salvar.');
+  };
+
+  const handleExportContract = async (proposal: Proposal) => {
+    if (proposal.status !== 'aprovada') {
+      toast.error('Apenas propostas aprovadas podem ser exportadas como contrato');
+      return;
+    }
+
+    // Fetch full proposal with JSON fields
+    const { data: fullProposal, error } = await supabase
+      .from('proposals')
+      .select('*, leads(nome, empresa)')
+      .eq('id', proposal.id)
+      .single();
+    
+    if (error) {
+      toast.error('Erro ao carregar dados da proposta');
+      return;
+    }
+
+    const escopoData = fullProposal.escopo_detalhado as { titulo: string; descricao: string }[] | null;
+    const entregaveisData = fullProposal.entregaveis as { titulo: string; descricao: string }[] | null;
+    const cronogramaData = fullProposal.cronograma as { fase: string; duracao: string; descricao: string }[] | null;
+
+    const contractData: ContractData = {
+      numero: fullProposal.numero,
+      titulo: fullProposal.titulo,
+      tipoServico: fullProposal.tipo_servico,
+      clienteNome: fullProposal.leads?.nome || null,
+      clienteEmpresa: fullProposal.leads?.empresa || null,
+      valorFinal: fullProposal.valor_final,
+      prazoExecucaoDias: fullProposal.prazo_execucao_dias,
+      dataAprovacao: fullProposal.data_resposta,
+      escopo: escopoData || [],
+      entregaveis: entregaveisData || [],
+      cronograma: cronogramaData || [],
+      termosCondicoes: fullProposal.termos_condicoes
+    };
+
+    generateContractPDF(contractData);
+    toast.success('Contrato gerado! Use Ctrl+P para salvar como PDF.');
   };
 
   const formatCurrency = (value: number | null) => {
@@ -572,6 +615,12 @@ export default function AdminProposals() {
                         <Download className="h-4 w-4 mr-2" />
                         Exportar PDF
                       </DropdownMenuItem>
+                      {proposal.status === 'aprovada' && (
+                        <DropdownMenuItem onClick={() => handleExportContract(proposal)}>
+                          <FileCheck className="h-4 w-4 mr-2" />
+                          Gerar Contrato
+                        </DropdownMenuItem>
+                      )}
                       <DropdownMenuSeparator />
                       {proposal.status === 'rascunho' && (
                         <DropdownMenuItem onClick={() => updateStatusMutation.mutate({ id: proposal.id, status: 'enviada' })}>
