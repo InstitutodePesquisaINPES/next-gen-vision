@@ -10,9 +10,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from 'sonner';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { 
   Plus, 
   FileStack, 
@@ -23,7 +26,11 @@ import {
   Package,
   Calendar,
   MoreVertical,
-  Check
+  Check,
+  History,
+  RotateCcw,
+  Clock,
+  GitBranch
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -33,6 +40,15 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import type { Json } from '@/integrations/supabase/types';
+
+interface TemplateVersion {
+  id: string;
+  template_id: string;
+  versao: number;
+  conteudo: string;
+  campos: Json | null;
+  created_at: string;
+}
 
 type ServiceType = 'data_science' | 'analytics' | 'people_analytics' | 'behavioral_analytics' | 'customer_intelligence' | 'bioestatistica' | 'sistemas' | 'plataformas' | 'educacao' | 'outro';
 
@@ -64,6 +80,7 @@ interface ProposalTemplate {
   prazo_padrao_dias: number | null;
   is_active: boolean;
   created_at: string;
+  updated_at: string;
 }
 
 const serviceTypeLabels: Record<ServiceType, string> = {
@@ -83,6 +100,8 @@ export default function ProposalTemplates() {
   const queryClient = useQueryClient();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingTemplate, setEditingTemplate] = useState<ProposalTemplate | null>(null);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [selectedTemplateForHistory, setSelectedTemplateForHistory] = useState<ProposalTemplate | null>(null);
   
   const [formData, setFormData] = useState({
     nome: '',
@@ -95,6 +114,22 @@ export default function ProposalTemplates() {
   const [escopo, setEscopo] = useState<ScopeItem[]>([]);
   const [entregaveis, setEntregaveis] = useState<DeliverableItem[]>([]);
   const [cronograma, setCronograma] = useState<ScheduleItem[]>([]);
+
+  // Fetch version history for selected template
+  const { data: versions, isLoading: isLoadingVersions } = useQuery({
+    queryKey: ['template-versions', selectedTemplateForHistory?.id],
+    queryFn: async () => {
+      if (!selectedTemplateForHistory) return [];
+      const { data, error } = await supabase
+        .from('template_versions')
+        .select('*')
+        .eq('template_id', selectedTemplateForHistory.id)
+        .order('versao', { ascending: false });
+      if (error) throw error;
+      return data as TemplateVersion[];
+    },
+    enabled: !!selectedTemplateForHistory
+  });
 
   const { data: templates, isLoading } = useQuery({
     queryKey: ['proposal-templates'],
@@ -127,6 +162,44 @@ export default function ProposalTemplates() {
       };
 
       if (editingTemplate) {
+        // First, save the current state as a new version
+        const { data: currentTemplate } = await supabase
+          .from('proposal_templates')
+          .select('*')
+          .eq('id', editingTemplate.id)
+          .single();
+        
+        if (currentTemplate) {
+          // Get the latest version number
+          const { data: latestVersion } = await supabase
+            .from('template_versions')
+            .select('versao')
+            .eq('template_id', editingTemplate.id)
+            .order('versao', { ascending: false })
+            .limit(1)
+            .single();
+          
+          const nextVersion = (latestVersion?.versao || 0) + 1;
+          
+          // Save the current state as a version before updating
+          await supabase.from('template_versions').insert({
+            template_id: editingTemplate.id,
+            versao: nextVersion,
+            conteudo: JSON.stringify({
+              nome: currentTemplate.nome,
+              descricao: currentTemplate.descricao,
+              tipo_servico: currentTemplate.tipo_servico,
+              termos_padrao: currentTemplate.termos_padrao,
+              prazo_padrao_dias: currentTemplate.prazo_padrao_dias
+            }),
+            campos: {
+              escopo_items: currentTemplate.escopo_items,
+              entregaveis_items: currentTemplate.entregaveis_items,
+              cronograma_items: currentTemplate.cronograma_items
+            } as unknown as Json
+          });
+        }
+
         const { error } = await supabase
           .from('proposal_templates')
           .update(templateData)
@@ -141,11 +214,50 @@ export default function ProposalTemplates() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['proposal-templates'] });
-      toast.success(editingTemplate ? 'Template atualizado!' : 'Template criado!');
+      queryClient.invalidateQueries({ queryKey: ['template-versions'] });
+      toast.success(editingTemplate ? 'Template atualizado! Versão anterior salva no histórico.' : 'Template criado!');
       closeDialog();
     },
     onError: (error) => {
       toast.error('Erro: ' + error.message);
+    }
+  });
+
+  const rollbackMutation = useMutation({
+    mutationFn: async (version: TemplateVersion) => {
+      if (!selectedTemplateForHistory) throw new Error('Template não selecionado');
+      
+      const contentData = JSON.parse(version.conteudo);
+      const camposData = version.campos as { 
+        escopo_items: Json; 
+        entregaveis_items: Json; 
+        cronograma_items: Json 
+      } | null;
+      
+      const { error } = await supabase
+        .from('proposal_templates')
+        .update({
+          nome: contentData.nome,
+          descricao: contentData.descricao,
+          tipo_servico: contentData.tipo_servico,
+          termos_padrao: contentData.termos_padrao,
+          prazo_padrao_dias: contentData.prazo_padrao_dias,
+          escopo_items: camposData?.escopo_items || [],
+          entregaveis_items: camposData?.entregaveis_items || [],
+          cronograma_items: camposData?.cronograma_items || []
+        })
+        .eq('id', selectedTemplateForHistory.id);
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['proposal-templates'] });
+      toast.success('Template restaurado para a versão selecionada!');
+      setIsHistoryOpen(false);
+      setSelectedTemplateForHistory(null);
+    },
+    onError: (error) => {
+      toast.error('Erro ao restaurar: ' + error.message);
     }
   });
 
@@ -510,6 +622,13 @@ export default function ProposalTemplates() {
                         <Copy className="h-4 w-4 mr-2" />
                         Duplicar
                       </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => {
+                        setSelectedTemplateForHistory(template);
+                        setIsHistoryOpen(true);
+                      }}>
+                        <History className="h-4 w-4 mr-2" />
+                        Histórico de Versões
+                      </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem 
                         className="text-destructive"
@@ -561,6 +680,101 @@ export default function ProposalTemplates() {
           ))}
         </div>
       )}
+
+      {/* Version History Dialog */}
+      <Dialog open={isHistoryOpen} onOpenChange={(open) => {
+        setIsHistoryOpen(open);
+        if (!open) setSelectedTemplateForHistory(null);
+      }}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <GitBranch className="h-5 w-5" />
+              Histórico de Versões
+            </DialogTitle>
+            <DialogDescription>
+              {selectedTemplateForHistory?.nome} - Clique em "Restaurar" para voltar a uma versão anterior
+            </DialogDescription>
+          </DialogHeader>
+
+          <ScrollArea className="max-h-[60vh]">
+            {isLoadingVersions ? (
+              <div className="space-y-3">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="h-20 rounded-lg bg-muted animate-pulse" />
+                ))}
+              </div>
+            ) : versions?.length === 0 ? (
+              <div className="text-center py-12">
+                <History className="h-12 w-12 mx-auto text-muted-foreground mb-4 opacity-50" />
+                <h3 className="font-semibold mb-2">Nenhuma versão anterior</h3>
+                <p className="text-sm text-muted-foreground">
+                  O histórico de versões será criado quando você editar este template
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {versions?.map((version) => {
+                  const contentData = JSON.parse(version.conteudo);
+                  const camposData = version.campos as { 
+                    escopo_items?: unknown[]; 
+                    entregaveis_items?: unknown[]; 
+                    cronograma_items?: unknown[] 
+                  } | null;
+                  
+                  return (
+                    <div key={version.id} className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Badge variant="outline" className="text-xs">
+                              <Clock className="h-3 w-3 mr-1" />
+                              Versão {version.versao}
+                            </Badge>
+                            <span className="text-xs text-muted-foreground">
+                              {format(new Date(version.created_at), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR })}
+                            </span>
+                          </div>
+                          <p className="text-sm font-medium">{contentData.nome}</p>
+                          {contentData.descricao && (
+                            <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                              {contentData.descricao}
+                            </p>
+                          )}
+                          <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
+                            <span className="flex items-center gap-1">
+                              <Layers className="h-3 w-3" />
+                              {camposData?.escopo_items?.length || 0} escopo
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Package className="h-3 w-3" />
+                              {camposData?.entregaveis_items?.length || 0} entregáveis
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Calendar className="h-3 w-3" />
+                              {camposData?.cronograma_items?.length || 0} fases
+                            </span>
+                          </div>
+                        </div>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => rollbackMutation.mutate(version)}
+                          disabled={rollbackMutation.isPending}
+                          className="shrink-0"
+                        >
+                          <RotateCcw className="h-4 w-4 mr-2" />
+                          Restaurar
+                        </Button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </ScrollArea>
+        </DialogContent>
+      </Dialog>
     </AdminLayout>
   );
 }
