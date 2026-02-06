@@ -225,30 +225,25 @@ const useCases = [
   {
     title: "Redução de Turnover",
     description: "Identificação proativa de colaboradores em risco com modelos preditivos e intervenções personalizadas.",
-    impact: "Redução de 25-40% no turnover voluntário"
   },
   {
     title: "Otimização de Recrutamento",
     description: "Análise de efetividade de fontes e predição de fit cultural para contratações de maior qualidade.",
-    impact: "Redução de 30% no Time-to-Hire"
   },
   {
     title: "Melhoria de Engajamento",
     description: "Identificação de drivers de engajamento por segmento e ações direcionadas baseadas em evidências.",
-    impact: "Aumento de 15-25 pontos no eNPS"
   },
   {
     title: "Equidade Salarial",
     description: "Diagnóstico de gaps salariais e plano de correção para compliance e employer branding.",
-    impact: "Eliminação de gaps identificados"
   },
 ];
 
 const stats = [
-  { value: "200+", label: "Projetos de People Analytics", description: "Em diversos setores" },
-  { value: "85%", label: "Precisão em Modelos de Turnover", description: "Em predição de saídas" },
-  { value: "35%", label: "Redução Média de Turnover", description: "Após implementação" },
-  { value: "NPS 78", label: "Satisfação de Clientes", description: "Em projetos de RH" },
+  { value: "6", label: "Áreas de People Analytics", description: "Cobertura completa do ciclo" },
+  { value: "LGPD", label: "Privacidade em Primeiro Lugar", description: "Dados sensíveis protegidos" },
+  { value: "12+", label: "Integrações com HRIS", description: "Workday, SAP, ADP e mais" },
 ];
 
 // ============================================
@@ -455,11 +450,7 @@ export default function PeopleAnalytics() {
                 className="glass-card p-6 hover-lift"
               >
                 <h4 className="text-lg font-bold text-foreground mb-3">{useCase.title}</h4>
-                <p className="text-sm text-muted-foreground mb-4">{useCase.description}</p>
-                <div className="pt-4 border-t border-border/50">
-                  <span className="text-xs text-muted-foreground">Impacto típico:</span>
-                  <div className="text-sm font-semibold text-primary mt-1">{useCase.impact}</div>
-                </div>
+                <p className="text-sm text-muted-foreground">{useCase.description}</p>
               </motion.div>
             ))}
           </div>

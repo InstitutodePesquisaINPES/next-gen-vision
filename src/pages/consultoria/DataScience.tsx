@@ -15,18 +15,15 @@ import { SectionHeader } from "@/components/ui/section-header";
 
 // Stats - números de impacto expandidos
 const heroStats = [
-  { value: "150+", label: "Modelos em Produção", description: "Servindo milhões de predições/dia" },
-  { value: "98.5%", label: "SLA de Uptime", description: "Em ambientes críticos de missão" },
-  { value: "R$ 500M+", label: "Valor Gerado", description: "Em receita incremental e economia" },
+  { value: "MLOps", label: "Modelos em Produção", description: "Servindo predições em tempo real" },
+  { value: "99%+", label: "SLA de Uptime", description: "Em ambientes de produção" },
   { value: "< 50ms", label: "Latência Média", description: "Inferência em tempo real" },
 ];
 
 // Credenciais expandidas
 const credentials = [
-  { icon: Award, label: "Equipe com PhDs", description: "Em Estatística, Computação e Matemática" },
-  { icon: Building2, label: "Fortune 500", description: "Clientes em múltiplos setores" },
-  { icon: Globe, label: "Projetos Globais", description: "Brasil, EUA, Europa e Ásia" },
-  { icon: GraduationCap, label: "Publicações", description: "Papers em conferências tier-1" },
+  { icon: Award, label: "Equipe Especializada", description: "Em Estatística, Computação e Matemática" },
+  { icon: GraduationCap, label: "Base Científica", description: "Metodologia rigorosa e reprodutível" },
 ];
 
 // Serviços principais expandidos
@@ -323,31 +320,27 @@ const differentials = [
   },
 ];
 
-// Cases de sucesso (resumidos)
-const successCases = [
+// Exemplos de aplicação (sem resultados fabricados)
+const applicationExamples = [
   {
     industry: "E-commerce",
     title: "Sistema de Recomendação Personalizado",
-    result: "+23% em conversão",
-    description: "Motor de recomendação em tempo real com deep learning, servindo milhões de predições por dia."
+    description: "Motor de recomendação em tempo real com deep learning para personalização de ofertas.",
   },
   {
     industry: "Financeiro",
     title: "Detecção de Fraude em Tempo Real",
-    result: "Redução de 45% em fraudes",
-    description: "Modelo de detecção com latência < 100ms e taxa de falso positivo < 1%."
+    description: "Modelo de detecção com baixa latência e alta precisão.",
   },
   {
     industry: "Varejo",
     title: "Previsão de Demanda Multi-SKU",
-    result: "Redução de 30% em stockout",
-    description: "Forecasting hierárquico para +10.000 SKUs com atualização diária."
+    description: "Forecasting hierárquico para milhares de SKUs com atualização automatizada.",
   },
   {
     industry: "Saúde",
     title: "Triagem Automatizada com IA",
-    result: "50% mais eficiência",
-    description: "Modelo de classificação de prioridade com explicabilidade para auditoria."
+    description: "Modelo de classificação de prioridade com explicabilidade para auditoria.",
   },
 ];
 
@@ -743,18 +736,18 @@ export default function DataScience() {
         </div>
       </section>
 
-      {/* Cases de Sucesso */}
+      {/* Exemplos de Aplicação */}
       <section className="section-padding bg-muted/10">
         <div className="container-custom">
           <SectionHeader
-            badge="Resultados"
-            title="Cases de"
-            titleHighlight="Sucesso"
-            description="Exemplos de projetos entregues e resultados alcançados."
+            badge="Aplicações"
+            title="Exemplos de"
+            titleHighlight="Aplicação"
+            description="Áreas onde aplicamos ciência de dados e machine learning."
           />
 
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {successCases.map((caseItem, index) => (
+            {applicationExamples.map((caseItem, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -767,7 +760,6 @@ export default function DataScience() {
                   {caseItem.industry}
                 </span>
                 <h4 className="mt-4 font-bold text-foreground">{caseItem.title}</h4>
-                <div className="mt-3 text-2xl font-bold gradient-text-purple">{caseItem.result}</div>
                 <p className="mt-3 text-sm text-muted-foreground">{caseItem.description}</p>
               </motion.div>
             ))}

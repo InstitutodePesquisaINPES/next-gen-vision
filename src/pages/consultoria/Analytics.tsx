@@ -280,9 +280,8 @@ const valueProposition = [
 ];
 
 const stats = [
-  { value: "1000+", label: "Dashboards Criados", description: "Em produção ativa" },
-  { value: "50B+", label: "Registros Processados", description: "Por mês em pipelines" },
-  { value: "99.9%", label: "Disponibilidade Garantida", description: "Para sistemas críticos" },
+  { value: "Power BI", label: "Plataformas Líderes", description: "Tableau, Looker, Metabase e mais" },
+  { value: "99.9%", label: "Disponibilidade", description: "Para sistemas críticos" },
   { value: "< 100ms", label: "Performance de Query", description: "Para dashboards interativos" },
 ];
 

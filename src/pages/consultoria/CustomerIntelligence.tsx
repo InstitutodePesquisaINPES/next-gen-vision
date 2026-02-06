@@ -199,30 +199,25 @@ const useCases = [
   {
     title: "Prevenção de Churn",
     description: "Identificação proativa de clientes em risco com modelos preditivos e campanhas de retenção personalizadas.",
-    impact: "Redução de 20-35% no churn"
   },
   {
     title: "Otimização de CLV",
     description: "Segmentação por valor e potencial para priorizar investimentos em aquisição e retenção.",
-    impact: "Aumento de 25% no CLV médio"
   },
   {
     title: "Personalização em Escala",
     description: "Next best offer e recomendações personalizadas baseadas em comportamento e preferências.",
-    impact: "Aumento de 40% em conversão"
   },
   {
     title: "Eficiência de Marketing",
     description: "Alocação otimizada de budget com Marketing Mix Modeling e atribuição multi-touch.",
-    impact: "Melhoria de 30% no ROI de mídia"
   },
 ];
 
 const stats = [
-  { value: "500+", label: "Milhões de Clientes Analisados", description: "Em bases unificadas" },
-  { value: "92%", label: "Precisão em Modelos de Churn", description: "Média dos projetos" },
-  { value: "3.2x", label: "ROI Médio", description: "Retorno sobre investimento" },
-  { value: "NPS 75", label: "Satisfação de Clientes", description: "Em projetos de CX" },
+  { value: "CDP", label: "Visão 360° do Cliente", description: "Dados unificados" },
+  { value: "ML", label: "Modelos Preditivos", description: "Churn, CLV, propensão" },
+  { value: "LGPD", label: "Privacidade em Primeiro Lugar", description: "Conformidade integrada" },
 ];
 
 // ============================================
@@ -450,11 +445,7 @@ export default function CustomerIntelligence() {
                 className="glass-card p-6 hover-lift"
               >
                 <h4 className="text-lg font-bold text-foreground mb-3">{useCase.title}</h4>
-                <p className="text-sm text-muted-foreground mb-4">{useCase.description}</p>
-                <div className="pt-4 border-t border-border/50">
-                  <span className="text-xs text-muted-foreground">Impacto típico:</span>
-                  <div className="text-sm font-semibold text-primary mt-1">{useCase.impact}</div>
-                </div>
+                <p className="text-sm text-muted-foreground">{useCase.description}</p>
               </motion.div>
             ))}
           </div>

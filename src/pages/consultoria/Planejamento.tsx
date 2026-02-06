@@ -233,10 +233,9 @@ const differentiators = [
 ];
 
 const successMetrics = [
-  { value: "300+", label: "Estratégias Implementadas", description: "Em diversos setores" },
-  { value: "87%", label: "Metas Atingidas", description: "No primeiro ano" },
-  { value: "3.5x", label: "ROI Médio", description: "Retorno sobre investimento" },
-  { value: "NPS 72", label: "Satisfação de Clientes", description: "Promotores ativos" },
+  { value: "OKRs", label: "Frameworks Aplicados", description: "BSC, RICE, Blue Ocean e mais" },
+  { value: "4 Fases", label: "Metodologia Estruturada", description: "Discovery → Execution" },
+  { value: "6+", label: "Setores Atendidos", description: "Saúde, Varejo, Tech e mais" },
 ];
 
 const typicalEngagements = [
