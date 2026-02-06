@@ -70,6 +70,7 @@ const AdminProposalTemplates = lazy(() => import("./pages/admin/ProposalTemplate
 const AdminBlogPosts = lazy(() => import("./pages/admin/BlogPosts"));
 const AdminMediaManager = lazy(() => import("./pages/admin/MediaManager"));
 const AdminPageEditor = lazy(() => import("./pages/admin/PageEditor"));
+const AdminThemeEditor = lazy(() => import("./pages/admin/ThemeEditor"));
 
 const queryClient = new QueryClient();
 
@@ -120,6 +121,7 @@ const App = () => (
             <Route path="/admin/blog" element={<AdminAuthProvider><AdminBlogPosts /></AdminAuthProvider>} />
             <Route path="/admin/midia" element={<AdminAuthProvider><AdminMediaManager /></AdminAuthProvider>} />
             <Route path="/admin/paginas" element={<AdminAuthProvider><AdminPageEditor /></AdminAuthProvider>} />
+            <Route path="/admin/aparencia" element={<AdminAuthProvider><AdminThemeEditor /></AdminAuthProvider>} />
 
             {/* Public validation page */}
             <Route path="/validar" element={<ValidateDocument />} />
