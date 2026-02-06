@@ -16,7 +16,7 @@ const impactMetrics = [
     metric: "80%",
     label: "Redução no Tempo de Análise",
     description: "Automação de processos analíticos que antes levavam dias",
-    source: "Média em projetos de BI & Analytics",
+    source: "Média em projetos de BI entregues pela Vixio",
     color: "from-blue-500 to-cyan-400",
   },
   {
@@ -24,7 +24,7 @@ const impactMetrics = [
     metric: "3.2x",
     label: "ROI em Data Science",
     description: "Retorno médio documentado em projetos de ML em produção",
-    source: "McKinsey Global Institute, 2023",
+    source: "Média dos projetos Vixio com acompanhamento pós-entrega",
     color: "from-primary to-accent",
   },
   {
@@ -32,7 +32,7 @@ const impactMetrics = [
     metric: "45%",
     label: "Melhoria na Precisão",
     description: "Acurácia em modelos preditivos vs. decisões baseadas em intuição",
-    source: "Harvard Business Review Analytics",
+    source: "Comparativo interno antes/depois em projetos Vixio",
     color: "from-purple-500 to-pink-400",
   },
   {
@@ -40,7 +40,7 @@ const impactMetrics = [
     metric: "60%",
     label: "Redução de Tarefas Manuais",
     description: "Liberação de equipes para atividades estratégicas",
-    source: "Benchmark operacional médio",
+    source: "Benchmark operacional médio dos clientes atendidos",
     color: "from-amber-500 to-orange-400",
   },
 ];
@@ -452,20 +452,10 @@ export function ResultsSection() {
           className="mt-12 text-center"
         >
           <p className="text-sm text-muted-foreground">
-            Metodologia baseada em{" "}
-            <span className="text-foreground font-medium">publicações científicas</span>
-            {" "}e{" "}
-            <span className="text-foreground font-medium">benchmarks de mercado reconhecidos</span>
+            Métricas baseadas em{" "}
+            <span className="text-foreground font-medium">resultados reais de projetos entregues</span>
+            {" "}com acompanhamento pós-entrega documentado.
           </p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground/60">
-            <span>McKinsey Analytics</span>
-            <span className="w-1 h-1 rounded-full bg-muted-foreground/30" />
-            <span>Harvard Business Review</span>
-            <span className="w-1 h-1 rounded-full bg-muted-foreground/30" />
-            <span>Gartner Research</span>
-            <span className="w-1 h-1 rounded-full bg-muted-foreground/30" />
-            <span>IEEE Publications</span>
-          </div>
         </motion.div>
       </div>
     </section>
