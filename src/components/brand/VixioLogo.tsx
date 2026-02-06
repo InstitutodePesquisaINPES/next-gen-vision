@@ -61,7 +61,7 @@ export const VixioLogo = forwardRef<HTMLDivElement, VixioLogoProps>(function Vix
         alt="Vixio - Sistemas Inteligentes & Ciência de Dados"
         width={width}
         height={height}
-        className="object-contain"
+        className="object-contain mix-blend-lighten"
       />
     </div>
   );
@@ -80,7 +80,7 @@ export const VixioLogoAnimated = forwardRef<HTMLDivElement, VixioLogoAnimatedPro
     <div ref={ref} className={cn("relative", className)} {...props}>
       {/* Glow effect */}
       <div className="absolute inset-0 blur-2xl opacity-30 animate-pulse">
-        <img src={logoDark} alt="" width={width} height={height} className="object-contain" />
+        <img src={logoDark} alt="" width={width} height={height} className="object-contain mix-blend-lighten" />
       </div>
       {/* Main logo */}
       <img
@@ -88,7 +88,7 @@ export const VixioLogoAnimated = forwardRef<HTMLDivElement, VixioLogoAnimatedPro
         alt="Vixio - Sistemas Inteligentes & Ciência de Dados"
         width={width}
         height={height}
-        className="object-contain relative z-10"
+        className="object-contain relative z-10 mix-blend-lighten"
       />
     </div>
   );
