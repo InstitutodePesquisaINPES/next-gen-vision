@@ -96,8 +96,18 @@ export default function ThemeEditor() {
         .from('media')
         .getPublicUrl(fileName);
 
-      update(key, urlData.publicUrl);
-      toast.success('Imagem carregada com sucesso!');
+      // Auto-save branding uploads to database immediately
+      const url = urlData.publicUrl;
+      const existing = settings?.find(s => s.key === key);
+      if (existing) {
+        await supabase.from('site_settings').update({ value: url }).eq('id', existing.id);
+      } else {
+        await supabase.from('site_settings').insert({ key, value: url, category: 'theme' });
+      }
+      queryClient.invalidateQueries({ queryKey: ['theme-settings'] });
+      queryClient.invalidateQueries({ queryKey: ['branding-settings'] });
+      update(key, url);
+      toast.success('Imagem carregada e salva com sucesso!');
     } catch (err) {
       toast.error('Erro ao fazer upload: ' + (err as Error).message);
     } finally {
@@ -133,6 +143,7 @@ export default function ThemeEditor() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['theme-settings'] });
+      queryClient.invalidateQueries({ queryKey: ['branding-settings'] });
       setEdited({});
       toast.success('Tema salvo com sucesso!');
     },
