@@ -20,6 +20,8 @@ import {
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
+import { RichTextEditor } from '@/components/admin/RichTextEditor';
+import { LivePreview } from '@/components/admin/LivePreview';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAdminAuthContext } from '@/contexts/AdminAuthContext';
@@ -286,13 +288,12 @@ export default function BlogPosts() {
                 />
               </div>
               <div>
-                <Label>Conteúdo (HTML)</Label>
-                <Textarea
+                <Label>Conteúdo</Label>
+                <RichTextEditor
                   value={editingPost.conteudo_html || ''}
-                  onChange={e => setEditingPost(p => ({ ...p, conteudo_html: e.target.value }))}
-                  placeholder="<p>Conteúdo do artigo...</p>"
-                  rows={12}
-                  className="font-mono text-sm"
+                  onChange={html => setEditingPost(p => ({ ...p, conteudo_html: html }))}
+                  placeholder="Comece a escrever seu artigo..."
+                  minHeight="350px"
                 />
               </div>
               <Separator />

@@ -105,6 +105,7 @@ const navGroups: NavGroup[] = [
       { path: '/admin/paginas', label: 'Páginas', icon: PanelLeft, requiredRole: 'editor' },
       { path: '/admin/blog', label: 'Blog', icon: Newspaper, requiredRole: 'editor' },
       { path: '/admin/midia', label: 'Mídia', icon: ImageIcon, requiredRole: 'editor' },
+      { path: '/admin/aparencia', label: 'Aparência', icon: Sparkles, requiredRole: 'admin' },
       { path: '/admin/navegacao', label: 'Navegação', icon: Navigation, requiredRole: 'admin' },
     ]
   },

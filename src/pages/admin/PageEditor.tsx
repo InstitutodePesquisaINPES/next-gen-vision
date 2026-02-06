@@ -13,6 +13,8 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
+import { RichTextEditor } from '@/components/admin/RichTextEditor';
+import { LivePreview } from '@/components/admin/LivePreview';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAdminAuthContext } from '@/contexts/AdminAuthContext';
@@ -291,13 +293,12 @@ export default function PageEditor() {
                     />
                   </div>
                   <div>
-                    <Label>Conteúdo (HTML)</Label>
-                    <Textarea
+                    <Label>Conteúdo</Label>
+                    <RichTextEditor
                       value={(section.content_value.conteudo as string) || ''}
-                      onChange={e => updateSection(idx, 'conteudo', e.target.value)}
-                      placeholder="<p>Conteúdo HTML...</p>"
-                      rows={6}
-                      className="font-mono text-sm"
+                      onChange={html => updateSection(idx, 'conteudo', html)}
+                      placeholder="Comece a escrever..."
+                      minHeight="200px"
                     />
                   </div>
                   <div>
@@ -318,6 +319,11 @@ export default function PageEditor() {
             ))
           )}
         </div>
+      </div>
+
+      {/* Live Preview */}
+      <div className="mt-6">
+        <LivePreview path={`/${selectedPage}`} />
       </div>
     </AdminLayout>
   );
