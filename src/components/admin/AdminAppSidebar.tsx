@@ -25,7 +25,10 @@ import {
   Award,
   PieChart,
   Calculator,
-  UsersRound
+  UsersRound,
+  Newspaper,
+  ImageIcon,
+  PanelLeft
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { VixioLogo } from '@/components/brand/VixioLogo';
@@ -98,7 +101,10 @@ const navGroups: NavGroup[] = [
   {
     label: 'Conteúdo',
     items: [
-      { path: '/admin/conteudo', label: 'Conteúdo', icon: FileText, requiredRole: 'editor' },
+      { path: '/admin/conteudo', label: 'Home', icon: FileText, requiredRole: 'editor' },
+      { path: '/admin/paginas', label: 'Páginas', icon: PanelLeft, requiredRole: 'editor' },
+      { path: '/admin/blog', label: 'Blog', icon: Newspaper, requiredRole: 'editor' },
+      { path: '/admin/midia', label: 'Mídia', icon: ImageIcon, requiredRole: 'editor' },
       { path: '/admin/navegacao', label: 'Navegação', icon: Navigation, requiredRole: 'admin' },
     ]
   },

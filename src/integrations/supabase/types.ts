@@ -163,6 +163,60 @@ export type Database = {
         }
         Relationships: []
       }
+      blog_posts: {
+        Row: {
+          autor_avatar_url: string | null
+          autor_nome: string | null
+          categoria: string | null
+          conteudo_html: string
+          created_at: string
+          criado_por: string | null
+          id: string
+          imagem_capa_url: string | null
+          publicado_em: string | null
+          resumo: string | null
+          slug: string
+          status: string
+          tags: string[] | null
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          autor_avatar_url?: string | null
+          autor_nome?: string | null
+          categoria?: string | null
+          conteudo_html?: string
+          created_at?: string
+          criado_por?: string | null
+          id?: string
+          imagem_capa_url?: string | null
+          publicado_em?: string | null
+          resumo?: string | null
+          slug: string
+          status?: string
+          tags?: string[] | null
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          autor_avatar_url?: string | null
+          autor_nome?: string | null
+          categoria?: string | null
+          conteudo_html?: string
+          created_at?: string
+          criado_por?: string | null
+          id?: string
+          imagem_capa_url?: string | null
+          publicado_em?: string | null
+          resumo?: string | null
+          slug?: string
+          status?: string
+          tags?: string[] | null
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       case_studies: {
         Row: {
           ano: number | null
@@ -716,6 +770,42 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      page_content: {
+        Row: {
+          content_value: Json
+          created_at: string
+          id: string
+          is_active: boolean | null
+          ordem: number | null
+          page_slug: string
+          section_key: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          content_value?: Json
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          ordem?: number | null
+          page_slug: string
+          section_key: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          content_value?: Json
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          ordem?: number | null
+          page_slug?: string
+          section_key?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
       }
       page_views: {
         Row: {
