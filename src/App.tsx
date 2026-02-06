@@ -67,6 +67,9 @@ const AdminROICalculator = lazy(() => import("./pages/admin/ROICalculator"));
 const AdminProposalEditor = lazy(() => import("./pages/admin/ProposalEditor"));
 const AdminTeamMetrics = lazy(() => import("./pages/admin/TeamMetrics"));
 const AdminProposalTemplates = lazy(() => import("./pages/admin/ProposalTemplates"));
+const AdminBlogPosts = lazy(() => import("./pages/admin/BlogPosts"));
+const AdminMediaManager = lazy(() => import("./pages/admin/MediaManager"));
+const AdminPageEditor = lazy(() => import("./pages/admin/PageEditor"));
 
 const queryClient = new QueryClient();
 
@@ -114,7 +117,10 @@ const App = () => (
             <Route path="/admin/roi-calculator" element={<AdminAuthProvider><AdminROICalculator /></AdminAuthProvider>} />
             <Route path="/admin/metricas-equipe" element={<AdminAuthProvider><AdminTeamMetrics /></AdminAuthProvider>} />
             <Route path="/admin/templates-propostas" element={<AdminAuthProvider><AdminProposalTemplates /></AdminAuthProvider>} />
-            
+            <Route path="/admin/blog" element={<AdminAuthProvider><AdminBlogPosts /></AdminAuthProvider>} />
+            <Route path="/admin/midia" element={<AdminAuthProvider><AdminMediaManager /></AdminAuthProvider>} />
+            <Route path="/admin/paginas" element={<AdminAuthProvider><AdminPageEditor /></AdminAuthProvider>} />
+
             {/* Public validation page */}
             <Route path="/validar" element={<ValidateDocument />} />
             

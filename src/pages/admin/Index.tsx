@@ -260,53 +260,19 @@ export default function AdminDashboard() {
             </div>
           </AdminCard>
 
-          {/* Performance Overview */}
-          <AdminCard title="Visão do Sistema" description="Status em tempo real" className="mt-6">
+          <AdminCard title="Resumo do Sistema" description="Estatísticas gerais" className="mt-6">
             <div className="grid grid-cols-3 gap-4 mt-4">
               <div className="text-center p-4 rounded-xl bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-500" />
-                </div>
-                <p className="text-2xl font-bold text-emerald-500">100%</p>
-                <p className="text-xs text-muted-foreground mt-1">Uptime</p>
+                <p className="text-2xl font-bold text-emerald-500">{stats?.totalContent || 0}</p>
+                <p className="text-xs text-muted-foreground mt-1">Seções Ativas</p>
               </div>
               <div className="text-center p-4 rounded-xl bg-gradient-to-br from-blue-500/10 to-transparent border border-blue-500/20">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Zap className="h-5 w-5 text-blue-500" />
-                </div>
-                <p className="text-2xl font-bold text-blue-500">42ms</p>
-                <p className="text-xs text-muted-foreground mt-1">Latência</p>
+                <p className="text-2xl font-bold text-blue-500">{stats?.totalNavItems || 0}</p>
+                <p className="text-xs text-muted-foreground mt-1">Itens de Menu</p>
               </div>
               <div className="text-center p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-transparent border border-purple-500/20">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Activity className="h-5 w-5 text-purple-500" />
-                </div>
-                <p className="text-2xl font-bold text-purple-500">Ativo</p>
-                <p className="text-xs text-muted-foreground mt-1">Status API</p>
-              </div>
-            </div>
-            
-            <div className="mt-6 space-y-4">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Banco de Dados</span>
-                  <Badge variant="outline" className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20">Operacional</Badge>
-                </div>
-                <Progress value={100} className="h-1.5" />
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Autenticação</span>
-                  <Badge variant="outline" className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20">Ativo</Badge>
-                </div>
-                <Progress value={100} className="h-1.5" />
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Edge Functions</span>
-                  <Badge variant="outline" className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20">Online</Badge>
-                </div>
-                <Progress value={100} className="h-1.5" />
+                <p className="text-2xl font-bold text-purple-500">{stats?.totalSettings || 0}</p>
+                <p className="text-xs text-muted-foreground mt-1">Configurações</p>
               </div>
             </div>
           </AdminCard>

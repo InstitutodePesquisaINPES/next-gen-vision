@@ -1,36 +1,40 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { Calendar, Clock, ArrowRight, Search } from "lucide-react";
+import { Calendar, Clock, ArrowRight, Search, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Input } from "@/components/ui/input";
-
-const categories = ["Todos"];
-
-const posts: Array<{
-  id: number;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  readTime: string;
-  image: string;
-  featured: boolean;
-}> = [];
+import { supabase } from "@/integrations/supabase/client";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredPosts = posts.filter((post) => {
-    const matchesCategory = activeCategory === "Todos" || post.category === activeCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+  const { data: posts, isLoading } = useQuery({
+    queryKey: ['public-blog-posts'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('status', 'publicado')
+        .order('publicado_em', { ascending: false });
+      if (error) throw error;
+      return data || [];
+    },
   });
 
-  const featuredPosts = filteredPosts.filter(p => p.featured);
-  const regularPosts = filteredPosts.filter(p => !p.featured);
+  const categories = ["Todos", ...new Set((posts || []).map(p => p.categoria).filter(Boolean))];
+
+  const filteredPosts = (posts || []).filter((post) => {
+    const matchesCategory = activeCategory === "Todos" || post.categoria === activeCategory;
+    const matchesSearch = !searchQuery || 
+      post.titulo.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (post.resumo || '').toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <Layout>
@@ -79,7 +83,7 @@ const Blog = () => {
               {categories.map((category) => (
                 <button
                   key={category}
-                  onClick={() => setActiveCategory(category)}
+                  onClick={() => setActiveCategory(category as string)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     activeCategory === category
                       ? "bg-primary text-primary-foreground"
@@ -97,74 +101,48 @@ const Blog = () => {
       {/* Content */}
       <section className="section-padding bg-background">
         <div className="container-custom">
-          {filteredPosts.length > 0 ? (
-            <>
-              {/* Featured Posts */}
-              {featuredPosts.length > 0 && (
-                <div className="mb-12">
-                  <h2 className="text-2xl font-bold text-foreground mb-8">Em destaque</h2>
-                  <div className="grid md:grid-cols-2 gap-8">
-                    {featuredPosts.map((post, index) => (
-                      <motion.article
-                        key={post.id}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
-                        className="group glass-card overflow-hidden hover-lift"
-                      >
-                        <div className="relative h-56 overflow-hidden">
-                          <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-                          <div className="absolute top-4 left-4">
-                            <span className="px-3 py-1 text-xs font-medium rounded-full bg-primary/20 text-primary border border-primary/30 backdrop-blur-sm">{post.category}</span>
-                          </div>
-                        </div>
-                        <div className="p-6">
-                          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                            <span className="flex items-center gap-1"><Calendar className="h-4 w-4" />{post.date}</span>
-                            <span className="flex items-center gap-1"><Clock className="h-4 w-4" />{post.readTime}</span>
-                          </div>
-                          <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
-                          <p className="text-muted-foreground">{post.excerpt}</p>
-                        </div>
-                      </motion.article>
-                    ))}
+          {isLoading ? (
+            <div className="flex items-center justify-center py-20">
+              <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+            </div>
+          ) : filteredPosts.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, index) => (
+                <motion.article
+                  key={post.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="group glass-card overflow-hidden hover-lift"
+                >
+                  {post.imagem_capa_url && (
+                    <div className="relative h-48 overflow-hidden">
+                      <img src={post.imagem_capa_url} alt={post.titulo} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+                    </div>
+                  )}
+                  <div className="p-5">
+                    {post.categoria && (
+                      <span className="text-xs font-medium text-primary">{post.categoria}</span>
+                    )}
+                    <h3 className="text-lg font-semibold text-foreground mt-1 mb-2 group-hover:text-primary transition-colors line-clamp-2">{post.titulo}</h3>
+                    {post.resumo && (
+                      <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{post.resumo}</p>
+                    )}
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                      {post.publicado_em && (
+                        <span className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          {format(new Date(post.publicado_em), "dd MMM yyyy", { locale: ptBR })}
+                        </span>
+                      )}
+                      {post.autor_nome && <span>• {post.autor_nome}</span>}
+                    </div>
                   </div>
-                </div>
-              )}
-
-              {/* Regular Posts */}
-              {regularPosts.length > 0 && (
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-8">Todos os artigos</h2>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {regularPosts.map((post, index) => (
-                      <motion.article
-                        key={post.id}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.05 }}
-                        className="group glass-card overflow-hidden hover-lift"
-                      >
-                        <div className="relative h-40 overflow-hidden">
-                          <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
-                        </div>
-                        <div className="p-5">
-                          <span className="text-xs font-medium text-primary">{post.category}</span>
-                          <h3 className="text-lg font-semibold text-foreground mt-1 mb-2 group-hover:text-primary transition-colors line-clamp-2">{post.title}</h3>
-                          <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                            <span>{post.date}</span><span>•</span><span>{post.readTime}</span>
-                          </div>
-                        </div>
-                      </motion.article>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </>
+                </motion.article>
+              ))}
+            </div>
           ) : (
             <motion.div
               initial={{ opacity: 0, y: 30 }}
