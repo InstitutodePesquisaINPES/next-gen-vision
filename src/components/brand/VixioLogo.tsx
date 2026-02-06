@@ -42,9 +42,10 @@ export const VixioLogo = forwardRef<HTMLDivElement, VixioLogoProps>(function Vix
   const iconSize = iconSizes[size];
 
   // Use dynamic branding if available, otherwise fall back to static assets
+  // logoUrl serves as universal fallback when specific variants aren't set
   const dynamicIcon = branding?.logoUrl;
-  const dynamicDark = branding?.logoDarkUrl;
-  const dynamicLight = branding?.logoLightUrl;
+  const dynamicDark = branding?.logoDarkUrl || branding?.logoUrl;
+  const dynamicLight = branding?.logoLightUrl || branding?.logoUrl;
 
   if (variant === "icon") {
     const iconSrc = dynamicIcon || logoIcon;
