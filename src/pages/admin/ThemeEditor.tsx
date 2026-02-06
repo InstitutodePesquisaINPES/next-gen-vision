@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
-  Palette, Save, Loader2, RotateCcw, Type, Eye, Image as ImageIcon, Sun, Moon
+  Palette, Save, Loader2, RotateCcw, Type, Eye, Image as ImageIcon, Sun, Moon, Upload, X
 } from 'lucide-react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { AdminPageHeader } from '@/components/admin/AdminPageHeader';
@@ -67,7 +67,43 @@ const themeFields = [
 
 export default function ThemeEditor() {
   const [edited, setEdited] = useState<Record<string, string>>({});
+  const [uploading, setUploading] = useState<Record<string, boolean>>({});
+  const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
   const queryClient = useQueryClient();
+
+  const handleFileUpload = async (key: string, file: File) => {
+    if (!file.type.startsWith('image/')) {
+      toast.error('Apenas imagens são permitidas.');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Arquivo muito grande. Máximo 5MB.');
+      return;
+    }
+
+    setUploading(prev => ({ ...prev, [key]: true }));
+    try {
+      const ext = file.name.split('.').pop();
+      const fileName = `branding/${key}_${Date.now()}.${ext}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('media')
+        .upload(fileName, file, { upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage
+        .from('media')
+        .getPublicUrl(fileName);
+
+      update(key, urlData.publicUrl);
+      toast.success('Imagem carregada com sucesso!');
+    } catch (err) {
+      toast.error('Erro ao fazer upload: ' + (err as Error).message);
+    } finally {
+      setUploading(prev => ({ ...prev, [key]: false }));
+    }
+  };
 
   const { data: settings, isLoading } = useQuery({
     queryKey: ['theme-settings'],
@@ -186,17 +222,60 @@ export default function ThemeEditor() {
     }
 
     return (
-      <div key={field.key}>
+      <div key={field.key} className="space-y-2">
         <Label className="text-sm">{field.label}</Label>
-        <Input
-          value={value}
-          onChange={e => update(field.key, e.target.value)}
-          placeholder="https://..."
-          className="mt-1"
-        />
-        {value && field.type === 'url' && (
-          <div className="mt-2 p-2 border border-border/50 rounded-lg bg-muted/20">
-            <img src={value} alt={field.label} className="max-h-16 object-contain" onError={e => (e.currentTarget.style.display = 'none')} />
+        <div className="flex gap-2">
+          <Input
+            value={value}
+            onChange={e => update(field.key, e.target.value)}
+            placeholder="https://... ou faça upload"
+            className="flex-1"
+          />
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
+            ref={el => { fileInputRefs.current[field.key] = el; }}
+            onChange={e => {
+              const file = e.target.files?.[0];
+              if (file) handleFileUpload(field.key, file);
+              e.target.value = '';
+            }}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            disabled={uploading[field.key]}
+            onClick={() => fileInputRefs.current[field.key]?.click()}
+            title="Fazer upload de arquivo"
+          >
+            {uploading[field.key] ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Upload className="h-4 w-4" />
+            )}
+          </Button>
+          {value && (
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              onClick={() => update(field.key, '')}
+              title="Remover imagem"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
+        {value && (
+          <div className="mt-2 p-3 border border-border/50 rounded-lg bg-muted/20 flex items-center justify-center">
+            <img
+              src={value}
+              alt={field.label}
+              className="max-h-20 object-contain"
+              onError={e => (e.currentTarget.style.display = 'none')}
+            />
           </div>
         )}
       </div>
