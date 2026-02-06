@@ -157,7 +157,7 @@ export default function ConsultoriaIndex() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl mx-auto"
+            className="mt-20 grid grid-cols-2 gap-6 md:gap-8 max-w-xl mx-auto"
           >
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
