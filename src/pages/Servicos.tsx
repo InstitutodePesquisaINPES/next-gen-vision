@@ -185,24 +185,9 @@ const Servicos = () => {
                   </div>
                   
                   <div className="mt-8 pt-8 border-t border-border">
-                    <div className="grid grid-cols-2 gap-6 text-center">
-                      <div>
-                        <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent">
-                          50+
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          Projetos entregues
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent">
-                          98%
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          Satisfação
-                        </div>
-                      </div>
-                    </div>
+                    <p className="text-sm text-muted-foreground text-center">
+                      Soluções personalizadas para cada cliente, com foco em resultados mensuráveis.
+                    </p>
                   </div>
                 </div>
               </div>

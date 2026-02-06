@@ -77,10 +77,8 @@ const consultoriaAreas = [
 ];
 
 const stats = [
-  { value: "150+", label: "Projetos Entregues" },
   { value: "7", label: "Especializações" },
-  { value: "98%", label: "Satisfação" },
-  { value: "12+", label: "Anos de Experiência" },
+  { value: "Multidisciplinar", label: "Equipe" },
 ];
 
 const diferenciais = [

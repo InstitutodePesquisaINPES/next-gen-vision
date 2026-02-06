@@ -15,18 +15,16 @@ import { SectionHeader } from "@/components/ui/section-header";
 
 // Credenciais de impacto
 const credentials = [
-  { value: "200+", label: "Estudos Clínicos", description: "Todas as fases (I-IV)" },
-  { value: "50+", label: "Publicações", description: "Em journals de alto impacto" },
-  { value: "20+", label: "Anos de Experiência", description: "Em pesquisa clínica" },
-  { value: "99%", label: "Taxa de Aprovação", description: "Em submissões regulatórias" },
+  { value: "ICH/GCP", label: "Conformidade", description: "Padrões internacionais" },
+  { value: "SAS + R", label: "Software", description: "Ferramentas estatísticas líderes" },
+  { value: "ANVISA", label: "Regulatórios", description: "FDA e EMA" },
 ];
 
 // Badges de credibilidade
 const credentialsBadges = [
-  { icon: GraduationCap, label: "PhDs em Estatística", description: "Equipe com formação acadêmica" },
+  { icon: GraduationCap, label: "Formação Estatística", description: "Equipe com formação acadêmica" },
   { icon: Award, label: "ICH/GCP Certified", description: "Conformidade com boas práticas" },
-  { icon: Globe, label: "Experiência Global", description: "ANVISA, FDA, EMA" },
-  { icon: BookOpen, label: "Publicações Científicas", description: "Em journals tier-1" },
+  { icon: Globe, label: "Padrões Internacionais", description: "ANVISA, FDA, EMA" },
 ];
 
 // Áreas de expertise expandidas
@@ -139,12 +137,12 @@ const studyDesigns = [
 
 // Áreas terapêuticas
 const therapeuticAreas = [
-  { icon: Heart, name: "Cardiologia", studies: "Hipertensão, IC, FA, DAC, AVC", projects: "45+" },
-  { icon: Dna, name: "Oncologia", studies: "Sólidos, hematológicos, imunoterapia", projects: "60+" },
-  { icon: Brain, name: "Neurologia", studies: "Alzheimer, Parkinson, EM, Epilepsia", projects: "25+" },
-  { icon: Pill, name: "Infectologia", studies: "HIV, hepatites, antimicrobianos, COVID-19", projects: "35+" },
-  { icon: Users, name: "Pediatria", studies: "Vacinas, doenças raras, desenvolvimento", projects: "20+" },
-  { icon: Stethoscope, name: "Reumatologia", studies: "AR, LES, espondiloartrites, psoríase", projects: "15+" },
+  { icon: Heart, name: "Cardiologia", studies: "Hipertensão, IC, FA, DAC, AVC" },
+  { icon: Dna, name: "Oncologia", studies: "Sólidos, hematológicos, imunoterapia" },
+  { icon: Brain, name: "Neurologia", studies: "Alzheimer, Parkinson, EM, Epilepsia" },
+  { icon: Pill, name: "Infectologia", studies: "HIV, hepatites, antimicrobianos" },
+  { icon: Users, name: "Pediatria", studies: "Vacinas, doenças raras, desenvolvimento" },
+  { icon: Stethoscope, name: "Reumatologia", studies: "AR, LES, espondiloartrites, psoríase" },
 ];
 
 // Conformidade regulatória expandida
@@ -261,37 +259,7 @@ const softwareExpertise = [
   { name: "TreeAge", category: "Health Economics", use: "Modelos de Markov, CEA, BIA" },
 ];
 
-// Publicações recentes
-const publications = [
-  {
-    title: "Análise de Não-Inferioridade em Ensaios Cardiovasculares: Considerações Metodológicas",
-    journal: "Statistical Methods in Medical Research",
-    year: "2024",
-    type: "Metodologia",
-    impact: "IF: 2.3"
-  },
-  {
-    title: "Propensity Score em Estudos Observacionais: Uma Revisão Prática para Pesquisadores",
-    journal: "Revista de Saúde Pública",
-    year: "2023",
-    type: "Revisão",
-    impact: "IF: 2.1"
-  },
-  {
-    title: "Network Meta-Analysis em Oncologia: Aplicações e Limitações em HTA",
-    journal: "Journal of Clinical Epidemiology",
-    year: "2023",
-    type: "Metodologia",
-    impact: "IF: 7.4"
-  },
-  {
-    title: "Real World Evidence para Extensão de Indicações: Framework Prático",
-    journal: "Pharmacoepidemiology and Drug Safety",
-    year: "2024",
-    type: "Aplicação",
-    impact: "IF: 2.9"
-  },
-];
+// Publicações removidas - eram fictícias
 
 // Diferenciais
 const differentiators = [
@@ -494,7 +462,7 @@ export default function Bioestatistica() {
                 </div>
                 <h4 className="font-bold text-foreground">{area.name}</h4>
                 <p className="text-xs text-muted-foreground mt-1">{area.studies}</p>
-                <div className="mt-2 text-sm font-bold text-emerald-400">{area.projects} projetos</div>
+                <p className="text-xs text-muted-foreground mt-1">{area.studies}</p>
               </motion.div>
             ))}
           </div>
@@ -764,44 +732,7 @@ export default function Bioestatistica() {
         </div>
       </section>
 
-      {/* Recent Publications */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <SectionHeader
-            badge="Publicações"
-            title="Contribuições"
-            titleHighlight="Científicas"
-            description="Publicações recentes em periódicos indexados de alto impacto."
-          />
-
-          <div className="mt-12 grid md:grid-cols-2 gap-6">
-            {publications.map((pub, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="glass-card p-6 hover-lift"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 rounded-md bg-emerald-500/10 text-emerald-400 text-xs font-medium">
-                    {pub.type}
-                  </span>
-                  <span className="px-2 py-1 rounded-md bg-muted/50 text-muted-foreground text-xs">
-                    {pub.impact}
-                  </span>
-                </div>
-                <h4 className="font-bold text-foreground leading-tight">{pub.title}</h4>
-                <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
-                  <span className="italic">{pub.journal}</span>
-                  <span>{pub.year}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Removed publications section - was fictional */}
 
       {/* Differentiators */}
       <section className="section-padding bg-muted/10">

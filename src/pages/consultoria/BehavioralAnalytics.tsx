@@ -16,18 +16,14 @@ import { SectionHeader } from "@/components/ui/section-header";
 
 // Stats de impacto
 const heroStats = [
-  { value: "150+", label: "Projetos Comportamentais", description: "Em diversos setores" },
-  { value: "32%", label: "Aumento Médio Conversão", description: "Com nudges baseados em evidência" },
-  { value: "2.5x", label: "ROI em Intervenções", description: "Vs. abordagens tradicionais" },
-  { value: "PhD", label: "Equipe Especializada", description: "Em Psicologia e Behavioral Economics" },
+  { value: "EAST", label: "Frameworks Aplicados", description: "COM-B, MINDSPACE e mais" },
+  { value: "RCT", label: "Validação Experimental", description: "Com grupo controle randomizado" },
 ];
 
 // Credenciais
 const credentials = [
-  { icon: GraduationCap, label: "PhDs em Psicologia", description: "Formação acadêmica rigorosa" },
-  { icon: Award, label: "Publicações Científicas", description: "Em journals de comportamento" },
-  { icon: Building2, label: "Fortune 500", description: "Clientes globais atendidos" },
-  { icon: Globe, label: "Projetos Internacionais", description: "Brasil, EUA e Europa" },
+  { icon: GraduationCap, label: "Base Científica", description: "Formação acadêmica rigorosa" },
+  { icon: Award, label: "Metodologia Validada", description: "Frameworks reconhecidos internacionalmente" },
 ];
 
 // Áreas de expertise expandidas
@@ -312,31 +308,27 @@ const differentiators = [
   },
 ];
 
-// Casos de aplicação
+// Exemplos de aplicação (sem resultados fabricados)
 const applicationCases = [
   {
     industry: "E-commerce",
     challenge: "Alto abandono de carrinho apesar de preços competitivos",
-    intervention: "Redesenho de checkout com redução de friction e nudges de urgência",
-    result: "+18% conversão em checkout",
+    intervention: "Redesenho de checkout com redução de friction e nudges comportamentais",
   },
   {
     industry: "SaaS",
     challenge: "Baixa ativação de trial para paid",
     intervention: "Onboarding com progressive disclosure e goal-gradient effect",
-    result: "+35% trial-to-paid",
   },
   {
     industry: "Financeiro",
     challenge: "Resistência a migração para novo app",
     intervention: "Change management com loss aversion framing e social proof",
-    result: "85% de adoção em 30 dias",
   },
   {
     industry: "Varejo",
     challenge: "Programa de fidelidade com baixa adesão",
     intervention: "Gamification com endowed progress e variable rewards",
-    result: "+45% engajamento ativo",
   },
 ];
 
@@ -747,9 +739,8 @@ export default function BehavioralAnalytics() {
                 </span>
                 <h4 className="mt-4 font-bold text-foreground">{caseItem.challenge}</h4>
                 <p className="mt-2 text-sm text-muted-foreground">{caseItem.intervention}</p>
-                <div className="mt-4 pt-4 border-t border-border/50 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-green-500" />
-                  <span className="text-lg font-bold text-green-400">{caseItem.result}</span>
+                <div className="mt-4 pt-4 border-t border-border/50">
+                  <span className="text-xs font-medium text-muted-foreground">Intervenção aplicada</span>
                 </div>
               </motion.div>
             ))}

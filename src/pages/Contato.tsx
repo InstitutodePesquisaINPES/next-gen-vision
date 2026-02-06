@@ -18,8 +18,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Telefone",
-    value: "+55 (11) 99999-9999",
-    link: "tel:+5511999999999",
+    value: "+55 (77) 99100-5071",
+    link: "tel:+5577991005071",
   },
   {
     icon: MapPin,
@@ -149,7 +149,7 @@ const Contato = () => {
                   asChild
                 >
                   <a
-                    href="https://wa.me/5511999999999"
+                    href="https://wa.me/5577991005071"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
