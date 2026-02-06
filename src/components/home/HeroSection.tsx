@@ -204,7 +204,7 @@ export function HeroSection() {
               className="group gradient-primary text-primary-foreground px-8 py-6 text-base glow-primary"
               asChild
             >
-              <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5577991005071" target="_blank" rel="noopener noreferrer">
                 Falar com Especialista
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>

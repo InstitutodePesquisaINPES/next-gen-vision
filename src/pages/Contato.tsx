@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, MessageCircle, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle, Clock, Loader2 } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useSEO } from "@/hooks/useSEO";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactInfo = [
   {
@@ -47,6 +49,11 @@ const Contato = () => {
     message: "",
   });
 
+  useSEO({
+    title: "Contato",
+    description: "Entre em contato com a Vixio. Fale com nossos especialistas em dados, IA e sistemas inteligentes.",
+  });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -55,23 +62,36 @@ const Contato = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const { error } = await supabase.from("leads").insert({
+        nome: formData.name,
+        email: formData.email,
+        telefone: formData.phone || null,
+        empresa: formData.company || null,
+        observacoes: `Assunto: ${formData.subject}\n\n${formData.message}`,
+        origem: "site_contato",
+        pagina_origem: "/contato",
+        status: "novo" as const,
+      });
 
-    toast({
-      title: "Mensagem enviada!",
-      description: "Entraremos em contato em breve.",
-    });
+      if (error) throw error;
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      subject: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+      toast({
+        title: "Mensagem enviada com sucesso!",
+        description: "Entraremos em contato em até 24 horas.",
+      });
+
+      setFormData({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
+    } catch (err) {
+      console.error("Error submitting contact form:", err);
+      toast({
+        title: "Erro ao enviar mensagem",
+        description: "Tente novamente ou entre em contato pelo WhatsApp.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -260,7 +280,10 @@ const Contato = () => {
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
-                      "Enviando..."
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Enviando...
+                      </>
                     ) : (
                       <>
                         <Send className="mr-2 h-5 w-5" />
