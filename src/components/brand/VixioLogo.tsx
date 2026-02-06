@@ -1,8 +1,9 @@
 import { forwardRef, type ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
-import logoFull from "@/assets/logo-vixio-icon.png";
-import logoDark from "@/assets/logo-vixio-dark.png";
-import logoLight from "@/assets/logo-vixio-light.png";
+import logoIcon from "@/assets/logo-vixio-icon.png";
+import logoDarkStatic from "@/assets/logo-vixio-dark.png";
+import logoLightStatic from "@/assets/logo-vixio-light.png";
+import { useBranding } from "@/hooks/useBranding";
 
 export interface VixioLogoProps extends ComponentPropsWithoutRef<"div"> {
   variant?: "full" | "icon";
@@ -36,13 +37,20 @@ export const VixioLogo = forwardRef<HTMLDivElement, VixioLogoProps>(function Vix
   },
   ref
 ) {
+  const { data: branding } = useBranding();
   const { width, height } = sizes[size];
   const iconSize = iconSizes[size];
 
+  // Use dynamic branding if available, otherwise fall back to static assets
+  const dynamicIcon = branding?.logoUrl;
+  const dynamicDark = branding?.logoDarkUrl;
+  const dynamicLight = branding?.logoLightUrl;
+
   if (variant === "icon") {
+    const iconSrc = dynamicIcon || logoIcon;
     return (
       <div ref={ref} className={cn("flex flex-col items-center", className)} {...props}>
-        <img src={logoFull} alt="Vixio" width={iconSize} height={iconSize} className="object-contain" />
+        <img src={iconSrc} alt="Vixio" width={iconSize} height={iconSize} className="object-contain" />
         {showTagline && (
           <span className="text-xs text-muted-foreground mt-1 text-center">
             Sistemas Inteligentes & Ciência de Dados
@@ -52,7 +60,9 @@ export const VixioLogo = forwardRef<HTMLDivElement, VixioLogoProps>(function Vix
     );
   }
 
-  const logoSrc = theme === "dark" ? logoDark : logoLight;
+  const logoSrc = theme === "dark"
+    ? (dynamicDark || logoDarkStatic)
+    : (dynamicLight || logoLightStatic);
 
   return (
     <div ref={ref} className={cn("flex flex-col", className)} {...props}>
@@ -74,17 +84,19 @@ export const VixioLogoAnimated = forwardRef<HTMLDivElement, VixioLogoAnimatedPro
   { className, size = "xl", ...props },
   ref
 ) {
+  const { data: branding } = useBranding();
   const { width, height } = sizes[size];
+  const logoSrc = branding?.logoDarkUrl || logoDarkStatic;
 
   return (
     <div ref={ref} className={cn("relative", className)} {...props}>
       {/* Glow effect */}
       <div className="absolute inset-0 blur-2xl opacity-30 animate-pulse">
-        <img src={logoDark} alt="" width={width} height={height} className="object-contain mix-blend-lighten" />
+        <img src={logoSrc} alt="" width={width} height={height} className="object-contain mix-blend-lighten" />
       </div>
       {/* Main logo */}
       <img
-        src={logoDark}
+        src={logoSrc}
         alt="Vixio - Sistemas Inteligentes & Ciência de Dados"
         width={width}
         height={height}
