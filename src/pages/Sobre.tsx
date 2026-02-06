@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { SectionHeader } from "@/components/ui/section-header";
+import { useSEO } from "@/hooks/useSEO";
 
 const values = [
   {
@@ -126,9 +127,12 @@ const FAQItem = ({ item, index }: { item: typeof faqItems[0]; index: number }) =
 };
 
 const Sobre = () => {
+  useSEO({
+    title: "Sobre a Vixio",
+    description: "Conheça a Vixio: empresa de tecnologia especializada em sistemas inteligentes e ciência de dados desde 2016.",
+  });
   return (
     <Layout>
-      {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 gradient-dark" />
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />

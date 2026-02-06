@@ -22,7 +22,7 @@ const footerLinks = {
     { name: "Contato", path: "/contato" },
     { name: "FAQ", path: "/contato#faq" },
     { name: "Área do Cliente", path: "/admin/login" },
-    { name: "Política de Privacidade", path: "/privacidade" },
+    { name: "Política de Privacidade", path: "/sobre#faq" },
   ],
 } as const;
 
