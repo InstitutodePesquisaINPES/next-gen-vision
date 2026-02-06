@@ -38,7 +38,7 @@ export function Layout({ children }: LayoutProps) {
   }, [location.pathname, location.hash]);
 
   return (
-    <div className="min-h-screen bg-background dark">
+    <div className="min-h-screen bg-background">
       <Header />
       <main>{children}</main>
       <Footer />
