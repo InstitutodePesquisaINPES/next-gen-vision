@@ -20,7 +20,6 @@ import {
   ChevronRight,
   Sparkles,
   Shield,
-  Zap,
   FolderKanban,
   FileSignature,
   Award,
@@ -219,18 +218,11 @@ export function AdminAppSidebar() {
           <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20">
             <div className="flex items-center gap-2 mb-2">
               <Sparkles className="h-4 w-4 text-primary" />
-              <span className="text-xs font-semibold text-primary">Pro Features</span>
+              <span className="text-xs font-semibold text-primary">Vixio Admin</span>
             </div>
-            <p className="text-[10px] text-muted-foreground mb-3">
-              Desbloqueie recursos avançados de IA e automação
+            <p className="text-[10px] text-muted-foreground">
+              Painel de gestão completo para sua operação
             </p>
-            <Link
-              to="/admin/upgrade"
-              className="flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors"
-            >
-              <Zap className="h-3 w-3" />
-              Upgrade
-            </Link>
           </div>
         )}
 

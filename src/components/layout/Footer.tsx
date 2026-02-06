@@ -21,7 +21,7 @@ const footerLinks = {
   suporte: [
     { name: "Contato", path: "/contato" },
     { name: "FAQ", path: "/contato#faq" },
-    { name: "Área do Cliente", path: "/login" },
+    { name: "Área do Cliente", path: "/admin/login" },
     { name: "Política de Privacidade", path: "/privacidade" },
   ],
 } as const;
@@ -59,11 +59,13 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(function Footer(
                 contato@vixio.com.br
               </a>
               <a
-                href="https://wa.me/5511999999999"
+                href="https://wa.me/5577991005071"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Phone className="h-4 w-4 text-primary" />
-                +55 (11) 99999-9999
+                +55 (77) 99100-5071
               </a>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <MapPin className="h-4 w-4 text-primary" />

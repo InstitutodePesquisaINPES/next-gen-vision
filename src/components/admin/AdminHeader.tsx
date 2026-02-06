@@ -52,11 +52,8 @@ export function AdminHeader() {
         </div>
 
         {/* Notifications */}
-        <Button variant="ghost" size="icon" className="relative h-9 w-9">
+        <Button variant="ghost" size="icon" className="h-9 w-9">
           <Bell className="h-4 w-4" />
-          <Badge className="absolute -top-1 -right-1 h-4 w-4 p-0 flex items-center justify-center text-[10px] bg-destructive">
-            3
-          </Badge>
         </Button>
 
         {/* User Menu */}
