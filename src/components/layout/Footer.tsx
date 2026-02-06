@@ -115,7 +115,12 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(function Footer(
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Vixio. Todos os direitos reservados.</p>
+          <div className="flex items-center gap-3">
+            <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Vixio. Todos os direitos reservados.</p>
+            <Link to="/admin/login" className="text-xs text-muted-foreground/40 hover:text-muted-foreground transition-colors">
+              ·
+            </Link>
+          </div>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
               <a
