@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Target, Eye, Heart, Award, Users, Zap, ArrowRight } from "lucide-react";
+import { 
+  Target, Eye, Heart, Award, Users, Zap, ArrowRight,
+  Building2, Code2, Brain, BarChart3, Shield, Lightbulb,
+  ChevronDown
+} from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { SectionHeader } from "@/components/ui/section-header";
-import founderImage from "@/assets/founder.png";
 
 const values = [
   {
@@ -29,12 +33,97 @@ const values = [
 ];
 
 const timeline = [
-  { year: "2016", title: "Fundação", description: "Início das operações focado em desenvolvimento web e PHP." },
-  { year: "2018", title: "Expansão", description: "Ampliação para análise de dados e Business Intelligence." },
-  { year: "2020", title: "IA & ML", description: "Entrada no mercado de Machine Learning e Inteligência Artificial." },
-  { year: "2022", title: "Consolidação", description: "Mais de 100 projetos entregues e expansão da equipe." },
-  { year: "2024", title: "Presente", description: "Referência em sistemas inteligentes e ciência de dados." },
+  { year: "2016", title: "Fundação", description: "Início das operações com foco em desenvolvimento web e soluções PHP para pequenas e médias empresas.", icon: Building2 },
+  { year: "2018", title: "Expansão para Dados", description: "Ampliação do portfólio para incluir análise de dados e Business Intelligence, atendendo demandas corporativas.", icon: BarChart3 },
+  { year: "2020", title: "IA & Machine Learning", description: "Entrada no mercado de Machine Learning e IA aplicada, com projetos em saúde pública e gestão estratégica.", icon: Brain },
+  { year: "2022", title: "Consolidação", description: "Mais de 100 projetos entregues, expansão da equipe multidisciplinar e parcerias com instituições de ensino.", icon: Code2 },
+  { year: "2024", title: "Plataforma Completa", description: "Lançamento de soluções SaaS próprias e consolidação como referência em sistemas inteligentes e ciência de dados.", icon: Lightbulb },
 ];
+
+const differentials = [
+  {
+    icon: Brain,
+    title: "Equipe com DNA Científico",
+    description: "Nossa equipe une formação acadêmica rigorosa (mestrados e doutorados) com experiência prática de mercado.",
+  },
+  {
+    icon: Shield,
+    title: "Metodologia Proprietária",
+    description: "Processo estruturado em 5 fases — Discovery, Exploration, Development, Production e Operations — garantindo entregas previsíveis.",
+  },
+  {
+    icon: BarChart3,
+    title: "Foco em Resultados Mensuráveis",
+    description: "Cada projeto é orientado por KPIs claros, com dashboards de acompanhamento em tempo real para o cliente.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Quais tipos de projetos a Vixio atende?",
+    answer: "Atendemos desde startups que precisam de MVPs até grandes corporações com demandas complexas de ciência de dados, automação com IA, Business Intelligence, sistemas de gestão e plataformas SaaS. Nossos projetos mais comuns incluem dashboards analíticos, sistemas de atendimento inteligente, análises preditivas e consultoria em dados.",
+  },
+  {
+    question: "Qual é o prazo médio de entrega de um projeto?",
+    answer: "Projetos menores (dashboards, automações) levam de 2 a 4 semanas. Projetos de médio porte (sistemas de gestão, plataformas web) de 1 a 3 meses. Projetos complexos (ciência de dados, IA aplicada, SaaS) de 3 a 6 meses. Após a fase de Discovery, fornecemos um cronograma detalhado com marcos de entrega.",
+  },
+  {
+    question: "Como funciona o processo de contratação?",
+    answer: "Iniciamos com uma reunião de diagnóstico gratuita para entender suas necessidades. Em seguida, elaboramos uma proposta técnica detalhada com escopo, cronograma e investimento. Após aprovação, o projeto segue nosso processo estruturado em 5 fases com checkpoints de validação em cada etapa.",
+  },
+  {
+    question: "A Vixio oferece suporte após a entrega?",
+    answer: "Sim. Todos os projetos incluem um período de suporte pós-entrega (geralmente 30 a 90 dias). Além disso, oferecemos planos de manutenção contínua com SLA definido, atualizações de segurança e evolução do sistema conforme novas necessidades surgirem.",
+  },
+  {
+    question: "Vocês trabalham com dados sensíveis? Como garantem a segurança?",
+    answer: "Trabalhamos com dados de saúde, financeiros e corporativos. Seguimos práticas de segurança como criptografia em trânsito e em repouso, controle de acesso baseado em papéis (RBAC), ambientes isolados e conformidade com LGPD. Nosso fundador tem experiência em comitês de ética em pesquisa.",
+  },
+  {
+    question: "Qual é o investimento mínimo para um projeto?",
+    answer: "O investimento varia conforme complexidade e escopo. Projetos de consultoria pontual iniciam a partir de R$ 5.000. Sistemas e plataformas customizadas a partir de R$ 15.000. Oferecemos condições de pagamento flexíveis, com possibilidade de parcelamento vinculado às entregas do projeto.",
+  },
+  {
+    question: "Vocês atendem empresas fora de Vitória da Conquista?",
+    answer: "Sim. Atendemos clientes em todo o Brasil de forma remota, com reuniões por videoconferência e ferramentas de gestão de projetos online. Para projetos que exigem presença física, avaliamos caso a caso.",
+  },
+  {
+    question: "Posso acompanhar o andamento do projeto em tempo real?",
+    answer: "Sim. Cada cliente recebe acesso ao nosso painel de acompanhamento de projetos com visibilidade sobre fases, entregas, prazos e indicadores de progresso. Além disso, realizamos reuniões periódicas de alinhamento.",
+  },
+];
+
+const FAQItem = ({ item, index }: { item: typeof faqItems[0]; index: number }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.05 }}
+      className="border border-border/50 rounded-xl overflow-hidden"
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-5 text-left hover:bg-accent/30 transition-colors"
+      >
+        <span className="text-foreground font-medium pr-4">{item.question}</span>
+        <ChevronDown className={`h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="overflow-hidden"
+      >
+        <p className="px-5 pb-5 text-muted-foreground leading-relaxed">
+          {item.answer}
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const Sobre = () => {
   return (
@@ -54,7 +143,7 @@ const Sobre = () => {
             <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
               Sobre a Vixio
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
               Transformando o futuro com{" "}
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300 bg-clip-text text-transparent">
                 tecnologia
@@ -68,37 +157,12 @@ const Sobre = () => {
         </div>
       </section>
 
-      {/* Founder Section */}
+      {/* Nossa História — sem foto do fundador, com timeline visual */}
       <section className="section-padding bg-card">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="relative"
-            >
-              <div className="relative rounded-2xl overflow-hidden glow-accent">
-                <img
-                  src={founderImage}
-                  alt="Fundador Vixio"
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
-              </div>
-              <div className="absolute -bottom-6 -right-6 glass-card p-6 max-w-xs">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent">
-                  8+ Anos
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  de experiência em tecnologia
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
@@ -110,18 +174,16 @@ const Sobre = () => {
                 <p>
                   A Vixio nasceu da paixão por transformar dados em soluções que geram 
                   valor real para as empresas. Fundada por profissionais com vasta experiência 
-                  em desenvolvimento de software e ciência de dados, nossa empresa se destaca 
-                  pela combinação única de expertise técnica e visão estratégica.
+                  em pesquisa científica, desenvolvimento de software e gestão estratégica.
                 </p>
                 <p>
-                  Ao longo dos anos, evoluímos de uma pequena consultoria de desenvolvimento 
-                  para uma empresa completa de tecnologia, capaz de atender desde startups 
-                  até grandes corporações em suas jornadas de transformação digital.
+                  Ao longo dos anos, evoluímos de uma consultoria de desenvolvimento 
+                  para uma empresa completa de tecnologia, atendendo desde startups 
+                  até organizações públicas em suas jornadas de transformação digital.
                 </p>
                 <p>
-                  Hoje, somos referência em sistemas inteligentes, integrando as mais 
-                  avançadas tecnologias de Machine Learning e Inteligência Artificial 
-                  em soluções práticas e escaláveis.
+                  Hoje, combinamos rigor acadêmico com agilidade de mercado para entregar 
+                  sistemas inteligentes que geram impacto mensurável.
                 </p>
               </div>
               <Link 
@@ -132,12 +194,70 @@ const Sobre = () => {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>
+
+            {/* Mini timeline visual */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative"
+            >
+              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent" />
+              {timeline.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative pl-14 pb-8 last:pb-0"
+                >
+                  <div className="absolute left-0 top-1 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
+                    <item.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="text-sm font-bold text-primary">{item.year}</span>
+                  <h3 className="text-base font-semibold text-foreground mt-0.5">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Diferenciais — substituindo "prova social" genérica */}
+      <section className="section-padding bg-background">
+        <div className="container-custom">
+          <SectionHeader
+            badge="Por que a Vixio"
+            title="Nossos Diferenciais"
+            description="O que nos torna a escolha certa para projetos de tecnologia e dados."
+          />
+
+          <div className="mt-16 grid md:grid-cols-3 gap-8">
+            {differentials.map((diff, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-card p-8 hover-lift"
+              >
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                  <diff.icon className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{diff.title}</h3>
+                <p className="text-muted-foreground">{diff.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Mission, Vision Section */}
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-card">
         <div className="container-custom">
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
@@ -179,7 +299,7 @@ const Sobre = () => {
       </section>
 
       {/* Values Section */}
-      <section className="section-padding bg-card">
+      <section className="section-padding bg-background">
         <div className="container-custom">
           <SectionHeader
             badge="Nossos Valores"
@@ -212,33 +332,18 @@ const Sobre = () => {
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="section-padding bg-background">
+      {/* FAQ Section — expandido */}
+      <section className="section-padding bg-card">
         <div className="container-custom">
           <SectionHeader
-            badge="Nossa Trajetória"
-            title="Uma história de crescimento"
+            badge="Dúvidas Frequentes"
+            title="Perguntas & Respostas"
+            description="Tudo o que você precisa saber antes de começar um projeto conosco."
           />
 
-          <div className="mt-16 max-w-3xl mx-auto">
-            {timeline.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="relative pl-8 pb-8 border-l border-primary/30 last:pb-0"
-              >
-                <div className="absolute left-0 top-0 w-4 h-4 -translate-x-1/2 rounded-full bg-primary" />
-                <div className="glass-card p-6">
-                  <span className="text-sm font-bold text-primary">{item.year}</span>
-                  <h3 className="text-lg font-semibold text-foreground mt-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground mt-2">{item.description}</p>
-                </div>
-              </motion.div>
+          <div className="mt-16 max-w-3xl mx-auto space-y-3">
+            {faqItems.map((item, index) => (
+              <FAQItem key={index} item={item} index={index} />
             ))}
           </div>
         </div>
