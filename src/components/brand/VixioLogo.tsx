@@ -1,7 +1,6 @@
 import { forwardRef, type ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
-import logoIcon from "@/assets/logo-vixio-icon.png";
-import logoFull from "@/assets/logo-vixio-full.png";
+import logoFull from "@/assets/logo-vixio-icon.png";
 import logoDark from "@/assets/logo-vixio-dark.png";
 import logoLight from "@/assets/logo-vixio-light.png";
 
@@ -43,7 +42,7 @@ export const VixioLogo = forwardRef<HTMLDivElement, VixioLogoProps>(function Vix
   if (variant === "icon") {
     return (
       <div ref={ref} className={cn("flex flex-col items-center", className)} {...props}>
-        <img src={logoIcon} alt="Vixio" width={iconSize} height={iconSize} className="object-contain" />
+        <img src={logoFull} alt="Vixio" width={iconSize} height={iconSize} className="object-contain" />
         {showTagline && (
           <span className="text-xs text-muted-foreground mt-1 text-center">
             Sistemas Inteligentes & Ciência de Dados
@@ -62,7 +61,7 @@ export const VixioLogo = forwardRef<HTMLDivElement, VixioLogoProps>(function Vix
         alt="Vixio - Sistemas Inteligentes & Ciência de Dados"
         width={width}
         height={height}
-        className="object-contain brightness-0 invert"
+        className="object-contain mix-blend-lighten"
       />
     </div>
   );
@@ -81,7 +80,7 @@ export const VixioLogoAnimated = forwardRef<HTMLDivElement, VixioLogoAnimatedPro
     <div ref={ref} className={cn("relative", className)} {...props}>
       {/* Glow effect */}
       <div className="absolute inset-0 blur-2xl opacity-30 animate-pulse">
-        <img src={logoDark} alt="" width={width} height={height} className="object-contain brightness-0 invert" />
+        <img src={logoDark} alt="" width={width} height={height} className="object-contain mix-blend-lighten" />
       </div>
       {/* Main logo */}
       <img
@@ -89,7 +88,7 @@ export const VixioLogoAnimated = forwardRef<HTMLDivElement, VixioLogoAnimatedPro
         alt="Vixio - Sistemas Inteligentes & Ciência de Dados"
         width={width}
         height={height}
-        className="object-contain relative z-10 brightness-0 invert"
+        className="object-contain relative z-10 mix-blend-lighten"
       />
     </div>
   );

@@ -98,8 +98,8 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background backdrop-blur-xl border-b border-border/50 shadow-sm"
-          : "bg-background"
+          ? "bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-sm"
+          : "bg-background/60 backdrop-blur-md"
       }`}
     >
       <div className="container-custom">
